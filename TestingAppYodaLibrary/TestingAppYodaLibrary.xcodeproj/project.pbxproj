@@ -1,0 +1,283 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		612E3E7015EE0DA800F98FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E6F15EE0DA800F98FB8 /* UIKit.framework */; };
+		612E3E7215EE0DA800F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E7115EE0DA800F98FB8 /* Foundation.framework */; };
+		612E3E7415EE0DA800F98FB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E7315EE0DA800F98FB8 /* CoreGraphics.framework */; };
+		612E3E7A15EE0DA800F98FB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 612E3E7815EE0DA800F98FB8 /* InfoPlist.strings */; };
+		612E3E7C15EE0DA800F98FB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E7B15EE0DA800F98FB8 /* main.m */; };
+		612E3E8015EE0DA800F98FB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E7F15EE0DA800F98FB8 /* AppDelegate.m */; };
+		612E3E8315EE0DA800F98FB8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E8215EE0DA800F98FB8 /* ViewController.m */; };
+		612E3E8615EE0DA800F98FB8 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 612E3E8415EE0DA800F98FB8 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		612E3E6B15EE0DA800F98FB8 /* TestingAppYodaLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestingAppYodaLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		612E3E6F15EE0DA800F98FB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		612E3E7115EE0DA800F98FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		612E3E7315EE0DA800F98FB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		612E3E7715EE0DA800F98FB8 /* TestingAppYodaLibrary-Info.plist */ = {isa = PBXFileReference; path = "TestingAppYodaLibrary-Info.plist"; sourceTree = "<group>"; };
+		612E3E7915EE0DA800F98FB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		612E3E7B15EE0DA800F98FB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		612E3E7D15EE0DA800F98FB8 /* TestingAppYodaLibrary-Prefix.pch */ = {isa = PBXFileReference; path = "TestingAppYodaLibrary-Prefix.pch"; sourceTree = "<group>"; };
+		612E3E7E15EE0DA800F98FB8 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		612E3E7F15EE0DA800F98FB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		612E3E8115EE0DA800F98FB8 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		612E3E8215EE0DA800F98FB8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		612E3E8515EE0DA800F98FB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		612E3E6815EE0DA800F98FB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				612E3E7015EE0DA800F98FB8 /* UIKit.framework in Frameworks */,
+				612E3E7215EE0DA800F98FB8 /* Foundation.framework in Frameworks */,
+				612E3E7415EE0DA800F98FB8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		612E3E6015EE0DA800F98FB8 = {
+			isa = PBXGroup;
+			children = (
+				612E3E7515EE0DA800F98FB8 /* TestingAppYodaLibrary */,
+				612E3E6E15EE0DA800F98FB8 /* Frameworks */,
+				612E3E6C15EE0DA800F98FB8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		612E3E6C15EE0DA800F98FB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				612E3E6B15EE0DA800F98FB8 /* TestingAppYodaLibrary.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		612E3E6E15EE0DA800F98FB8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				612E3E6F15EE0DA800F98FB8 /* UIKit.framework */,
+				612E3E7115EE0DA800F98FB8 /* Foundation.framework */,
+				612E3E7315EE0DA800F98FB8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		612E3E7515EE0DA800F98FB8 /* TestingAppYodaLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				612E3E7E15EE0DA800F98FB8 /* AppDelegate.h */,
+				612E3E7F15EE0DA800F98FB8 /* AppDelegate.m */,
+				612E3E8115EE0DA800F98FB8 /* ViewController.h */,
+				612E3E8215EE0DA800F98FB8 /* ViewController.m */,
+				612E3E8415EE0DA800F98FB8 /* ViewController.xib */,
+				612E3E7615EE0DA800F98FB8 /* Supporting Files */,
+			);
+			path = TestingAppYodaLibrary;
+			sourceTree = "<group>";
+		};
+		612E3E7615EE0DA800F98FB8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				612E3E7715EE0DA800F98FB8 /* TestingAppYodaLibrary-Info.plist */,
+				612E3E7815EE0DA800F98FB8 /* InfoPlist.strings */,
+				612E3E7B15EE0DA800F98FB8 /* main.m */,
+				612E3E7D15EE0DA800F98FB8 /* TestingAppYodaLibrary-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		612E3E6A15EE0DA800F98FB8 /* TestingAppYodaLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 612E3E8915EE0DA800F98FB8 /* Build configuration list for PBXNativeTarget "TestingAppYodaLibrary" */;
+			buildPhases = (
+				612E3E6715EE0DA800F98FB8 /* Sources */,
+				612E3E6815EE0DA800F98FB8 /* Frameworks */,
+				612E3E6915EE0DA800F98FB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestingAppYodaLibrary;
+			productName = TestingAppYodaLibrary;
+			productReference = 612E3E6B15EE0DA800F98FB8 /* TestingAppYodaLibrary.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		612E3E6215EE0DA800F98FB8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 612E3E6515EE0DA800F98FB8 /* Build configuration list for PBXProject "TestingAppYodaLibrary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 612E3E6015EE0DA800F98FB8;
+			productRefGroup = 612E3E6C15EE0DA800F98FB8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				612E3E6A15EE0DA800F98FB8 /* TestingAppYodaLibrary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		612E3E6915EE0DA800F98FB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				612E3E7A15EE0DA800F98FB8 /* InfoPlist.strings in Resources */,
+				612E3E8615EE0DA800F98FB8 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		612E3E6715EE0DA800F98FB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				612E3E7C15EE0DA800F98FB8 /* main.m in Sources */,
+				612E3E8015EE0DA800F98FB8 /* AppDelegate.m in Sources */,
+				612E3E8315EE0DA800F98FB8 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		612E3E7815EE0DA800F98FB8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				612E3E7915EE0DA800F98FB8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		612E3E8415EE0DA800F98FB8 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				612E3E8515EE0DA800F98FB8 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		612E3E8715EE0DA800F98FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		612E3E8815EE0DA800F98FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		612E3E8A15EE0DA800F98FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TestingAppYodaLibrary/TestingAppYodaLibrary-Prefix.pch";
+				INFOPLIST_FILE = "TestingAppYodaLibrary/TestingAppYodaLibrary-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		612E3E8B15EE0DA800F98FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TestingAppYodaLibrary/TestingAppYodaLibrary-Prefix.pch";
+				INFOPLIST_FILE = "TestingAppYodaLibrary/TestingAppYodaLibrary-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		612E3E6515EE0DA800F98FB8 /* Build configuration list for PBXProject "TestingAppYodaLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				612E3E8715EE0DA800F98FB8 /* Debug */,
+				612E3E8815EE0DA800F98FB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		612E3E8915EE0DA800F98FB8 /* Build configuration list for PBXNativeTarget "TestingAppYodaLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				612E3E8A15EE0DA800F98FB8 /* Debug */,
+				612E3E8B15EE0DA800F98FB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 612E3E6215EE0DA800F98FB8 /* Project object */;
+}

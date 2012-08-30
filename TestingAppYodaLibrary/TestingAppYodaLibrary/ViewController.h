@@ -1,13 +1,13 @@
 //
-//  AppYoda_iOS_SDK.h
-//  AppYoda-iOS-SDK
+//  ViewController.h
+//  TestingAppYodaLibrary
 //
 //  Created by Kauserali Hafizji on 29/08/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface AppYoda_iOS_SDK : NSObject
+@interface ViewController : UIViewController
 
 @end
