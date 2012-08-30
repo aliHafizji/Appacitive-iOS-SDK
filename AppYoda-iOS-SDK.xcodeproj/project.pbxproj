@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39510000989F40589B1E62B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE18E91493A45BE9CFB5B14 /* libPods.a */; };
 		612E3E0E15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
-		612E3E1415EDF8FE00F98FB8 /* AppYoda_iOS_SDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E1315EDF8FE00F98FB8 /* AppYoda_iOS_SDK.m */; };
 		612E3E1C15EDF8FE00F98FB8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */; };
-		612E3E1E15EDF8FE00F98FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E1D15EDF8FE00F98FB8 /* UIKit.framework */; };
 		612E3E1F15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
 		612E3E2215EDF8FE00F98FB8 /* libAppYoda-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0A15EDF8FD00F98FB8 /* libAppYoda-iOS-SDK.a */; };
 		612E3E2815EDF8FE00F98FB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 612E3E2615EDF8FE00F98FB8 /* InfoPlist.strings */; };
-		612E3E2B15EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E2A15EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.m */; };
+		612E3E3915EDF9C200F98FB8 /* AYObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 612E3E3515EDF9C200F98FB8 /* AYObject.h */; };
+		612E3E3A15EDF9C200F98FB8 /* AYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E3615EDF9C200F98FB8 /* AYObject.m */; };
+		612E3E3B15EDF9C200F98FB8 /* AYError.h in Headers */ = {isa = PBXBuildFile; fileRef = 612E3E3715EDF9C200F98FB8 /* AYError.h */; };
+		612E3E3C15EDF9C200F98FB8 /* AYError.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E3815EDF9C200F98FB8 /* AYError.m */; };
+		612E3E3E15EDF9E100F98FB8 /* AYResponseBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 612E3E3D15EDF9E100F98FB8 /* AYResponseBlocks.h */; };
+		612E3E4715EE026400F98FB8 /* AppYoda.h in Headers */ = {isa = PBXBuildFile; fileRef = 612E3E4515EE026400F98FB8 /* AppYoda.h */; };
+		612E3E4815EE026400F98FB8 /* AppYoda.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E4615EE026400F98FB8 /* AppYoda.m */; };
+		61AEAFA315EF1F4D00DA6C55 /* AppYodaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,18 +34,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		0AE18E91493A45BE9CFB5B14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3E0A15EDF8FD00F98FB8 /* libAppYoda-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAppYoda-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		612E3E1115EDF8FE00F98FB8 /* AppYoda-iOS-SDK-Prefix.pch */ = {isa = PBXFileReference; path = "AppYoda-iOS-SDK-Prefix.pch"; sourceTree = "<group>"; };
-		612E3E1215EDF8FE00F98FB8 /* AppYoda_iOS_SDK.h */ = {isa = PBXFileReference; path = AppYoda_iOS_SDK.h; sourceTree = "<group>"; };
-		612E3E1315EDF8FE00F98FB8 /* AppYoda_iOS_SDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppYoda_iOS_SDK.m; sourceTree = "<group>"; };
+		612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		612E3E1115EDF8FE00F98FB8 /* AppYoda-iOS-SDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppYoda-iOS-SDK-Prefix.pch"; sourceTree = "<group>"; };
 		612E3E1A15EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppYoda-iOS-SDKTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		612E3E1D15EDF8FE00F98FB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		612E3E2515EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests-Info.plist */ = {isa = PBXFileReference; path = "AppYoda-iOS-SDKTests-Info.plist"; sourceTree = "<group>"; };
+		612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		612E3E1D15EDF8FE00F98FB8 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		612E3E2515EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppYoda-iOS-SDKTests-Info.plist"; sourceTree = "<group>"; };
 		612E3E2715EDF8FE00F98FB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		612E3E2915EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.h */ = {isa = PBXFileReference; path = AppYoda_iOS_SDKTests.h; sourceTree = "<group>"; };
-		612E3E2A15EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppYoda_iOS_SDKTests.m; sourceTree = "<group>"; };
+		612E3E3515EDF9C200F98FB8 /* AYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYObject.h; sourceTree = "<group>"; };
+		612E3E3615EDF9C200F98FB8 /* AYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYObject.m; sourceTree = "<group>"; };
+		612E3E3715EDF9C200F98FB8 /* AYError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYError.h; sourceTree = "<group>"; };
+		612E3E3815EDF9C200F98FB8 /* AYError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYError.m; sourceTree = "<group>"; };
+		612E3E3D15EDF9E100F98FB8 /* AYResponseBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYResponseBlocks.h; sourceTree = "<group>"; };
+		612E3E4515EE026400F98FB8 /* AppYoda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppYoda.h; sourceTree = "<group>"; };
+		612E3E4615EE026400F98FB8 /* AppYoda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppYoda.m; sourceTree = "<group>"; };
+		61AEAFA115EF1F4D00DA6C55 /* AppYodaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppYodaTest.h; sourceTree = "<group>"; };
+		61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppYodaTest.m; sourceTree = "<group>"; };
+		6530BC94C46B4145812204DD /* libPods-AppYoda-iOS-SDKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppYoda-iOS-SDKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7614B9F08F3C4BB1B77B8A54 /* libPods-AppYoda-iOS-SDKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppYoda-iOS-SDKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7D5BBC3DA3C4C4F9A440086 /* libPods-AppYoda-iOS-SDKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppYoda-iOS-SDKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				612E3E0E15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */,
+				39510000989F40589B1E62B2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +73,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				612E3E1C15EDF8FE00F98FB8 /* SenTestingKit.framework in Frameworks */,
-				612E3E1E15EDF8FE00F98FB8 /* UIKit.framework in Frameworks */,
 				612E3E1F15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */,
 				612E3E2215EDF8FE00F98FB8 /* libAppYoda-iOS-SDK.a in Frameworks */,
 			);
@@ -72,6 +88,7 @@
 				612E3E2315EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests */,
 				612E3E0C15EDF8FE00F98FB8 /* Frameworks */,
 				612E3E0B15EDF8FD00F98FB8 /* Products */,
+				01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +107,10 @@
 				612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */,
 				612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */,
 				612E3E1D15EDF8FE00F98FB8 /* UIKit.framework */,
+				0AE18E91493A45BE9CFB5B14 /* libPods.a */,
+				6530BC94C46B4145812204DD /* libPods-AppYoda-iOS-SDKTests.a */,
+				C7D5BBC3DA3C4C4F9A440086 /* libPods-AppYoda-iOS-SDKTests.a */,
+				7614B9F08F3C4BB1B77B8A54 /* libPods-AppYoda-iOS-SDKTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -97,8 +118,7 @@
 		612E3E0F15EDF8FE00F98FB8 /* AppYoda-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				612E3E1215EDF8FE00F98FB8 /* AppYoda_iOS_SDK.h */,
-				612E3E1315EDF8FE00F98FB8 /* AppYoda_iOS_SDK.m */,
+				612E3E3415EDF9B200F98FB8 /* Classes */,
 				612E3E1015EDF8FE00F98FB8 /* Supporting Files */,
 			);
 			path = "AppYoda-iOS-SDK";
@@ -115,8 +135,8 @@
 		612E3E2315EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				612E3E2915EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.h */,
-				612E3E2A15EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.m */,
+				61AEAFA115EF1F4D00DA6C55 /* AppYodaTest.h */,
+				61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */,
 				612E3E2415EDF8FE00F98FB8 /* Supporting Files */,
 			);
 			path = "AppYoda-iOS-SDKTests";
@@ -131,6 +151,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		612E3E3415EDF9B200F98FB8 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				612E3E4515EE026400F98FB8 /* AppYoda.h */,
+				612E3E4615EE026400F98FB8 /* AppYoda.m */,
+				612E3E3D15EDF9E100F98FB8 /* AYResponseBlocks.h */,
+				612E3E3515EDF9C200F98FB8 /* AYObject.h */,
+				612E3E3615EDF9C200F98FB8 /* AYObject.m */,
+				612E3E3715EDF9C200F98FB8 /* AYError.h */,
+				612E3E3815EDF9C200F98FB8 /* AYError.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -138,6 +172,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612E3E3915EDF9C200F98FB8 /* AYObject.h in Headers */,
+				612E3E3B15EDF9C200F98FB8 /* AYError.h in Headers */,
+				612E3E3E15EDF9E100F98FB8 /* AYResponseBlocks.h in Headers */,
+				612E3E4715EE026400F98FB8 /* AppYoda.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +189,7 @@
 				612E3E0615EDF8FD00F98FB8 /* Sources */,
 				612E3E0715EDF8FD00F98FB8 /* Frameworks */,
 				612E3E0815EDF8FD00F98FB8 /* Headers */,
+				7FE993A9F5624060B1ED201A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,7 +207,10 @@
 				612E3E1515EDF8FE00F98FB8 /* Sources */,
 				612E3E1615EDF8FE00F98FB8 /* Frameworks */,
 				612E3E1715EDF8FE00F98FB8 /* Resources */,
+				457415B4877F48E0AA55786C /* Copy Pods Resources */,
 				612E3E1815EDF8FE00F98FB8 /* ShellScript */,
+				326AC602BFDD4FB59001A53D /* Copy Pods Resources */,
+				3BE6E3693EF941589CE1B277 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,6 +260,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		326AC602BFDD4FB59001A53D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-AppYoda-iOS-SDKTests-resources.sh\"\n";
+		};
+		3BE6E3693EF941589CE1B277 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-AppYoda-iOS-SDKTests-resources.sh\"\n";
+		};
+		457415B4877F48E0AA55786C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-AppYoda-iOS-SDKTests-resources.sh\"\n";
+		};
 		612E3E1815EDF8FE00F98FB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +315,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		7FE993A9F5624060B1ED201A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -238,7 +336,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				612E3E1415EDF8FE00F98FB8 /* AppYoda_iOS_SDK.m in Sources */,
+				612E3E3A15EDF9C200F98FB8 /* AYObject.m in Sources */,
+				612E3E3C15EDF9C200F98FB8 /* AYError.m in Sources */,
+				612E3E4815EE026400F98FB8 /* AppYoda.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				612E3E2B15EDF8FE00F98FB8 /* AppYoda_iOS_SDKTests.m in Sources */,
+				61AEAFA315EF1F4D00DA6C55 /* AppYodaTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,39 +416,53 @@
 		};
 		612E3E2F15EDF8FE00F98FB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/AppYoda_iOS_SDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppYoda-iOS-SDK/AppYoda-iOS-SDK-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TEST_AFTER_BUILD = NO;
 			};
 			name = Debug;
 		};
 		612E3E3015EDF8FE00F98FB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/AppYoda_iOS_SDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppYoda-iOS-SDK/AppYoda-iOS-SDK-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TEST_AFTER_BUILD = NO;
 			};
 			name = Release;
 		};
 		612E3E3215EDF8FE00F98FB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppYoda-iOS-SDK/AppYoda-iOS-SDK-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "AppYoda-iOS-SDKTests/AppYoda-iOS-SDKTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -356,14 +470,21 @@
 		612E3E3315EDF8FE00F98FB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppYoda-iOS-SDK/AppYoda-iOS-SDK-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "AppYoda-iOS-SDKTests/AppYoda-iOS-SDKTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -387,6 +508,7 @@
 				612E3E3015EDF8FE00F98FB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		612E3E3115EDF8FE00F98FB8 /* Build configuration list for PBXNativeTarget "AppYoda-iOS-SDKTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +517,7 @@
 				612E3E3315EDF8FE00F98FB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
