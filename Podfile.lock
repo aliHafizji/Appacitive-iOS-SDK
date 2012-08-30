@@ -1,0 +1,7 @@
+PODS:
+  - MKNetworkKit (0.85):
+    - Reachability (~> 3.0)
+  - Reachability (3.0.0)
+
+DEPENDENCIES:
+  - MKNetworkKit (~> 0.85)
