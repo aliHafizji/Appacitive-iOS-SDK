@@ -91,6 +91,7 @@
 				01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		612E3E0B15EDF8FD00F98FB8 /* Products */ = {
 			isa = PBXGroup;

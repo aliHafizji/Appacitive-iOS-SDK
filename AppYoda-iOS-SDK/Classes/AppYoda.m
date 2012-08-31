@@ -8,11 +8,12 @@
 
 #import "AppYoda.h"
 
+#define HOST_NAME @"gossamer.tavisca.com"
+
 NSString *const SessionReceivedNotification = @"SessionReceivedNotification";
 
 @interface AppYoda() {
     NSString *_apiKey;
-    NSString *_deploymentId;
 }
 - (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
 @end
@@ -21,6 +22,7 @@ static AppYoda *sharedYoda = nil;
 
 @implementation AppYoda
 @synthesize session = _session;
+@synthesize deploymentId = _deploymentId;
 
 + (id) yodaWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
     if (apiKey != nil && deploymentId != nil && ![apiKey isEqualToString:@""] && ![deploymentId isEqualToString:@""]) {
@@ -37,7 +39,7 @@ static AppYoda *sharedYoda = nil;
 }
 
 - (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
-    self = [super init];
+    self = [super initWithHostName:HOST_NAME];
     if (self) {
         _apiKey = apiKey;
         _deploymentId = deploymentId;
@@ -62,7 +64,7 @@ static AppYoda *sharedYoda = nil;
         
         NSDictionary *dictionary = (NSDictionary*) completedOperation.responseJSON;
         NSDictionary *session = [dictionary objectForKey:@"Session"];
-        self.session = [session objectForKey:@"SessionKey"];
+        _session = [session objectForKey:@"SessionKey"];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SessionReceivedNotification object:self];
         DLog(@"%@", self.session);
