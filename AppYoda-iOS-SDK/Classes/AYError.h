@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-@interface AYError : NSObject
-@property NSNumber *statusCode;
-@property NSString *message;
-@property NSString *referenceId;
-@property NSString *version;
+@interface AYError : NSError
+@property (nonatomic, strong) NSString *referenceId;
+@property (nonatomic, strong) NSString *version;
 @end

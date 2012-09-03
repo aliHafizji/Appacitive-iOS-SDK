@@ -8,12 +8,17 @@
 
 @class AYError;
 
+/*
+ Success block that returns nothing.
+ */
 typedef void (^AYSuccessBlock)();
 
+/*
+ Block parameter expected for a success response which returns an 'NSDictionary'.
+ */
 typedef void (^AYResultSuccessBlock)(NSDictionary *result);
 
-typedef void (^AYFullResponseSuccessBlock)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON);
-
+/*
+ Block parameter expected for a failure response which returns a 'AYError'.
+ */
 typedef void (^AYFailureBlock)(AYError *error);
-
-typedef void (^AYFullResponseFailureBlock)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON);

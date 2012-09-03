@@ -8,6 +8,8 @@
 
 #import "AYObject.h"
 #import "AppYoda.h"
+#import "AYError.h"
+#import "AYHelperMethods.h"
 
 @implementation AYObject
 @synthesize createdBy = _createdBy;
@@ -57,12 +59,29 @@
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
             DLog(@"%@", completionOperation.description);
+            AYError *error = [AYHelperMethods checkForErrorStatus:completionOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock) {
+                    successBlock();
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
         } onError:^(NSError *error) {
             DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((AYError*) error);
+            }
         }];
         [sharedYoda enqueueOperation:op];
     } else {
-        //err you dont have a yoda yet
+        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -84,12 +103,29 @@
         MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog("%@", completedOperation.description);
+            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock != nil) {
+                    successBlock();
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
         } onError:^(NSError *error) {
             DLog(@"%@", error.description)
+            if (failureBlock != nil) {
+                failureBlock((AYError*)error);
+            }
         }];
         [sharedYoda enqueueOperation:op];
     } else {
-        //err you don't have a yoda yet
+        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -117,12 +153,29 @@
         MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
+            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock) {
+                    successBlock(completedOperation.responseJSON);
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock) {
+                    failureBlock(error);
+                }
+            }
         } onError:^(NSError *error) {
             DLog(@"%@", error.description);
+            if (failureBlock) {
+                failureBlock((AYError*) error);
+            }
         }];
         [sharedYoda enqueueOperation:op];
     } else {
-        //err you don't have a yoda yet
+        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -140,13 +193,27 @@
         MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
-            [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
         } onError:^(NSError *error) {
             DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((AYError*)error);
+            }
         }];
         [sharedYoda enqueueOperation:op];
     } else {
-        //err you don't have a yoda yet
+        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -172,17 +239,31 @@
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
-            [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
-            if (successBlock != nil) {
-                successBlock(completedOperation.responseJSON);
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+                
+                if (successBlock != nil) {
+                    successBlock(completedOperation.responseJSON);
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
             }
         } onError:^(NSError *error){
             DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((AYError*)error);
+            }
         }];
         [sharedYoda enqueueOperation:op];
     } else {
-        //err you dont have a yoda yet
+        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 

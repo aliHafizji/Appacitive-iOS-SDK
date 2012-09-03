@@ -20,6 +20,14 @@
 		612E3E3E15EDF9E100F98FB8 /* AYResponseBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 612E3E3D15EDF9E100F98FB8 /* AYResponseBlocks.h */; };
 		612E3E4715EE026400F98FB8 /* AppYoda.h in Headers */ = {isa = PBXBuildFile; fileRef = 612E3E4515EE026400F98FB8 /* AppYoda.h */; };
 		612E3E4815EE026400F98FB8 /* AppYoda.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E3E4615EE026400F98FB8 /* AppYoda.m */; };
+		616A6A0F15F48488009A8578 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A0E15F48488009A8578 /* CFNetwork.framework */; };
+		616A6A1115F4848D009A8578 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1015F4848D009A8578 /* Security.framework */; };
+		616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
+		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
+		616A6A1815F4857F009A8578 /* AYHelperMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 616A6A1615F4857F009A8578 /* AYHelperMethods.h */; };
+		616A6A1915F4857F009A8578 /* AYHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A1715F4857F009A8578 /* AYHelperMethods.m */; };
+		616A6A3015F48CB8009A8578 /* AYHelperMethodTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A2F15F48CB8009A8578 /* AYHelperMethodTest.m */; };
+		616A6A3A15F494B8009A8578 /* AYObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A3915F494B7009A8578 /* AYObjectTest.m */; };
 		61AEAFA315EF1F4D00DA6C55 /* AppYodaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +49,6 @@
 		612E3E1115EDF8FE00F98FB8 /* AppYoda-iOS-SDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppYoda-iOS-SDK-Prefix.pch"; sourceTree = "<group>"; };
 		612E3E1A15EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppYoda-iOS-SDKTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		612E3E1D15EDF8FE00F98FB8 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		612E3E2515EDF8FE00F98FB8 /* AppYoda-iOS-SDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppYoda-iOS-SDKTests-Info.plist"; sourceTree = "<group>"; };
 		612E3E2715EDF8FE00F98FB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		612E3E3515EDF9C200F98FB8 /* AYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYObject.h; sourceTree = "<group>"; };
@@ -51,11 +58,18 @@
 		612E3E3D15EDF9E100F98FB8 /* AYResponseBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYResponseBlocks.h; sourceTree = "<group>"; };
 		612E3E4515EE026400F98FB8 /* AppYoda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppYoda.h; sourceTree = "<group>"; };
 		612E3E4615EE026400F98FB8 /* AppYoda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppYoda.m; sourceTree = "<group>"; };
+		616A6A0E15F48488009A8578 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		616A6A1015F4848D009A8578 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		616A6A1215F484E7009A8578 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		616A6A1415F4850E009A8578 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		616A6A1615F4857F009A8578 /* AYHelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYHelperMethods.h; sourceTree = "<group>"; };
+		616A6A1715F4857F009A8578 /* AYHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYHelperMethods.m; sourceTree = "<group>"; };
+		616A6A2E15F48CB8009A8578 /* AYHelperMethodTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYHelperMethodTest.h; sourceTree = "<group>"; };
+		616A6A2F15F48CB8009A8578 /* AYHelperMethodTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYHelperMethodTest.m; sourceTree = "<group>"; };
+		616A6A3815F494B7009A8578 /* AYObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYObjectTest.h; sourceTree = "<group>"; };
+		616A6A3915F494B7009A8578 /* AYObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYObjectTest.m; sourceTree = "<group>"; };
 		61AEAFA115EF1F4D00DA6C55 /* AppYodaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppYodaTest.h; sourceTree = "<group>"; };
 		61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppYodaTest.m; sourceTree = "<group>"; };
-		6530BC94C46B4145812204DD /* libPods-AppYoda-iOS-SDKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppYoda-iOS-SDKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7614B9F08F3C4BB1B77B8A54 /* libPods-AppYoda-iOS-SDKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppYoda-iOS-SDKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7D5BBC3DA3C4C4F9A440086 /* libPods-AppYoda-iOS-SDKTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppYoda-iOS-SDKTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +86,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */,
+				616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */,
+				616A6A1115F4848D009A8578 /* Security.framework in Frameworks */,
+				616A6A0F15F48488009A8578 /* CFNetwork.framework in Frameworks */,
 				612E3E1C15EDF8FE00F98FB8 /* SenTestingKit.framework in Frameworks */,
 				612E3E1F15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */,
 				612E3E2215EDF8FE00F98FB8 /* libAppYoda-iOS-SDK.a in Frameworks */,
@@ -105,13 +123,13 @@
 		612E3E0C15EDF8FE00F98FB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				616A6A1415F4850E009A8578 /* UIKit.framework */,
+				616A6A1215F484E7009A8578 /* SystemConfiguration.framework */,
+				616A6A1015F4848D009A8578 /* Security.framework */,
+				616A6A0E15F48488009A8578 /* CFNetwork.framework */,
 				612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */,
 				612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */,
-				612E3E1D15EDF8FE00F98FB8 /* UIKit.framework */,
 				0AE18E91493A45BE9CFB5B14 /* libPods.a */,
-				6530BC94C46B4145812204DD /* libPods-AppYoda-iOS-SDKTests.a */,
-				C7D5BBC3DA3C4C4F9A440086 /* libPods-AppYoda-iOS-SDKTests.a */,
-				7614B9F08F3C4BB1B77B8A54 /* libPods-AppYoda-iOS-SDKTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,6 +156,10 @@
 			children = (
 				61AEAFA115EF1F4D00DA6C55 /* AppYodaTest.h */,
 				61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */,
+				616A6A3815F494B7009A8578 /* AYObjectTest.h */,
+				616A6A3915F494B7009A8578 /* AYObjectTest.m */,
+				616A6A2E15F48CB8009A8578 /* AYHelperMethodTest.h */,
+				616A6A2F15F48CB8009A8578 /* AYHelperMethodTest.m */,
 				612E3E2415EDF8FE00F98FB8 /* Supporting Files */,
 			);
 			path = "AppYoda-iOS-SDKTests";
@@ -155,6 +177,8 @@
 		612E3E3415EDF9B200F98FB8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				616A6A1615F4857F009A8578 /* AYHelperMethods.h */,
+				616A6A1715F4857F009A8578 /* AYHelperMethods.m */,
 				612E3E4515EE026400F98FB8 /* AppYoda.h */,
 				612E3E4615EE026400F98FB8 /* AppYoda.m */,
 				612E3E3D15EDF9E100F98FB8 /* AYResponseBlocks.h */,
@@ -177,6 +201,7 @@
 				612E3E3B15EDF9C200F98FB8 /* AYError.h in Headers */,
 				612E3E3E15EDF9E100F98FB8 /* AYResponseBlocks.h in Headers */,
 				612E3E4715EE026400F98FB8 /* AppYoda.h in Headers */,
+				616A6A1815F4857F009A8578 /* AYHelperMethods.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +215,6 @@
 				612E3E0615EDF8FD00F98FB8 /* Sources */,
 				612E3E0715EDF8FD00F98FB8 /* Frameworks */,
 				612E3E0815EDF8FD00F98FB8 /* Headers */,
-				7FE993A9F5624060B1ED201A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,8 +234,6 @@
 				612E3E1715EDF8FE00F98FB8 /* Resources */,
 				457415B4877F48E0AA55786C /* Copy Pods Resources */,
 				612E3E1815EDF8FE00F98FB8 /* ShellScript */,
-				326AC602BFDD4FB59001A53D /* Copy Pods Resources */,
-				3BE6E3693EF941589CE1B277 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,34 +283,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		326AC602BFDD4FB59001A53D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AppYoda-iOS-SDKTests-resources.sh\"\n";
-		};
-		3BE6E3693EF941589CE1B277 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AppYoda-iOS-SDKTests-resources.sh\"\n";
-		};
 		457415B4877F48E0AA55786C /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AppYoda-iOS-SDKTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
 		612E3E1815EDF8FE00F98FB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -316,20 +310,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		7FE993A9F5624060B1ED201A /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -340,6 +320,7 @@
 				612E3E3A15EDF9C200F98FB8 /* AYObject.m in Sources */,
 				612E3E3C15EDF9C200F98FB8 /* AYError.m in Sources */,
 				612E3E4815EE026400F98FB8 /* AppYoda.m in Sources */,
+				616A6A1915F4857F009A8578 /* AYHelperMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +329,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				61AEAFA315EF1F4D00DA6C55 /* AppYodaTest.m in Sources */,
+				616A6A3015F48CB8009A8578 /* AYHelperMethodTest.m in Sources */,
+				616A6A3A15F494B8009A8578 /* AYObjectTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +439,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppYoda-iOS-SDK/AppYoda-iOS-SDK-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/BuildHeaders\"",
+					"\"${PODS_ROOT}/BuildHeaders/MKNetworkKit\"",
+					"\"${PODS_ROOT}/BuildHeaders/MKNetworkKit/Categories\"",
+					"\"${PODS_ROOT}/BuildHeaders/Reachability\"",
+				);
 				INFOPLIST_FILE = "AppYoda-iOS-SDKTests/AppYoda-iOS-SDKTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",

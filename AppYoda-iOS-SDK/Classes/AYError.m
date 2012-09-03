@@ -9,8 +9,10 @@
 #import "AYError.h"
 
 @implementation AYError
-@synthesize statusCode = _statusCode;
-@synthesize message = _message;
 @synthesize referenceId = _referenceId;
 @synthesize version = _version;
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"Error: %@, ReferenceId: %@, Version: %@", self.localizedDescription, self.referenceId, self.version];
+}
 @end
