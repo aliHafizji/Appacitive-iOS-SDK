@@ -24,6 +24,8 @@
 @synthesize schemaType = _schemaType;
 @synthesize tags = _tags;
 
+#define ARTICLE_PATH @"v0.9/core/Article.svc/"
+
 #pragma mark initialization methods
 
 + (id) objectWithSchemaName:(NSString*)schemaName {
@@ -48,7 +50,7 @@
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
     AppYoda *sharedYoda = [AppYoda sharedYoda];
     if (sharedYoda) {
-        NSString *path = [@"v0.9/core/Article.svc/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/_bulk", sharedYoda.deploymentId, schemaName]];
+        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/_bulk", sharedYoda.deploymentId, schemaName]];
         path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedYoda.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
@@ -96,7 +98,7 @@
 - (void) deleteObjectWithSuccessHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
     AppYoda *sharedYoda = [AppYoda sharedYoda];
     if (sharedYoda) {
-        NSString *path = [@"v0.9/core/Article.svc/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedYoda.deploymentId, self.schemaType, [self.objectId longLongValue]]];
+        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedYoda.deploymentId, self.schemaType, [self.objectId longLongValue]]];
         path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedYoda.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
@@ -138,7 +140,7 @@
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
     AppYoda *sharedYoda = [AppYoda sharedYoda];
     if (sharedYoda) {
-        __block NSString *path = [@"v0.9/core/Article.svc/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/find/byidlist", sharedYoda.deploymentId, schemaName]];
+        __block NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/find/byidlist", sharedYoda.deploymentId, schemaName]];
         path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedYoda.session]];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -186,7 +188,7 @@
 - (void) fetchWithFailureHandler:(AYFailureBlock)failureBlock {
     AppYoda *sharedYoda = [AppYoda sharedYoda];
     if (sharedYoda) {
-        NSString *path = [@"v0.9/core/Article.svc/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedYoda.deploymentId, self.schemaType, [self.objectId longLongValue]]];
+        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedYoda.deploymentId, self.schemaType, [self.objectId longLongValue]]];
         path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedYoda.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
@@ -230,7 +232,7 @@
 - (void) saveObjectWithSuccessHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
     AppYoda *sharedYoda = [AppYoda sharedYoda];
     if (sharedYoda) {
-        NSString *path = [@"v0.9/core/Article.svc/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@", sharedYoda.deploymentId, self.schemaType]];
+        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@", sharedYoda.deploymentId, self.schemaType]];
         path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedYoda.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         

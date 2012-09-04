@@ -28,6 +28,8 @@
 		616A6A1915F4857F009A8578 /* AYHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A1715F4857F009A8578 /* AYHelperMethods.m */; };
 		616A6A3015F48CB8009A8578 /* AYHelperMethodTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A2F15F48CB8009A8578 /* AYHelperMethodTest.m */; };
 		616A6A3A15F494B8009A8578 /* AYObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A3915F494B7009A8578 /* AYObjectTest.m */; };
+		616A6A3D15F49A1F009A8578 /* AYConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 616A6A3B15F49A1F009A8578 /* AYConnection.h */; };
+		616A6A3E15F49A1F009A8578 /* AYConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 616A6A3C15F49A1F009A8578 /* AYConnection.m */; };
 		61AEAFA315EF1F4D00DA6C55 /* AppYodaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		616A6A2F15F48CB8009A8578 /* AYHelperMethodTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYHelperMethodTest.m; sourceTree = "<group>"; };
 		616A6A3815F494B7009A8578 /* AYObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYObjectTest.h; sourceTree = "<group>"; };
 		616A6A3915F494B7009A8578 /* AYObjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYObjectTest.m; sourceTree = "<group>"; };
+		616A6A3B15F49A1F009A8578 /* AYConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYConnection.h; sourceTree = "<group>"; };
+		616A6A3C15F49A1F009A8578 /* AYConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYConnection.m; sourceTree = "<group>"; };
 		61AEAFA115EF1F4D00DA6C55 /* AppYodaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppYodaTest.h; sourceTree = "<group>"; };
 		61AEAFA215EF1F4D00DA6C55 /* AppYodaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppYodaTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +190,8 @@
 				612E3E3615EDF9C200F98FB8 /* AYObject.m */,
 				612E3E3715EDF9C200F98FB8 /* AYError.h */,
 				612E3E3815EDF9C200F98FB8 /* AYError.m */,
+				616A6A3B15F49A1F009A8578 /* AYConnection.h */,
+				616A6A3C15F49A1F009A8578 /* AYConnection.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 				612E3E3E15EDF9E100F98FB8 /* AYResponseBlocks.h in Headers */,
 				612E3E4715EE026400F98FB8 /* AppYoda.h in Headers */,
 				616A6A1815F4857F009A8578 /* AYHelperMethods.h in Headers */,
+				616A6A3D15F49A1F009A8578 /* AYConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +259,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Appacitive Software Pvt. Ltd";
 			};
 			buildConfigurationList = 612E3E0415EDF8FD00F98FB8 /* Build configuration list for PBXProject "AppYoda-iOS-SDK" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -321,6 +329,7 @@
 				612E3E3C15EDF9C200F98FB8 /* AYError.m in Sources */,
 				612E3E4815EE026400F98FB8 /* AppYoda.m in Sources */,
 				616A6A1915F4857F009A8578 /* AYHelperMethods.m in Sources */,
+				616A6A3E15F49A1F009A8578 /* AYConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
