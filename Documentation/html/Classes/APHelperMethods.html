@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>AppYoda Class Reference</title>
+		<title>APHelperMethods Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -12,12 +12,12 @@
 	<body>
 		<header id="top_header">
 			<div id="library" class="hideInXcode">
-				<h1><a id="libraryTitle" href="../index.html">AppYoda-iOS-SDK </a></h1>
+				<h1><a id="libraryTitle" href="../index.html">Appacitve-iOS-SDK </a></h1>
 				<a id="developerHome" href="../index.html">Appacitive software</a>
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">AppYoda Class Reference</h1>
+				<h1 class="hideInXcode">APHelperMethods Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,8 +26,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -38,20 +36,11 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/deploymentId">&nbsp;&nbsp;&nbsp;&nbsp;deploymentId</option>
-	
-	<option value="//api/name/session">&nbsp;&nbsp;&nbsp;&nbsp;session</option>
-	
-	
 	
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/sharedYoda">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedYoda</option>
-	
-	<option value="//api/name/yodaWithApiKey:deploymentId:">&nbsp;&nbsp;&nbsp;&nbsp;+ yodaWithApiKey:deploymentId:</option>
+	<option value="//api/name/checkForErrorStatus:">&nbsp;&nbsp;&nbsp;&nbsp;+ checkForErrorStatus:</option>
 	
 	
 	
@@ -64,8 +53,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -77,21 +64,11 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deploymentId">deploymentId</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/session">session</a></span></li>
-	
-</ul></li>
-
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedYoda">sharedYoda</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/yodaWithApiKey:deploymentId:">yodaWithApiKey:deploymentId:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/checkForErrorStatus:">checkForErrorStatus:</a></span></li>
 	
 </ul></li>
 
@@ -102,7 +79,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="AppYoda Class Reference" name="top"></a>
+				<a title="APHelperMethods Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -111,7 +88,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">AppYoda Class Reference</h1>
+						<h1 class="title title-header">APHelperMethods Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -119,22 +96,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">MKNetworkEngine</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">AppYoda.h<br />AppYoda.m</td>
+	<td class="specification-value">APHelperMethods.h<br />APHelperMethods.m</td>
 </tr>
 						</tbody></table></div>
 					
-					
-					
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>This class is the AppYoda engine.
-It is the entry point to use the SDK</p>
-					</div>
 					
 					
 					
@@ -151,29 +119,8 @@ It is the entry point to use the SDK</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/session">&nbsp;&nbsp;session</a></code>
-		<span class="tooltip"><p>Readonly property to store the session id.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/deploymentId">&nbsp;&nbsp;deploymentId</a></code>
-		<span class="tooltip"><p>Readonly property to store the deployment id.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/yodaWithApiKey:deploymentId:">+&nbsp;yodaWithApiKey:deploymentId:</a></code>
-		<span class="tooltip"><p>Method used to create a YODA!</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/sharedYoda">+&nbsp;sharedYoda</a></code>
-		<span class="tooltip"><p>Method to get the initialized Yoda</p></span>
+		<code><a href="#//api/name/checkForErrorStatus:">+&nbsp;checkForErrorStatus:</a></code>
+		<span class="tooltip"><p>Helper method used to check for any errors.</p></span>
 	</span>
 	
 	
@@ -186,94 +133,6 @@ It is the entry point to use the SDK</p>
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/deploymentId" title="deploymentId"></a>
-	<h3 class="subsubtitle method-title">deploymentId</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Readonly property to store the deployment id.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSString *deploymentId</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Readonly property to store the deployment id.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AppYoda.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/session" title="session"></a>
-	<h3 class="subsubtitle method-title">session</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Readonly property to store the session id.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSString *session</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Readonly property to store the session id.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AppYoda.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
-					
 					
 					
 					<div class="section section-methods">
@@ -281,61 +140,18 @@ It is the entry point to use the SDK</p>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/sharedYoda" title="sharedYoda"></a>
-	<h3 class="subsubtitle method-title">sharedYoda</h3>
+	<a name="//api/name/checkForErrorStatus:" title="checkForErrorStatus:"></a>
+	<h3 class="subsubtitle method-title">checkForErrorStatus:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Method to get the initialized Yoda</p>
+		<p>Helper method used to check for any errors.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (id)sharedYoda</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Method to get the initialized Yoda</p>
-
-<p>@discussion This method will return nil if + yodaWithApiKey: deploymentId: is not called.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AppYoda.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/yodaWithApiKey:deploymentId:" title="yodaWithApiKey:deploymentId:"></a>
-	<h3 class="subsubtitle method-title">yodaWithApiKey:deploymentId:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Method used to create a YODA!</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (id)yodaWithApiKey:(NSString *)<em>apiKey</em> deploymentId:(NSString *)<em>deploymentId</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (APError *)checkForErrorStatus:(id)<em>response</em></code></div>
 
     
 	
@@ -343,13 +159,8 @@ It is the entry point to use the SDK</p>
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>apiKey</em></dt>
-			<dd><p>Api key generated while app setup</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>deploymentId</em></dt>
-			<dd><p>Deployment id generated when app is deployed.</p></dd>
+			<dt><em>response</em></dt>
+			<dd><p>Response received from the server.</p></dd>
 		</dl>
 		
 	</div>
@@ -362,7 +173,7 @@ It is the entry point to use the SDK</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Method used to create a YODA!</p>
+		<p>Helper method used to check for any errors.</p>
 	</div>
 	
 	
@@ -373,7 +184,7 @@ It is the entry point to use the SDK</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">AppYoda.h</code><br />
+		<code class="declared-in-ref">APHelperMethods.h</code><br />
 	</div>				
 	
 	
@@ -394,7 +205,7 @@ It is the entry point to use the SDK</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-09-04)</span><br />
+						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-09-06)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
