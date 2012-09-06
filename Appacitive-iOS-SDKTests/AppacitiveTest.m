@@ -12,12 +12,12 @@
 #define DEPLOYMENT_ID @"restaurantsearch"
 #define API_KEY @"+MmuqVgHVYH7Q+5imsGc4497fiuBAbBeCGYRkiQSCfY="
 
-/*
+/**
  Test methods to check the interface of the AppYoda class
  */
 @implementation AppacitiveTest
 
-/*
+/**
  @purpose Test for nil API_KEY and DEPLOYMENT_ID
  @expected AppYoda object should be nil
  */
@@ -26,7 +26,7 @@
     STAssertNil(yoda, @"Test case for nil api key and deployment id failed");
 }
 
-/*
+/**
  @purpose Test for nil API_KEY
  @expected AppYoda object should be nil
  */
@@ -35,7 +35,7 @@
     STAssertNil(yoda, @"Test case for nil api key failed");
 }
 
-/*
+/**
  @purpose Test for nil DEPLOYMENT_ID
  @expected AppYoda object should be nil
  */

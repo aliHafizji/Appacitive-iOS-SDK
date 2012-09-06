@@ -10,13 +10,13 @@
 #import "APHelperMethods.h"
 #import "APError.h"
 
-/*
+/**
  Test methods to test the interface of the AYHelperMethods class
  */
 @implementation APHelperMethodTest
 
-/*
- @pupose Test for nil response
+/**
+ @purpose Test for nil response
  @expected The method should return nil
  */
 - (void) testForNilResponse {
@@ -24,8 +24,8 @@
     STAssertNil(error, @"Test case for nil response object failed");
 }
 
-/*
- @pupose Test with Invalid JSON
+/**
+ @purpose Test with Invalid JSON
  @expected Should return an error
  */
 - (void) testWithErrorResponse {
@@ -40,8 +40,8 @@
     STAssertNotNil(error, @"Test case for response object with error status failed");
 }
 
-/*
- @pupose Test with valid JSON
+/**
+ @purpose Test with valid JSON
  @expected Should return nil
  */
 - (void) testWithValidResponse {
