@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'AppYoda-iOS-SDK' target in the 'AppYoda-iOS-SDK' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif

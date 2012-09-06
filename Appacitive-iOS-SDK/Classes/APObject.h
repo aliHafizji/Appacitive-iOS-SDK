@@ -1,20 +1,20 @@
 //
-//  AYObject.h
-//  AYoda-iOS example
+//  APObject.h
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 29/08/12.
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-#import "AYResponseBlocks.h"
+#import "APResponseBlocks.h"
 
-@class AYError;
+@class APError;
 
 /**
  This class is used to represent an Article.
  An Article represents an instance of a Schema.
  */
-@interface AYObject : NSObject
+@interface APObject : NSObject
 
 /**
  This property is used for user management, used to define the user who created this article.
@@ -101,7 +101,7 @@
  @param schemaName The schema that the objects belong to.
  @param failureBlock Block invoked when multi delete operation fails.
  */
-+ (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName failureHandler:(AYFailureBlock)failureBlock;
++ (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Multi delete method used to delete a number of objects.
@@ -111,7 +111,7 @@
  @param successBlock Block invoked when multi delete operation succeeds
  @param failureBlock Block invoked when multi delete operation fails.
  */
-+ (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
++ (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 
 /**
@@ -122,7 +122,7 @@
  @param successBlock Block invoked when retrieve operation succeeds.
  @param failureBlock Block invoked when retrieve operation fails.
  */
-+ (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
++ (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method used to retrieve multiple articles of a particular schema.
@@ -132,7 +132,7 @@
  @param successBlock Block invoked when the retrieve operation succeeds.
  @param failureBlock Block invoked when the failure operation succeeds.
  */
-+ (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
++ (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method used to fetch an article.
@@ -148,7 +148,7 @@
  
  @discussion This method will use the schemaType and objectId properties to fetch the article. If the objectId and schemaType is not set, results are unexpected.
  */
-- (void) fetchWithFailureHandler:(AYFailureBlock)failureBlock;
+- (void) fetchWithFailureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method used to add a property to the article.
@@ -182,7 +182,7 @@
  
  @discussion This method will save an article in the background. If save is successful the properties will be updated. If not the failure block is invoked.
  */
-- (void) saveObjectWithFailureHandler:(AYFailureBlock)failureBlock;
+- (void) saveObjectWithFailureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to save an article.
@@ -192,7 +192,7 @@
  
  @discussion This method will save an article in the background. If save is successful the properties will be updated and the successBlock is invoked. If not the failure block is invoked.
  */
-- (void) saveObjectWithSuccessHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to delete an object.
@@ -206,7 +206,7 @@
  
  @param failureBlock Block invoked when delete operation fails.
  */
-- (void) deleteObjectWithFailureHandler:(AYFailureBlock)failureBlock;
+- (void) deleteObjectWithFailureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to delete an object.
@@ -214,5 +214,5 @@
  @param successBlock Block invoked when delete operation is successful
  @param failureBlock Block invoked when delete operation fails.
  */
-- (void) deleteObjectWithSuccessHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 @end

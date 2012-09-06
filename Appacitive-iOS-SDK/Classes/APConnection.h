@@ -1,20 +1,21 @@
 //
-//  AYConnection.h
-//  AppYoda-iOS-SDK
+//  APConnection.h
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 03/09/12.
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd.. All rights reserved.
 //
 
-#import "AYResponseBlocks.h"
+#import "APResponseBlocks.h"
 
-@class AYObject;
+@class APObject;
+
 /**
  This class is used to represent a Connection.
  A Connection is the edge of a graph and is used to join two articles.
  A Connection itself can store data in its properties and attributes, this data usually is specific to the connection.
  */
-@interface AYConnection : NSObject
+@interface APConnection : NSObject
 
 /**
  This property is used for user management, used to define the user who created this article.
@@ -128,7 +129,7 @@
  
  @param failureBlock Block invoked when create operation fails.
  */
-- (void) createConnectionWithFailureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithFailureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -137,7 +138,7 @@
  @param successBlock Block invoked when create operation is successful.
  @param failureBlock Block invoked when create operation fails.
  */
-- (void) createConnectionWithSuccessHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -146,7 +147,7 @@
  @param objectA The article to create a connection from.
  @param objectB The article to create a connection to.
  */
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB;
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB;
 
 /**
  Method to create a relation.
@@ -156,7 +157,7 @@
  @param objectB The article to create a connection to.
  @param failureBlock Block invoked when the create operation fails.
  */
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -167,7 +168,7 @@
  @param successBlock Block invoked when the create operation is successful.
  @param failureBlock Block invoked when the create operation fails.
  */
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -177,7 +178,7 @@
  @param labelA The label at the starting vertex of the connection.
  @param lablelB The label at the end vertex of the connection.
  */
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB;
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB;
 
 /**
  Method to create a relation.
@@ -188,7 +189,7 @@
  @param lablelB The label at the end vertex of the connection.
  @param failureHandler Block invoked when create operation fails.
  */
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -200,7 +201,7 @@
  @param successBlock Block invoked when create operation is successful.
  @param failureBlock Block invoked when create operation fails.
  */
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -221,7 +222,7 @@
  @param labelB The label at the end vertex of the connection.
  @param failureHandler Block invoked when create operation fails.
  */
-- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to create a relation.
@@ -233,7 +234,7 @@
  @param successHandler Block invoked when create operation is successful.
  @param failureHandler Block invoked when create operation fails.
  */
-- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to fetch connections from the server.
@@ -242,7 +243,7 @@
  @param objectId The id of the connection to retrieve.
  @param successBlock Block invoked when fetch is successful. The block returns the results the form of a JSON.
  */
-+ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(AYResultSuccessBlock)successBlock;
++ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock;
 
 /**
  Method to fetch connections from the server.
@@ -252,7 +253,7 @@
  @param successBlock Block invoked when fetch is successful. The block returns the results the form of a JSON.
  @param failureBlock Block invoked when fetch operation fails.
  */
-+ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
++ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to fetch multiple connection in one call.
@@ -261,7 +262,7 @@
  @param objectIds An array of objectIds to fetch.
  @param successBlock Block invoked when fetch is successful. The block returns the results in the form of a JSON.
  */
-+ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(AYResultSuccessBlock)successBlock;
++ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock;
 
 /**
  Method to fetch multiple connection in one call.
@@ -271,7 +272,7 @@
  @param successBlock Block invoked when fetch is successful. The block returns the results in the form of a JSON.
  @param failureBlock Block invoked when fetch operation fails.
  */
-+ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
++ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to delete multiple connections in one call.
@@ -288,7 +289,7 @@
  @param objectIds An array of objectId to delete.
  @param failureBlock Block invoked when delete call fails.
  */
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds failureHandler:(AYFailureBlock)failureBlock;
++ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to delete multiple connections in one call.
@@ -298,7 +299,7 @@
  @param successBlock Block invoked when delete call is successful.
  @param failureBlock Block invoked when delete call fails.
  */
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
++ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to delete a connection.
@@ -312,7 +313,7 @@
  
  @param failureBlock Block invoked when delete fails.
  */
-- (void) deleteConnectionWithFailureHandler:(AYFailureBlock)failureBlock;
+- (void) deleteConnectionWithFailureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method to delete a connection.
@@ -321,5 +322,5 @@
  @param successBlock Block invoked when delete is successful.
  @param failureBlock Block invoked when delete fails.
  */
-- (void) deleteConnectionWithSuccessHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock;
+- (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 @end

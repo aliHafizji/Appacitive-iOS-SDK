@@ -1,14 +1,14 @@
 //
-//  AYError.m
-//  AYoda-iOS example
+//  APError.m
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 29/08/12.
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-#import "AYError.h"
+#import "APError.h"
 
-@implementation AYError
+@implementation APError
 @synthesize referenceId = _referenceId;
 @synthesize version = _version;
 

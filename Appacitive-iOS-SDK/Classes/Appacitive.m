@@ -1,41 +1,41 @@
 //
-//  AppYodo.m
-//  AppYoda-iOS-SDK
+//  Appacitive.m
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 29/08/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Appacitive Software Pvt. All rights reserved.
 //
 
-#import "AppYoda.h"
+#import "Appacitive.h"
 
 #define HOST_NAME @"gossamer.tavisca.com"
 
 NSString *const SessionReceivedNotification = @"SessionReceivedNotification";
 
-@interface AppYoda() {
+@interface Appacitive() {
     NSString *_apiKey;
 }
 - (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
 @end
 
-static AppYoda *sharedYoda = nil;
+static Appacitive *sharedObject = nil;
 
-@implementation AppYoda
+@implementation Appacitive
 @synthesize session = _session;
 @synthesize deploymentId = _deploymentId;
 
-+ (id) yodaWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
++ (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
     if (apiKey != nil && deploymentId != nil && ![apiKey isEqualToString:@""] && ![deploymentId isEqualToString:@""]) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            sharedYoda = [[AppYoda alloc] initWithApiKey:apiKey deploymentId:deploymentId];
+            sharedObject = [[Appacitive alloc] initWithApiKey:apiKey deploymentId:deploymentId];
         });
     }
-    return sharedYoda;
+    return sharedObject;
 }
 
-+ (id) sharedYoda {
-    return sharedYoda;
++ (id) sharedObject {
+    return sharedObject;
 }
 
 - (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {

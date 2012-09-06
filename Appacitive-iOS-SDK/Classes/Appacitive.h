@@ -1,9 +1,9 @@
 //
-//  AppYodo.h
-//  AppYoda-iOS-SDK
+//  Appacitive.h
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 29/08/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Appacitive Software Pvt. All rights reserved.
 //
 
 #import "MKNetworkKit.h"
@@ -11,10 +11,10 @@
 extern NSString *const SessionReceivedNotification;
 
 /**
- This class is the AppYoda engine.
+ This class is the Appacitive engine.
  It is the entry point to use the SDK
  */
-@interface AppYoda : MKNetworkEngine
+@interface Appacitive : MKNetworkEngine
 
 /**
  Readonly property to store the session id.
@@ -27,17 +27,17 @@ extern NSString *const SessionReceivedNotification;
 @property (nonatomic, strong, readonly) NSString *deploymentId;
 
 /**
- Method used to create a YODA!
+ Method used to create a shared appacitive object.
  
  @param apiKey Api key generated while app setup
  @param deploymentId Deployment id generated when app is deployed.
  */
-+ (id) yodaWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
++ (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
 
 /**
- Method to get the initialized Yoda
+ Method to get the initialized appactive object.
  
- @discussion This method will return nil if + yodaWithApiKey: deploymentId: is not called.
+ @discussion This method will return nil if +appacitiveWithApiKey: deploymentId: is not called.
  */
-+ (id) sharedYoda;
++ (id) sharedObject;
 @end

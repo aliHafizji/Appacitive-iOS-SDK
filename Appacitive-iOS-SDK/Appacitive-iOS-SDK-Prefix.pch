@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Appacitive-iOS-SDK' target in the 'Appacitive-iOS-SDK' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

@@ -1,18 +1,18 @@
 //
-//  AYHelperMethods.h
-//  WhereIGo
+//  APHelperMethods.h
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 03/09/12.
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-@class AYError;
-@interface AYHelperMethods : NSObject
+@class APError;
+@interface APHelperMethods : NSObject
 
 /**
  Helper method used to check for any errors.
  
  @param response Response received from the server.
  */
-+ (AYError*) checkForErrorStatus:(id)response;
++ (APError*) checkForErrorStatus:(id)response;
 @end

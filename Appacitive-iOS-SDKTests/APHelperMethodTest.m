@@ -1,26 +1,26 @@
 //
-//  AYHelperMethodTest.m
-//  AppYoda-iOS-SDK
+//  APHelperMethodTest.m
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 03/09/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-#import "AYHelperMethodTest.h"
-#import "AYHelperMethods.h"
-#import "AYError.h"
+#import "APHelperMethodTest.h"
+#import "APHelperMethods.h"
+#import "APError.h"
 
 /*
  Test methods to test the interface of the AYHelperMethods class
  */
-@implementation AYHelperMethodTest
+@implementation APHelperMethodTest
 
 /*
  @pupose Test for nil response
  @expected The method should return nil
  */
 - (void) testForNilResponse {
-    AYError *error = [AYHelperMethods checkForErrorStatus:nil];
+    APError *error = [APHelperMethods checkForErrorStatus:nil];
     STAssertNil(error, @"Test case for nil response object failed");
 }
 
@@ -36,7 +36,7 @@
                                       @"9e56903c-0b68-4ee9-afbc-c045ab4a708a", @"ReferenceId", nil];
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                 statusDictionary, @"Status", nil];
-    AYError *error = [AYHelperMethods checkForErrorStatus:dictionary];
+    APError *error = [APHelperMethods checkForErrorStatus:dictionary];
     STAssertNotNil(error, @"Test case for response object with error status failed");
 }
 
@@ -53,7 +53,7 @@
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                 nil, @"Article",
                                 statusDictionary, @"Status", nil];
-    AYError *error = [AYHelperMethods checkForErrorStatus:dictionary];
+    APError *error = [APHelperMethods checkForErrorStatus:dictionary];
     STAssertNil(error, @"Test case for valid response object failed");
 }
 @end

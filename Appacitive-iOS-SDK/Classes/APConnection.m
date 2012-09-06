@@ -1,18 +1,18 @@
 //
-//  AYConnection.m
-//  AppYoda-iOS-SDK
+//  APConnection.m
+//  Appacitive-iOS-SDK
 //
 //  Created by Kauserali Hafizji on 03/09/12.
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd.. All rights reserved.
 //
 
-#import "AYConnection.h"
-#import "AppYoda.h"
-#import "AYObject.h"
-#import "AYError.h"
-#import "AYHelperMethods.h"
+#import "APConnection.h"
+#import "Appacitive.h"
+#import "APObject.h"
+#import "APError.h"
+#import "APHelperMethods.h"
 
-@implementation AYConnection
+@implementation APConnection
 @synthesize createdBy = _createdBy;
 @synthesize articleAId = _articleAId;
 @synthesize articleBId = _articleBId;
@@ -34,7 +34,7 @@
 #pragma mark initialization methods
 
 + (id) connectionWithRelationName:(NSString*)relationName {
-    return [[AYConnection alloc] initWithRelationName:relationName];
+    return [[APConnection alloc] initWithRelationName:relationName];
 }
 
 - (id) initWithRelationName:(NSString*)relationName {
@@ -51,23 +51,23 @@
     [self createConnectionWithSuccessHandler:nil failureHandler:nil];
 }
 
-- (void) createConnectionWithFailureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithFailureHandler:(APFailureBlock)failureBlock {
     [self createConnectionWithSuccessHandler:nil failureHandler:nil];
 }
 
-- (void) createConnectionWithSuccessHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
-    AppYoda *sharedYoda = [AppYoda sharedYoda];
-    if (sharedYoda) {
-        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@", sharedYoda.deploymentId, self.relationName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedYoda.session]];
+- (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@", sharedObject.deploymentId, self.relationName]];
+        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath params:[self parameters] httpMethod:@"PUT"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:[self parameters] httpMethod:@"PUT"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
-            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
             
@@ -85,24 +85,24 @@
         } onError:^(NSError *error) {
             DLog(@"%@", error.description);
             if (failureBlock != nil) {
-                failureBlock((AYError*)error);
+                failureBlock((APError*)error);
             }
         }];
-        [sharedYoda enqueueOperation:op];
+        [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB {
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB {
     [self createConnectionWithObjectA:objectA objectB:objectB successHandler:nil failureHandler:nil];
 }
 
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB failureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB failureHandler:(APFailureBlock)failureBlock {
     [self createConnectionWithObjectA:objectA objectB:objectB successHandler:nil failureHandler:failureBlock];
 }
 
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     self.articleAId = objectA.objectId;
     self.articleBId = objectB.objectId;
     self.labelA = objectA.schemaType;
@@ -110,15 +110,15 @@
     [self createConnectionWithSuccessHandler:successBlock failureHandler:failureBlock];
 }
 
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB {
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB {
     [self createConnectionWithObjectA:objectA objectB:objectB labelA:labelA labelB:labelB successHandler:nil failureHandler:nil];
 }
 
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(APFailureBlock)failureBlock {
     [self createConnectionWithObjectA:objectA objectB:objectB labelA:labelA labelB:labelB successHandler:nil failureHandler:failureBlock];
 }
 
-- (void) createConnectionWithObjectA:(AYObject*)objectA objectB:(AYObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithObjectA:(APObject*)objectA objectB:(APObject*)objectB labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     self.articleAId = objectA.objectId;
     self.articleBId = objectB.objectId;
     self.labelA = labelA;
@@ -130,11 +130,11 @@
     [self createConnectionWithObjectAId:objectAId objectBId:objectBId labelA:labelA labelB:labelB successHandler:nil failureHandler:nil];
 }
 
-- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB failureHandler:(APFailureBlock)failureBlock {
     [self createConnectionWithObjectAId:objectAId objectBId:objectBId labelA:labelA labelB:labelB successHandler:nil failureHandler:failureBlock];
 }
 
-- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
+- (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     self.articleAId = objectAId;
     self.articleBId = objectBId;
     self.labelA = labelA;
@@ -144,23 +144,23 @@
 
 #pragma mark fetch connection methods
 
-+ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(AYResultSuccessBlock)successBlock {
-    [AYConnection fetchConnectionsWithRelationName:relationName objectIds:[NSArray arrayWithObject:objectId] successHandler:successBlock failureHandler:nil];
++ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection fetchConnectionsWithRelationName:relationName objectIds:[NSArray arrayWithObject:objectId] successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
-    [AYConnection fetchConnectionsWithRelationName:relationName objectIds:[NSArray arrayWithObject:objectId] successHandler:successBlock failureHandler:failureBlock];
++ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    [APConnection fetchConnectionsWithRelationName:relationName objectIds:[NSArray arrayWithObject:objectId] successHandler:successBlock failureHandler:failureBlock];
 }
 
-+ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(AYResultSuccessBlock)successBlock {
-    [AYConnection fetchConnectionsWithRelationName:relationName objectIds:objectIds successHandler:successBlock failureHandler:nil];
++ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection fetchConnectionsWithRelationName:relationName objectIds:objectIds successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(AYResultSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
-    AppYoda *sharedYoda = [AppYoda sharedYoda];
-    if (sharedYoda) {
-        __block NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/find/byidlist", sharedYoda.deploymentId, relationName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedYoda.session]];
++ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        __block NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationName]];
+        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedObject.session]];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
@@ -172,10 +172,10 @@
 
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath];
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
-            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
             
@@ -192,40 +192,40 @@
         } onError:^(NSError *error) {
             DLog(@"%@", error.description);
             if (failureBlock) {
-                failureBlock((AYError*) error);
+                failureBlock((APError*) error);
             }
         }];
-        [sharedYoda enqueueOperation:op];
+        [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
 #pragma mark delete methods
 
 + (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds {
-    [AYConnection deleteConnectionsWithRelationName:relationName objectIds:objectIds successHandler:nil failureHandler:nil];
+    [APConnection deleteConnectionsWithRelationName:relationName objectIds:objectIds successHandler:nil failureHandler:nil];
 }
 
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds failureHandler:(AYFailureBlock)failureBlock {
-    [AYConnection deleteConnectionsWithRelationName:relationName objectIds:objectIds successHandler:nil failureHandler:nil];
++ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds failureHandler:(APFailureBlock)failureBlock {
+    [APConnection deleteConnectionsWithRelationName:relationName objectIds:objectIds successHandler:nil failureHandler:nil];
 }
 
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
-    AppYoda *sharedYoda = [AppYoda sharedYoda];
-    if (sharedYoda) {
-        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/_bulk", sharedYoda.deploymentId, relationName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedYoda.session]];
++ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationName]];
+        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
         
-        MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath params:params httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:params httpMethod:@"POST"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
             DLog(@"%@", completionOperation.description);
-            AYError *error = [AYHelperMethods checkForErrorStatus:completionOperation.responseJSON];
+            APError *error = [APHelperMethods checkForErrorStatus:completionOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
             
@@ -242,12 +242,12 @@
         } onError:^(NSError *error) {
             DLog(@"%@", error.description);
             if (failureBlock != nil) {
-                failureBlock((AYError*) error);
+                failureBlock((APError*) error);
             }
         }];
-        [sharedYoda enqueueOperation:op];
+        [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 
 }
@@ -256,21 +256,21 @@
     [self deleteConnectionWithSuccessHandler:nil failureHandler:nil];
 }
 
-- (void) deleteConnectionWithFailureHandler:(AYFailureBlock)failureBlock {
+- (void) deleteConnectionWithFailureHandler:(APFailureBlock)failureBlock {
     [self deleteConnectionWithSuccessHandler:nil failureHandler:failureBlock];
 }
 
-- (void) deleteConnectionWithSuccessHandler:(AYSuccessBlock)successBlock failureHandler:(AYFailureBlock)failureBlock {
-    AppYoda *sharedYoda = [AppYoda sharedYoda];
-    if (sharedYoda) {
-        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedYoda.deploymentId, self.relationName, self.objectId.longLongValue]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedYoda.session]];
+- (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationName, self.objectId.longLongValue]];
+        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedYoda operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             DLog("%@", completedOperation.description);
-            AYError *error = [AYHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
             
@@ -288,12 +288,12 @@
         } onError:^(NSError *error){
             DLog(@"%@", error.description)
             if (failureBlock != nil) {
-                failureBlock((AYError*)error);
+                failureBlock((APError*)error);
             }
         }];
-        [sharedYoda enqueueOperation:op];
+        [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the AppYoda object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
