@@ -45,6 +45,62 @@
     return self;
 }
 
+#pragma mark search methods
+
++ (void) searchForAllConnectionsWithRelationName:(NSString*)relationName successHandler:(APResultSuccessBlock)successHandler {
+    [APConnection searchForAllConnectionsWithRelationName:relationName successHandler:successHandler failureHandler:nil];
+}
+
++ (void) searchForAllConnectionsWithRelationName:(NSString*)relationName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
+    [APConnection searchForConnectionsWithRelationName:relationName withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
+}
+
++ (void) searchForConnectionsWithRelationName:(NSString*)relationName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection searchForConnectionsWithRelationName:relationName withQueryString:queryString successHandler:successBlock failureHandler:nil];
+}
+
++ (void) searchForConnectionsWithRelationName:(NSString*)relationName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, relationName];
+        if (queryString) {
+            path = [path stringByAppendingFormat:@"?%@&session=%@",queryString, sharedObject.session];
+        } else {
+            path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
+        }
+        
+        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        
+        [op onCompletion:^(MKNetworkOperation *completedOperation){
+            DLog(@"%@", completedOperation.description);
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock != nil) {
+                    successBlock(completedOperation.responseJSON);
+                }
+            } else {
+                DLog(@"%@", error.description)
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
+
+        } onError:^(NSError *error) {
+            DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+    }
+}
+
 #pragma mark create connection methods
 
 - (void) create {

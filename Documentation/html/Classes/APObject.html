@@ -77,6 +77,14 @@
 	
 	<option value="//api/name/objectWithSchemaName:">&nbsp;&nbsp;&nbsp;&nbsp;+ objectWithSchemaName:</option>
 	
+	<option value="//api/name/searchForAllObjectsWithSchemaName:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForAllObjectsWithSchemaName:successHandler:</option>
+	
+	<option value="//api/name/searchForAllObjectsWithSchemaName:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForAllObjectsWithSchemaName:successHandler:failureHandler:</option>
+	
+	<option value="//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForObjectsWithSchemaName:withQueryString:successHanler:</option>
+	
+	<option value="//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:</option>
+	
 	
 	
 	
@@ -165,6 +173,14 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchObjectsWithObjectIds:schemaName:successHandler:failureHandler:">fetchObjectsWithObjectIds:schemaName:successHandler:failureHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectWithSchemaName:">objectWithSchemaName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForAllObjectsWithSchemaName:successHandler:">searchForAllObjectsWithSchemaName:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForAllObjectsWithSchemaName:successHandler:failureHandler:">searchForAllObjectsWithSchemaName:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:">searchForObjectsWithSchemaName:withQueryString:successHanler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:">searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:</a></span></li>
 	
 </ul></li>
 
@@ -345,6 +361,34 @@ Either a schemaType or <a href="#//api/name/schemaId">schemaId</a> is required t
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithSchemaName:">&ndash;&nbsp;initWithSchemaName:</a></code>
 		<span class="tooltip"><p>Initialize and return an autorelease AYObject targetting a particular schema.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForAllObjectsWithSchemaName:successHandler:">+&nbsp;searchForAllObjectsWithSchemaName:successHandler:</a></code>
+		<span class="tooltip"><p>Search for all objects of a particular schema</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForAllObjectsWithSchemaName:successHandler:failureHandler:">+&nbsp;searchForAllObjectsWithSchemaName:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Search for all objects of a particular schema</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:">+&nbsp;searchForObjectsWithSchemaName:withQueryString:successHanler:</a></code>
+		<span class="tooltip"><p>Search for APObjects stored at the remote server</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:">+&nbsp;searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:</a></code>
+		<span class="tooltip"><p>Search for APObjects stored at the remote server</p></span>
 	</span>
 	
 	
@@ -1248,6 +1292,250 @@ Either a schemaType or <a href="#//api/name/schemaId">schemaId</a> is required t
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/searchForAllObjectsWithSchemaName:successHandler:" title="searchForAllObjectsWithSchemaName:successHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForAllObjectsWithSchemaName:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for all objects of a particular schema</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForAllObjectsWithSchemaName:(NSString *)<em>schemaName</em> successHandler:(APResultSuccessBlock)<em>successHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>schemaName</em></dt>
+			<dd><p>The schema that the objects should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for all objects of a particular schema</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchForAllObjectsWithSchemaName:successHandler:failureHandler:" title="searchForAllObjectsWithSchemaName:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForAllObjectsWithSchemaName:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for all objects of a particular schema</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForAllObjectsWithSchemaName:(NSString *)<em>schemaName</em> successHandler:(APResultSuccessBlock)<em>successHandler</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>schemaName</em></dt>
+			<dd><p>The schema that the objects should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when search call fails</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for all objects of a particular schema</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:" title="searchForObjectsWithSchemaName:withQueryString:successHanler:"></a>
+	<h3 class="subsubtitle method-title">searchForObjectsWithSchemaName:withQueryString:successHanler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for APObjects stored at the remote server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForObjectsWithSchemaName:(NSString *)<em>schemaName</em> withQueryString:(NSString *)<em>queryString</em> successHanler:(APResultSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>schemaName</em></dt>
+			<dd><p>The schema that the objects should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>queryString</em></dt>
+			<dd><p>SQL kind of query to search for specific objects</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for APObjects stored at the remote server</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:" title="searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForObjectsWithSchemaName:withQueryString:successHanler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for APObjects stored at the remote server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForObjectsWithSchemaName:(NSString *)<em>schemaName</em> withQueryString:(NSString *)<em>queryString</em> successHanler:(APResultSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>schemaName</em></dt>
+			<dd><p>The schema that the objects should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>queryString</em></dt>
+			<dd><p>SQL kind of query to search for specific objects</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureHandler</em></dt>
+			<dd><p>Block invoked when search call fails</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for APObjects stored at the remote server</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -1812,7 +2100,7 @@ The <a href="#//api/name/properties">properties</a> are validated agains the sch
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-09-06)</span><br />
+						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-09-10)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -48,14 +48,14 @@
 }
 
 + (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
-    [APObject searchForObjectWithSchemaName:schemaName withQueryString:nil successHanler:successHandler failureHandler:failureBlock];
+    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:nil successHanler:successHandler failureHandler:failureBlock];
 }
 
-+ (void) searchForObjectWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock {
-    [APObject searchForObjectWithSchemaName:schemaName withQueryString:queryString successHanler:successBlock failureHandler:nil];
++ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock {
+    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:queryString successHanler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForObjectWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, schemaName];

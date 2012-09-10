@@ -91,6 +91,14 @@
 	
 	<option value="//api/name/fetchConnectionsWithRelationName:objectIds:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ fetchConnectionsWithRelationName:objectIds:successHandler:failureHandler:</option>
 	
+	<option value="//api/name/searchForAllConnectionsWithRelationName:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForAllConnectionsWithRelationName:successHandler:</option>
+	
+	<option value="//api/name/searchForAllConnectionsWithRelationName:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForAllConnectionsWithRelationName:successHandler:failureHandler:</option>
+	
+	<option value="//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForConnectionsWithRelationName:withQueryString:successHandler:</option>
+	
+	<option value="//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:</option>
+	
 	
 	
 	
@@ -203,6 +211,14 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnectionsWithRelationName:objectIds:successHandler:">fetchConnectionsWithRelationName:objectIds:successHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnectionsWithRelationName:objectIds:successHandler:failureHandler:">fetchConnectionsWithRelationName:objectIds:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForAllConnectionsWithRelationName:successHandler:">searchForAllConnectionsWithRelationName:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForAllConnectionsWithRelationName:successHandler:failureHandler:">searchForAllConnectionsWithRelationName:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:">searchForConnectionsWithRelationName:withQueryString:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:">searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:</a></span></li>
 	
 </ul></li>
 
@@ -424,6 +440,34 @@ This is used to store extra information in an article.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithRelationName:">&ndash;&nbsp;initWithRelationName:</a></code>
 		<span class="tooltip"><p>Initialize and return an autorelease Connection targetting a specific relation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForAllConnectionsWithRelationName:successHandler:">+&nbsp;searchForAllConnectionsWithRelationName:successHandler:</a></code>
+		<span class="tooltip"><p>Search for all connections of a particular relation type</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForAllConnectionsWithRelationName:successHandler:failureHandler:">+&nbsp;searchForAllConnectionsWithRelationName:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Search for all connections of a particular relation type</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:">+&nbsp;searchForConnectionsWithRelationName:withQueryString:successHandler:</a></code>
+		<span class="tooltip"><p>Search for APConnections stored at the remote server</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:">+&nbsp;searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Search for APConnections stored at the remote server</p></span>
 	</span>
 	
 	
@@ -1736,6 +1780,250 @@ This can be used when update/delete.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/searchForAllConnectionsWithRelationName:successHandler:" title="searchForAllConnectionsWithRelationName:successHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForAllConnectionsWithRelationName:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for all connections of a particular relation type</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForAllConnectionsWithRelationName:(NSString *)<em>relationName</em> successHandler:(APResultSuccessBlock)<em>successHandler</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationName</em></dt>
+			<dd><p>The relation that the connections should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for all connections of a particular relation type</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchForAllConnectionsWithRelationName:successHandler:failureHandler:" title="searchForAllConnectionsWithRelationName:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForAllConnectionsWithRelationName:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for all connections of a particular relation type</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForAllConnectionsWithRelationName:(NSString *)<em>relationName</em> successHandler:(APResultSuccessBlock)<em>successHandler</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationName</em></dt>
+			<dd><p>The relation that the connections should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when search call fails</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for all connections of a particular relation type</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:" title="searchForConnectionsWithRelationName:withQueryString:successHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForConnectionsWithRelationName:withQueryString:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for APConnections stored at the remote server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForConnectionsWithRelationName:(NSString *)<em>relationName</em> withQueryString:(NSString *)<em>queryString</em> successHandler:(APResultSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationName</em></dt>
+			<dd><p>The relation that the connections should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>queryString</em></dt>
+			<dd><p>SQL kind of query to search for specific connections</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for APConnections stored at the remote server</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:" title="searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">searchForConnectionsWithRelationName:withQueryString:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Search for APConnections stored at the remote server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchForConnectionsWithRelationName:(NSString *)<em>relationName</em> withQueryString:(NSString *)<em>queryString</em> successHandler:(APResultSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationName</em></dt>
+			<dd><p>The relation that the connections should belong to</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>queryString</em></dt>
+			<dd><p>SQL kind of query to search for specific objects</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureHandler</em></dt>
+			<dd><p>Block invoked when search call fails</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successHandler</em></dt>
+			<dd><p>Block invoked when search call is successful</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Search for APConnections stored at the remote server</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -2731,7 +3019,7 @@ This method requires the <a href="#//api/name/relationName">relationName</a> and
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-09-06)</span><br />
+						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-09-10)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

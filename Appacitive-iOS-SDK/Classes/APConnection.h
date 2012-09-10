@@ -118,6 +118,42 @@
 - (id) initWithRelationName:(NSString*)relationName;
 
 /**
+ Search for all connections of a particular relation type
+ 
+ @param relationName The relation that the connections should belong to
+ @param successHandler Block invoked when search call is successful
+ */
++ (void) searchForAllConnectionsWithRelationName:(NSString*)relationName successHandler:(APResultSuccessBlock)successHandler;
+
+/**
+ Search for all connections of a particular relation type
+ 
+ @param relationName The relation that the connections should belong to
+ @param successHandler Block invoked when search call is successful
+ @param failureBlock Block invoked when search call fails
+ */
++ (void) searchForAllConnectionsWithRelationName:(NSString*)relationName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Search for APConnections stored at the remote server
+ 
+ @param relationName The relation that the connections should belong to
+ @param queryString SQL kind of query to search for specific connections
+ @param successHandler Block invoked when search call is successful
+ */
++ (void) searchForConnectionsWithRelationName:(NSString*)relationName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock;
+
+/**
+ Search for APConnections stored at the remote server
+ 
+ @param relationName The relation that the connections should belong to
+ @param queryString SQL kind of query to search for specific objects
+ @param successHandler Block invoked when search call is successful
+ @param failureHandler Block invoked when search call fails
+ */
++ (void) searchForConnectionsWithRelationName:(NSString*)relationName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+/**
  Method to create a relation.
  This method requires the articleAId, articleBId, labelA and labelB properties to be set.
  */
