@@ -58,8 +58,8 @@
 - (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@", sharedObject.deploymentId, self.relationName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.relationName];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:[self parameters] httpMethod:@"PUT"];
@@ -159,12 +159,12 @@
 + (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        __block NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedObject.session]];
+        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationName];
+        path = [path stringByAppendingFormat:@"?session=%@&idlist=", sharedObject.session];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
-            path = [path stringByAppendingString:[NSString stringWithFormat:@"%lld", number.longLongValue]];
+            path = [path stringByAppendingFormat:@"%lld", number.longLongValue];
             if (idx != objectIds.count - 1) {
                 path = [path stringByAppendingString:@","];
             }
@@ -214,8 +214,8 @@
 + (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationName];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
@@ -263,8 +263,8 @@
 - (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationName, self.objectId.longLongValue]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationName, self.objectId.longLongValue];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];

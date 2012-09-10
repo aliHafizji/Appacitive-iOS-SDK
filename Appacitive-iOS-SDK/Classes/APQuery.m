@@ -18,6 +18,9 @@
 }
 
 + (NSString*) queryStringForEqualCondition:(NSString*)propertyName date:(NSDate*)date {
+    if(propertyName != nil && date != nil) {
+        return [NSString stringWithFormat:@"*%@ == date('%@')", propertyName, date.description];
+    }
     return nil;
 }
 
@@ -51,27 +54,86 @@
 }
 
 + (NSString*) queryStringForGeoCodeProperty:(NSString*)propertyName location:(CLLocation*)location distance:(DistanceMetric)distanceMetric raduis:(NSNumber*)radius {
+    if(propertyName != nil && location != nil && radius != nil) {
+        NSString *queryString = [NSString stringWithFormat:@"*%@ within_circle ", propertyName];
+        queryString = [queryString stringByAppendingFormat:@"%lf, %lf, %lf", location.coordinate.latitude, location.coordinate.longitude, radius.doubleValue];
+        if (distanceMetric == kKilometers) {
+            queryString = [queryString stringByAppendingFormat:@" km"];
+        } else {
+            queryString = [queryString stringByAppendingFormat:@" m"];
+        }
+        return queryString;
+    }
     return nil;
 }
 
 + (NSString*) queryStringForPolygonSearch:(NSString*)propertyName withPolygonCoordinates:(NSArray*)coordinates {
+    if (propertyName != nil && coordinates != nil && coordinates.count >= 3) {
+        __block NSString *query = [NSString stringWithFormat:@"*%@ within_polygon ", propertyName];
+        
+        [coordinates enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[CLLocation class]]) {
+                CLLocation *location = (CLLocation*)obj;
+                query = [query stringByAppendingFormat:@"%lf,%lf", location.coordinate.latitude, location.coordinate.longitude];
+                if (idx != coordinates.count - 1) {
+                    query = [query stringByAppendingString:@"|"];
+                }
+            }
+        }];
+        return query;
+    }
     return nil;
 }
 
 + (NSString*) queryStringForSearchWithOneOrMoreTags:(NSArray*)tags {
+    if (tags != nil) {
+        __block NSString *queryString = @"tagged_with_one_or_more ('";
+        [tags enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                queryString = [queryString stringByAppendingFormat:@"%@", obj];
+                if (idx != tags.count - 1) {
+                    queryString = [queryString stringByAppendingString:@","];
+                } else {
+                    queryString = [queryString stringByAppendingString:@"')"];
+                }
+            }
+        }];
+        return queryString;
+    }
     return nil;
 }
 
 + (NSString*) queryStringForSearchWithAllTags:(NSArray*)tags {
-    return nil;
-}
-
-+ (NSString*) queryStringForBetweenCondition:(NSString*)propertyName value:(NSArray*)values {
+    if (tags != nil) {
+        __block NSString *queryString = @"tagged_with_all ('";
+        [tags enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                queryString = [queryString stringByAppendingFormat:@"%@", obj];
+                if (idx != tags.count - 1) {
+                    queryString = [queryString stringByAppendingString:@","];
+                } else {
+                    queryString = [queryString stringByAppendingString:@"')"];
+                }
+            }
+        }];
+        return queryString;
+    }
     return nil;
 }
 
 + (NSString*) queryStringForSearchWithFreeText:(NSArray*)freeTextTokens {
+    if (freeTextTokens != nil && freeTextTokens.count > 0) {
+        __block NSString *queryString = @"freeText=";
+        [freeTextTokens enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                queryString = [queryString stringByAppendingString:obj];
+                if(idx != freeTextTokens.count - 1) {
+                    queryString = [queryString stringByAppendingString:@" "];
+                }
+            }
+        }];
+        return queryString;
+    }
     return nil;
 }
-
 @end

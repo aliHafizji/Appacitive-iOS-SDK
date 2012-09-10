@@ -135,17 +135,6 @@ typedef enum {
 + (NSString*) queryStringForSearchWithAllTags:(NSArray*)tags;
 
 /**
- Helper method to generate a query string for between condition.
- 
- @param propertyName name of the property to search for
- @param values values the property name needs to be in between.
- 
- Example query would be +[APQuery queryStringForBetweenCondition:@"cost" value:{123,150}]
- This would return "cost between (123 , 150)" which is the format Appacitive understands
- */
-+ (NSString*) queryStringForBetweenCondition:(NSString*)propertyName value:(NSArray*)values;
-
-/**
  Helper method to generate a query string to search for free text.
  
  @param freeTextTokens

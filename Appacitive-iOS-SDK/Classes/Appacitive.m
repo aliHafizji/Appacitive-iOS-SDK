@@ -8,7 +8,7 @@
 
 #import "Appacitive.h"
 
-#define HOST_NAME @"gossamer.tavisca.com"
+#define HOST_NAME @"apis.appacitive.com"
 
 NSString *const SessionReceivedNotification = @"SessionReceivedNotification";
 

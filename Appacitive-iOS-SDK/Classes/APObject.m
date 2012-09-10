@@ -41,6 +41,61 @@
     return self;
 }
 
+#pragma mark search method
+
++ (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler {
+    [APObject searchForAllObjectsWithSchemaName:schemaName successHandler:successHandler failureHandler:nil];
+}
+
++ (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
+    [APObject searchForObjectWithSchemaName:schemaName withQueryString:nil successHanler:successHandler failureHandler:failureBlock];
+}
+
++ (void) searchForObjectWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock {
+    [APObject searchForObjectWithSchemaName:schemaName withQueryString:queryString successHanler:successBlock failureHandler:nil];
+}
+
++ (void) searchForObjectWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, schemaName];
+        if (queryString) {
+            path = [path stringByAppendingFormat:@"?%@&session=%@", queryString, sharedObject.session];
+        } else {
+            path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
+        }
+        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        [op onCompletion:^(MKNetworkOperation *completedOperation){
+            DLog(@"%@", completedOperation.description);
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock) {
+                    successBlock(completedOperation.responseJSON);
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
+
+        } onError:^(NSError *error){
+            DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((APError*) error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+    }
+}
+
 #pragma mark delete methods
 
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName failureHandler:(APFailureBlock)failureBlock {
@@ -50,8 +105,8 @@
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/_bulk", sharedObject.deploymentId, schemaName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, schemaName];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
@@ -98,8 +153,8 @@
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];
@@ -140,12 +195,12 @@
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        __block NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, schemaName]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedObject.session]];
+        __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, schemaName];
+        path = [path stringByAppendingFormat:@"?session=%@&idlist=", sharedObject.session];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
-            path = [path stringByAppendingString:[NSString stringWithFormat:@"%lld", number.longLongValue]];
+            path = [path stringByAppendingFormat:@"%lld", number.longLongValue];
             if (idx != objectIds.count - 1) {
                 path = [path stringByAppendingString:@","];
             }
@@ -188,8 +243,8 @@
 - (void) fetchWithFailureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@&idlist=", sharedObject.session]];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]];
+        path = [path stringByAppendingFormat:@"?session=%@&idlist=", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
@@ -232,8 +287,8 @@
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingString:[NSString stringWithFormat:@"%@/%@", sharedObject.deploymentId, self.schemaType]];
-        path = [path stringByAppendingString:[NSString stringWithFormat:@"?session=%@", sharedObject.session]];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.schemaType];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:[self postParamerters] httpMethod:@"PUT"];

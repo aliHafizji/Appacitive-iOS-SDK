@@ -95,6 +95,39 @@
 - (id) initWithSchemaName:(NSString*)schemaName;
 
 /**
+ Search for all objects of a particular schema
+ @param schemaName The schema that the objects should belong to
+ @param successHandler Block invoked when search call is successful
+ */
++ (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler;
+
+/**
+ Search for all objects of a particular schema
+ @param schemaName The schema that the objects should belong to
+ @param successHandler Block invoked when search call is successful
+ @param failureBlock Block invoked when search call fails
+ */
++ (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Search for APObjects stored at the remote server
+ 
+ @param schemaName The schema that the objects should belong to
+ @param queryString SQL kind of query to search for specific objects
+ @param successHandler Block invoked when search call is successful
+ */
++ (void) searchForObjectWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock;
+
+/**
+ Search for APObjects stored at the remote server
+ 
+ @param schemaName The schema that the objects should belong to
+ @param queryString SQL kind of query to search for specific objects
+ @param successHandler Block invoked when search call is successful
+ @param failureHandler Block invoked when search call fails
+ */
++ (void) searchForObjectWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+/**
  Multi delete method used to delete a number of objects.
  
  @param objectIds The ids of the objects to delete.
