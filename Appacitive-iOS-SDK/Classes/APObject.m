@@ -24,7 +24,7 @@
 @synthesize schemaType = _schemaType;
 @synthesize tags = _tags;
 
-#define ARTICLE_PATH @"v0.9/core/Article.svc/"
+NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 
 #pragma mark initialization methods
 

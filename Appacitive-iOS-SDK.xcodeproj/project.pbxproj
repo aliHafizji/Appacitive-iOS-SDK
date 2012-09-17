@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		39510000989F40589B1E62B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE18E91493A45BE9CFB5B14 /* libPods.a */; };
 		612CCDFA15FDA37000A78F3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61388C1515F8667000C79F1F /* CoreLocation.framework */; };
+		612CCE1E15FDF34300A78F3E /* APBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = 612CCE1C15FDF34300A78F3E /* APBlob.h */; };
+		612CCE1F15FDF34300A78F3E /* APBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 612CCE1D15FDF34300A78F3E /* APBlob.m */; };
 		612E3E0E15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
 		612E3E1C15EDF8FE00F98FB8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */; };
 		612E3E1F15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
@@ -54,6 +56,8 @@
 /* Begin PBXFileReference section */
 		01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		0AE18E91493A45BE9CFB5B14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		612CCE1C15FDF34300A78F3E /* APBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APBlob.h; sourceTree = SOURCE_ROOT; };
+		612CCE1D15FDF34300A78F3E /* APBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBlob.m; sourceTree = SOURCE_ROOT; };
 		612E3E0A15EDF8FD00F98FB8 /* libAppacitive-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAppacitive-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		612E3E1A15EDF8FE00F98FB8 /* Appacitive-iOS-SDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Appacitive-iOS-SDKTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +213,8 @@
 				61D62C0315F8857100C57AA3 /* APHelperMethods.m */,
 				61D62C0415F8857100C57AA3 /* APObject.h */,
 				61D62C0515F8857100C57AA3 /* APObject.m */,
+				612CCE1C15FDF34300A78F3E /* APBlob.h */,
+				612CCE1D15FDF34300A78F3E /* APBlob.m */,
 				61D62C0615F8857100C57AA3 /* Appacitive.h */,
 				61D62C0715F8857100C57AA3 /* Appacitive.m */,
 				61D62C0815F8857100C57AA3 /* APQuery.h */,
@@ -236,6 +242,7 @@
 				61D62C2215F8859C00C57AA3 /* APHelperMethodTest.h in Headers */,
 				61D62C2415F8859C00C57AA3 /* APObjectTest.h in Headers */,
 				61D62C2615F8859C00C57AA3 /* AppacitiveTest.h in Headers */,
+				612CCE1E15FDF34300A78F3E /* APBlob.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +364,7 @@
 				61D62C1215F8857100C57AA3 /* APObject.m in Sources */,
 				61D62C1415F8857100C57AA3 /* Appacitive.m in Sources */,
 				61D62C1615F8857100C57AA3 /* APQuery.m in Sources */,
+				612CCE1F15FDF34300A78F3E /* APBlob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

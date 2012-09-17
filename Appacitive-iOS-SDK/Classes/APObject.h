@@ -10,6 +10,8 @@
 
 @class APError;
 
+extern NSString *const ARTICLE_PATH;
+
 /**
  This class is used to represent an Article.
  An Article represents an instance of a Schema.
