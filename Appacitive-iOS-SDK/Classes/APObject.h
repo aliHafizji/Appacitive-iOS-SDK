@@ -118,7 +118,7 @@ extern NSString *const ARTICLE_PATH;
  @param queryString SQL kind of query to search for specific objects
  @param successHandler Block invoked when search call is successful
  */
-+ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock;
++ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock;
 
 /**
  Search for APObjects stored at the remote server
@@ -128,7 +128,7 @@ extern NSString *const ARTICLE_PATH;
  @param successHandler Block invoked when search call is successful
  @param failureHandler Block invoked when search call fails
  */
-+ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Multi delete method used to delete a number of objects.

@@ -48,14 +48,14 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 }
 
 + (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
-    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:nil successHanler:successHandler failureHandler:failureBlock];
+    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
 }
 
-+ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock {
-    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:queryString successHanler:successBlock failureHandler:nil];
++ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
+    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:queryString successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHanler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, schemaName];
