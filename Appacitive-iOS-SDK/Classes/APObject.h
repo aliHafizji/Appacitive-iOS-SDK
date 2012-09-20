@@ -251,4 +251,46 @@ extern NSString *const ARTICLE_PATH;
  @param failureBlock Block invoked when delete operation fails.
  */
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Method to filter articles according to the query provided.
+ 
+ @discussion A filter query does not have a starting point in the graph. All the articles that satisfy the query will be returned. To know more visit http://wwww.appacitive.com
+ 
+ @param query
+ @param successBlock Block invoked when query is successfully executed.
+ */
++ (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock;
+
+/**
+ Method to filter articles according to the query provided.
+ 
+ @discussion A filter query does not have a starting point in the graph. All the articles that satisfy the query will be returned. To know more visit http://wwww.appacitive.com
+ 
+ @param query
+ @param successBlock Block invoked when query is successfully executed.
+ @param failureBlock Block invoked when query execution fails.
+ */
++ (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+/**
+ This method applies a projection query. 
+ 
+ @discussion A projection query will apply the query from a starting point in the graph. To know more visit http://wwww.appacitive.com
+ 
+ @param query
+ @param successBlock Block invoked when query is successfully executed.
+ */
++ (void) applyProjectionGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock;
+
+/**
+ This method applies a projection query. 
+ 
+ @discussion A projection query will apply the query from a starting point in the graph. To know more visit http://wwww.appacitive.com
+ 
+ @param query
+ @param successBlock Block invoked when query is successfully executed.
+ @param failureBlock Block invoked when query execution fails.
+ */
++ (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 @end

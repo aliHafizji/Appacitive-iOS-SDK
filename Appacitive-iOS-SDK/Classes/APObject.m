@@ -26,6 +26,8 @@
 
 NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 
+#define SEARCH_PATH @"/v0.9/core/Search.svc/"
+
 #pragma mark initialization methods
 
 + (id) objectWithSchemaName:(NSString*)schemaName {
@@ -303,6 +305,104 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
             if (!isErrorPresent) {
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 
+                if (successBlock != nil) {
+                    successBlock(completedOperation.responseJSON);
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
+        } onError:^(NSError *error){
+            DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+    }
+}
+
+#pragma mark graph query method
+
++ (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock {
+    [APObject applyFilterGraphQuery:query successHandler:successBlock failureHandler:nil];
+}
+
++ (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [SEARCH_PATH stringByAppendingFormat:@"%@/filter", sharedObject.deploymentId];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
+        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError *error;
+        NSMutableDictionary *postParams = [NSJSONSerialization JSONObjectWithData:[query dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+        if (error) {
+            DLog(@"Error created JSON, please check the syntax of the graph query");
+            return;
+        }
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:postParams httpMethod:@"POST"];
+        op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
+        
+        [op onCompletion:^(MKNetworkOperation *completedOperation) {
+            DLog(@"%@", completedOperation.description);
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock != nil) {
+                    successBlock(completedOperation.responseJSON);
+                }
+            } else {
+                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
+            }
+        } onError:^(NSError *error){
+            DLog(@"%@", error.description);
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+    }
+}
+
++ (void) applyProjectionGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock {
+    [APObject applyProjectionGraphQuery:query successHandler:successBlock failureHandler:nil];
+}
+
++ (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject) {
+        NSString *path = [SEARCH_PATH stringByAppendingFormat:@"%@/project", sharedObject.deploymentId];
+        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
+        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError *error;
+        NSMutableDictionary *postParams = [NSJSONSerialization JSONObjectWithData:[query dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+        if (error) {
+            DLog(@"Error created JSON, please check the syntax of the graph query");
+            return;
+        }
+        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:postParams httpMethod:@"POST"];
+        op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
+        
+        [op onCompletion:^(MKNetworkOperation *completedOperation) {
+            DLog(@"%@", completedOperation.description);
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
                 if (successBlock != nil) {
                     successBlock(completedOperation.responseJSON);
                 }

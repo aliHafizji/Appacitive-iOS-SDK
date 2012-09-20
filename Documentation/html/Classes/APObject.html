@@ -67,6 +67,14 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/applyFilterGraphQuery:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ applyFilterGraphQuery:successHandler:</option>
+	
+	<option value="//api/name/applyFilterGraphQuery:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ applyFilterGraphQuery:successHandler:failureHandler:</option>
+	
+	<option value="//api/name/applyProjectionGraphQuery:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ applyProjectionGraphQuery:successHandler:</option>
+	
+	<option value="//api/name/applyProjectionGraphQuery:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ applyProjectionGraphQuery:successHandler:failureHandler:</option>
+	
 	<option value="//api/name/deleteObjectsWithIds:schemaName:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteObjectsWithIds:schemaName:failureHandler:</option>
 	
 	<option value="//api/name/deleteObjectsWithIds:schemaName:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteObjectsWithIds:schemaName:successHandler:failureHandler:</option>
@@ -163,6 +171,14 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applyFilterGraphQuery:successHandler:">applyFilterGraphQuery:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applyFilterGraphQuery:successHandler:failureHandler:">applyFilterGraphQuery:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applyProjectionGraphQuery:successHandler:">applyProjectionGraphQuery:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applyProjectionGraphQuery:successHandler:failureHandler:">applyProjectionGraphQuery:successHandler:failureHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteObjectsWithIds:schemaName:failureHandler:">deleteObjectsWithIds:schemaName:failureHandler:</a></span></li>
 	
@@ -489,6 +505,34 @@ Articles are used to store extra information.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/deleteObjectWithSuccessHandler:failureHandler:">&ndash;&nbsp;deleteObjectWithSuccessHandler:failureHandler:</a></code>
 		<span class="tooltip"><p>Method to delete an object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applyFilterGraphQuery:successHandler:">+&nbsp;applyFilterGraphQuery:successHandler:</a></code>
+		<span class="tooltip"><p>Method to filter articles according to the query provided.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applyFilterGraphQuery:successHandler:failureHandler:">+&nbsp;applyFilterGraphQuery:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method to filter articles according to the query provided.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applyProjectionGraphQuery:successHandler:">+&nbsp;applyProjectionGraphQuery:successHandler:</a></code>
+		<span class="tooltip"><p>This method applies a projection query.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applyProjectionGraphQuery:successHandler:failureHandler:">+&nbsp;applyProjectionGraphQuery:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>This method applies a projection query.</p></span>
 	</span>
 	
 	
@@ -981,6 +1025,236 @@ Either a schemaType or <a href="#//api/name/schemaId">schemaId</a> is required t
 					<div class="section section-methods">
 						<a title="Class Methods" name="class_methods"></a>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/applyFilterGraphQuery:successHandler:" title="applyFilterGraphQuery:successHandler:"></a>
+	<h3 class="subsubtitle method-title">applyFilterGraphQuery:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method to filter articles according to the query provided.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)applyFilterGraphQuery:(NSString *)<em>query</em> successHandler:(APResultSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when query is successfully executed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Method to filter articles according to the query provided.</p>
+
+<p>@discussion A filter query does not have a starting point in the graph. All the articles that satisfy the query will be returned. To know more visit <a href="http://wwww.appacitive.com">http://wwww.appacitive.com</a></p>
+
+<p>@param query</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/applyFilterGraphQuery:successHandler:failureHandler:" title="applyFilterGraphQuery:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">applyFilterGraphQuery:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method to filter articles according to the query provided.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)applyFilterGraphQuery:(NSString *)<em>query</em> successHandler:(APResultSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when query is successfully executed.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when query execution fails.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Method to filter articles according to the query provided.</p>
+
+<p>@discussion A filter query does not have a starting point in the graph. All the articles that satisfy the query will be returned. To know more visit <a href="http://wwww.appacitive.com">http://wwww.appacitive.com</a></p>
+
+<p>@param query</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/applyProjectionGraphQuery:successHandler:" title="applyProjectionGraphQuery:successHandler:"></a>
+	<h3 class="subsubtitle method-title">applyProjectionGraphQuery:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method applies a projection query.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)applyProjectionGraphQuery:(NSString *)<em>query</em> successHandler:(APResultSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when query is successfully executed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method applies a projection query.</p>
+
+<p>@discussion A projection query will apply the query from a starting point in the graph. To know more visit <a href="http://wwww.appacitive.com">http://wwww.appacitive.com</a></p>
+
+<p>@param query</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/applyProjectionGraphQuery:successHandler:failureHandler:" title="applyProjectionGraphQuery:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">applyProjectionGraphQuery:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method applies a projection query.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)applyProjectionGraphQuery:(NSString *)<em>query</em> successHandler:(APResultSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when query is successfully executed.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when query execution fails.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method applies a projection query.</p>
+
+<p>@discussion A projection query will apply the query from a starting point in the graph. To know more visit <a href="http://wwww.appacitive.com">http://wwww.appacitive.com</a></p>
+
+<p>@param query</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/deleteObjectsWithIds:schemaName:failureHandler:" title="deleteObjectsWithIds:schemaName:failureHandler:"></a>
