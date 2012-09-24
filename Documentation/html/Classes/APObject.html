@@ -100,6 +100,8 @@
 	
 	<option value="//api/name/addAttributeWithKey:value:">&nbsp;&nbsp;&nbsp;&nbsp;- addAttributeWithKey:value:</option>
 	
+	<option value="//api/name/addProperty:">&nbsp;&nbsp;&nbsp;&nbsp;- addProperty:</option>
+	
 	<option value="//api/name/addPropertyWithKey:value:">&nbsp;&nbsp;&nbsp;&nbsp;- addPropertyWithKey:value:</option>
 	
 	<option value="//api/name/deleteObject">&nbsp;&nbsp;&nbsp;&nbsp;- deleteObject</option>
@@ -205,6 +207,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addAttributeWithKey:value:">addAttributeWithKey:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addProperty:">addProperty:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPropertyWithKey:value:">addPropertyWithKey:value:</a></span></li>
 	
@@ -455,6 +459,13 @@ Either a schemaType or <a href="#//api/name/schemaId">schemaId</a> is required t
 		<code><a href="#//api/name/addPropertyWithKey:value:">&ndash;&nbsp;addPropertyWithKey:value:</a></code>
 		<span class="tooltip"><p>Method used to add a property to the article.
 The <a href="#//api/name/properties">properties</a> are validated agains the schema.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addProperty:">&ndash;&nbsp;addProperty:</a></code>
+		<span class="tooltip"><p>Method used to add multiple key-value pairs.</p></span>
 	</span>
 	
 	
@@ -1865,6 +1876,57 @@ Articles are used to store extra information.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/addProperty:" title="addProperty:"></a>
+	<h3 class="subsubtitle method-title">addProperty:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to add multiple key-value pairs.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addProperty:(NSDictionary *)<em>property</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>property</em></dt>
+			<dd><p>An NSDictionary, this can have n number of key-value pairs.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Method used to add multiple key-value pairs.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/addPropertyWithKey:value:" title="addPropertyWithKey:value:"></a>
 	<h3 class="subsubtitle method-title">addPropertyWithKey:value:</h3>
 	
@@ -1892,7 +1954,8 @@ The <a href="#//api/name/properties">properties</a> are validated agains the sch
 		<p>Method used to add a property to the article.
 The <a href="#//api/name/properties">properties</a> are validated agains the schema.</p>
 
-<p>@param keyName
+<p>@discussion This method allows creation of on single key:value pair. For multiple see the &ndash; <a href="#//api/name/addProperty:">addProperty:</a> method.
+@param keyName
 @param object</p>
 	</div>
 	

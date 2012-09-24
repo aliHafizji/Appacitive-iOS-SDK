@@ -190,10 +190,18 @@ extern NSString *const ARTICLE_PATH;
  Method used to add a property to the article.
  The properties are validated agains the schema.
  
+ @discussion This method allows creation of on single key:value pair. For multiple see the - addProperty: method.
  @param keyName
  @param object
  */
 - (void) addPropertyWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to add multiple key-value pairs.
+ 
+ @param property An NSDictionary, this can have n number of key-value pairs.
+ */
+- (void) addProperty:(NSDictionary*)property;
 
 /**
  Method used to add an attibute to the article.

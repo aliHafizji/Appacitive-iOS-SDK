@@ -416,10 +416,14 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 #pragma mark add properties method
 
 - (void) addPropertyWithKey:(NSString*) keyName value:(id) object {
+    [self addProperty:@{keyName: object}];
+}
+
+- (void) addProperty:(NSDictionary*)property {
     if (!self.properties) {
         _properties = [NSMutableArray array];
     }
-    [_properties addObject:@{keyName: object}];
+    [_properties addObject:property];
 }
 
 #pragma mark add attributes method
