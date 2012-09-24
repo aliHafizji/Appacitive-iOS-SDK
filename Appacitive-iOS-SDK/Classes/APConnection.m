@@ -13,21 +13,6 @@
 #import "APHelperMethods.h"
 
 @implementation APConnection
-@synthesize createdBy = _createdBy;
-@synthesize articleAId = _articleAId;
-@synthesize articleBId = _articleBId;
-@synthesize objectId = _objectId;
-@synthesize labelA = _labelA;
-@synthesize labelB = _labelB;
-@synthesize relationId = _relationId;
-@synthesize relationName = _relationName;
-@synthesize lastUpdatedBy = _lastUpdatedBy;
-@synthesize utcDateCreated = _utcDateCreated;
-@synthesize utcLastUpdatedDate = _utcLastUpdatedDate;
-@synthesize revision = _revision;
-@synthesize properties = _properties;
-@synthesize attributes = _attributes;
-@synthesize tags = _tags;
 
 #define CONNECTION_PATH @"v0.9/core/Connection.svc/"
 
@@ -201,11 +186,11 @@
 #pragma mark fetch connection methods
 
 + (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock {
-    [APConnection fetchConnectionsWithRelationName:relationName objectIds:[NSArray arrayWithObject:objectId] successHandler:successBlock failureHandler:nil];
+    [APConnection fetchConnectionsWithRelationName:relationName objectIds:@[objectId] successHandler:successBlock failureHandler:nil];
 }
 
 + (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
-    [APConnection fetchConnectionsWithRelationName:relationName objectIds:[NSArray arrayWithObject:objectId] successHandler:successBlock failureHandler:failureBlock];
+    [APConnection fetchConnectionsWithRelationName:relationName objectIds:@[objectId] successHandler:successBlock failureHandler:failureBlock];
 }
 
 + (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock {
@@ -356,22 +341,22 @@
 #pragma mark private methods
 
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
-    NSDictionary *connection = [dictionary objectForKey:@"Connection"];
-    _articleAId = (NSNumber*) [connection objectForKey:@"__ArticleAId"];
-    _articleBId = (NSNumber*) [connection objectForKey:@"__ArticleBId"];
-    _attributes = [connection objectForKey:@"__Attributes"];
-    _createdBy = (NSString*) [connection objectForKey:@"__CreatedBy"];
-    _objectId = (NSNumber*) [connection objectForKey:@"__Id"];
-    _labelA = (NSString*) [connection objectForKey:@"__LabelA"];
-    _labelB = (NSString*) [connection objectForKey:@"__LabelB"];
-    _lastUpdatedBy = (NSString*) [connection objectForKey:@"__LastUpdatedBy"];
-    _properties = [connection objectForKey:@"__Properties"];
-    _relationId = (NSNumber*) [connection objectForKey:@"__RelationId"];
-    _relationName = (NSString*) [connection objectForKey:@"__RelationName"];
-    _revision = (NSNumber*) [connection objectForKey:@"__Revision"];
-    _tags = [connection objectForKey:@"__Tags"];
-    _utcDateCreated = [self deserializeJsonDateString:[connection objectForKey:@"__UtcDateCreated"]];
-    _utcLastUpdatedDate = [self deserializeJsonDateString:[connection objectForKey:@"__UtcLastUpdatedDate"]];
+    NSDictionary *connection = dictionary[@"Connection"];
+    _articleAId = (NSNumber*) connection[@"__ArticleAId"];
+    _articleBId = (NSNumber*) connection[@"__ArticleBId"];
+    _attributes = connection[@"__Attributes"];
+    _createdBy = (NSString*) connection[@"__CreatedBy"];
+    _objectId = (NSNumber*) connection[@"__Id"];
+    _labelA = (NSString*) connection[@"__LabelA"];
+    _labelB = (NSString*) connection[@"__LabelB"];
+    _lastUpdatedBy = (NSString*) connection[@"__LastUpdatedBy"];
+    _properties = connection[@"__Properties"];
+    _relationId = (NSNumber*) connection[@"__RelationId"];
+    _relationName = (NSString*) connection[@"__RelationName"];
+    _revision = (NSNumber*) connection[@"__Revision"];
+    _tags = connection[@"__Tags"];
+    _utcDateCreated = [self deserializeJsonDateString:connection[@"__UtcDateCreated"]];
+    _utcLastUpdatedDate = [self deserializeJsonDateString:connection[@"__UtcLastUpdatedDate"]];
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
@@ -384,38 +369,38 @@
 - (NSMutableDictionary*) parameters {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     if (self.articleAId)
-        [parameters setObject:self.articleAId forKey:@"__ArticleAId"];
+        parameters[@"__ArticleAId"] = self.articleAId;
     
     if (self.articleBId)
-        [parameters setObject:self.articleBId forKey:@"__ArticleBId"];
+        parameters[@"__ArticleBId"] = self.articleBId;
     
     if (self.attributes)
-        [parameters setObject:self.attributes forKey:@"__Attributes"];
+        parameters[@"__Attributes"] = self.attributes;
     
     if (self.createdBy)
-        [parameters setObject:self.createdBy forKey:@"__CreatedBy"];
+        parameters[@"__CreatedBy"] = self.createdBy;
     
     if (self.properties)
-        [parameters setObject:self.properties forKey:@"__Properties"];
+        parameters[@"__Properties"] = self.properties;
     
     if (self.labelA)
-        [parameters setObject:self.labelA forKey:@"__LabelA"];
+        parameters[@"__LabelA"] = self.labelA;
     
     if (self.labelB)
-        [parameters setObject:self.labelB forKey:@"__LabelB"];
+        parameters[@"__LabelB"] = self.labelB;
     
     if (self.relationName)
-        [parameters setObject:self.relationName forKey:@"__RelationName"];
+        parameters[@"__RelationName"] = self.relationName;
     
     if (self.revision)
-        [parameters setObject:self.revision forKey:@"__Revision"];
+        parameters[@"__Revision"] = self.revision;
     
     if (self.tags)
-        [parameters setObject:self.tags forKey:@"__Tags"];
+        parameters[@"__Tags"] = self.tags;
     return parameters;
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"ArticleAId:%lld, ArticleBId:%lld, Attributes:%@, CreatedBy:%@, Connection Id:%lld, LabelA:%@, LabelB:%@, LastUpdatedBy:%@, Properties:%@, RelationId:%d, RelationName:%@, Revision:%d, Tags:%@, UtcDateCreated:%@, UtcLastUpdatedDate:%@", self.articleAId, self.articleBId, self.attributes, self.createdBy, self.objectId, self.labelA, self.labelB, self.lastUpdatedBy, self.properties, self.relationId, self.relationName, self.revision, self.tags ,self.utcDateCreated, self.utcLastUpdatedDate];
+    return [NSString stringWithFormat:@"ArticleAId:%lld, ArticleBId:%lld, Attributes:%@, CreatedBy:%@, Connection Id:%lld, LabelA:%@, LabelB:%@, LastUpdatedBy:%@, Properties:%@, RelationId:%d, RelationName:%@, Revision:%d, Tags:%@, UtcDateCreated:%@, UtcLastUpdatedDate:%@", [self.articleAId longLongValue], [self.articleBId longLongValue], self.attributes, self.createdBy, [self.objectId longLongValue], self.labelA, self.labelB, self.lastUpdatedBy, self.properties, [self.relationId intValue], self.relationName, [self.revision intValue], self.tags ,self.utcDateCreated, self.utcLastUpdatedDate];
 }
 @end

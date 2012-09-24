@@ -9,8 +9,6 @@
 #import "APError.h"
 
 @implementation APError
-@synthesize referenceId = _referenceId;
-@synthesize version = _version;
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"Error: %@, ReferenceId: %@, Version: %@", self.localizedDescription, self.referenceId, self.version];

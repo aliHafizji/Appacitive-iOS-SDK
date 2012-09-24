@@ -12,17 +12,6 @@
 #import "APHelperMethods.h"
 
 @implementation APObject
-@synthesize createdBy = _createdBy;
-@synthesize objectId = _objectId;
-@synthesize lastUpdatedBy = _lastUpdatedBy;
-@synthesize utcDateCreated = _utcDateCreated;
-@synthesize utcLastUpdatedDate = _utcLastUpdatedDate;
-@synthesize revision = _revision;
-@synthesize properties = _properties;
-@synthesize attributes = _attributes;
-@synthesize schemaId = _schemaId;
-@synthesize schemaType = _schemaType;
-@synthesize tags = _tags;
 
 NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 
@@ -191,7 +180,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 #pragma mark fetch methods
 
 + (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
-    [APObject fetchObjectsWithObjectIds:[NSArray arrayWithObject:objectId] schemaName:schemaName successHandler:successBlock failureHandler:failureBlock];
+    [APObject fetchObjectsWithObjectIds:@[objectId] schemaName:schemaName successHandler:successBlock failureHandler:failureBlock];
 }
 
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
@@ -430,7 +419,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     if (!self.properties) {
         _properties = [NSMutableArray array];
     }
-    [_properties addObject:[NSDictionary dictionaryWithObject:object forKey:keyName]];
+    [_properties addObject:@{keyName: object}];
 }
 
 #pragma mark add attributes method
@@ -439,28 +428,28 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     if (!self.attributes) {
         _attributes = [NSMutableArray array];
     }
-    [_attributes addObject:[NSDictionary dictionaryWithObject:object forKey:keyName]];
+    [_attributes addObject:@{keyName: object}];
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"Object Id:%lld, Created by:%@, Last updated by:%@, UTC date created:%@, UTC date updated:%@, Revision:%d, Properties:%@, Attributes:%@, SchemaId:%d, SchemaType:%@, Tag:%@", [self.objectId longLongValue], self.createdBy, self.lastUpdatedBy, self.utcDateCreated, self.utcLastUpdatedDate, self.revision, self.properties, self.attributes, self.schemaId, self.schemaType, self.tags];
+    return [NSString stringWithFormat:@"Object Id:%lld, Created by:%@, Last updated by:%@, UTC date created:%@, UTC date updated:%@, Revision:%d, Properties:%@, Attributes:%@, SchemaId:%d, SchemaType:%@, Tag:%@", [self.objectId longLongValue], self.createdBy, self.lastUpdatedBy, self.utcDateCreated, self.utcLastUpdatedDate, [self.revision intValue], self.properties, self.attributes, [self.schemaId intValue], self.schemaType, self.tags];
 }
 
 #pragma mark private methods
 
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
-    NSDictionary *article = [dictionary objectForKey:@"Article"];
-    _createdBy = (NSString*) [article objectForKey:@"__CreatedBy"];
-    _objectId = (NSNumber*) [article objectForKey:@"__Id"];
-    _lastUpdatedBy = (NSString*) [article objectForKey:@"__LastUpdatedBy"];
-    _revision = (NSNumber*) [article objectForKey:@"__Revision"];
-    _schemaId = (NSNumber*) [article objectForKey:@"__SchemaId"];
-    _utcDateCreated = [self deserializeJsonDateString:[article objectForKey:@"__UtcDateCreated"]];
-    _utcLastUpdatedDate = [self deserializeJsonDateString:[article objectForKey:@"__UtcLastUpdatedDate"]];
-    _properties = [article objectForKey:@"__Properties"];
-    _attributes = [article objectForKey:@"__Attributes"];
-    _tags = [article objectForKey:@"__Tags"];
-    _schemaType = [article objectForKey:@"__SchemaType"];
+    NSDictionary *article = dictionary[@"Article"];
+    _createdBy = (NSString*) article[@"__CreatedBy"];
+    _objectId = (NSNumber*) article[@"__Id"];
+    _lastUpdatedBy = (NSString*) article[@"__LastUpdatedBy"];
+    _revision = (NSNumber*) article[@"__Revision"];
+    _schemaId = (NSNumber*) article[@"__SchemaId"];
+    _utcDateCreated = [self deserializeJsonDateString:article[@"__UtcDateCreated"]];
+    _utcLastUpdatedDate = [self deserializeJsonDateString:article[@"__UtcLastUpdatedDate"]];
+    _properties = article[@"__Properties"];
+    _attributes = article[@"__Attributes"];
+    _tags = article[@"__Tags"];
+    _schemaType = article[@"__SchemaType"];
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
@@ -473,22 +462,22 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 - (NSMutableDictionary*) postParamerters {
     NSMutableDictionary *postParams = [NSMutableDictionary dictionary];
     if (self.attributes)
-        [postParams setObject:self.attributes forKey:@"__Attributes"];
+        postParams[@"__Attributes"] = self.attributes;
     
     if (self.createdBy)
-        [postParams setObject:self.createdBy forKey:@"__CreatedBy"];
+        postParams[@"__CreatedBy"] = self.createdBy;
     
     if (self.revision)
-        [postParams setObject:self.revision forKey:@"__Revision"];
+        postParams[@"__Revision"] = self.revision;
 
     if (self.properties)
-        [postParams setObject:self.properties forKey:@"__Properties"];
+        postParams[@"__Properties"] = self.properties;
 
     if (self.schemaType)
-        [postParams setObject:self.schemaType forKey:@"__SchemaType"];
+        postParams[@"__SchemaType"] = self.schemaType;
 
     if (self.tags)
-        [postParams setObject:self.tags forKey:@"__Tags"];
+        postParams[@"__Tags"] = self.tags;
     return postParams;
 }
 @end

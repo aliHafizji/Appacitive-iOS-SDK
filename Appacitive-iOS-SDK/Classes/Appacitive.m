@@ -21,8 +21,6 @@ NSString *const SessionReceivedNotification = @"SessionReceivedNotification";
 static Appacitive *sharedObject = nil;
 
 @implementation Appacitive
-@synthesize session = _session;
-@synthesize deploymentId = _deploymentId;
 
 + (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
     if (apiKey != nil && deploymentId != nil && ![apiKey isEqualToString:@""] && ![deploymentId isEqualToString:@""]) {
@@ -51,9 +49,9 @@ static Appacitive *sharedObject = nil;
 - (void) fetchSession {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    _apiKey, @"ApiKey",
-                                   [NSNumber numberWithBool:NO], @"IsNonSliding",
-                                   [NSNumber numberWithInt:-1], @"UsageCount",
-                                   [NSNumber numberWithInt:60], @"WindowTime", 
+                                   @NO, @"IsNonSliding",
+                                   @-1, @"UsageCount",
+                                   @60, @"WindowTime", 
                                    nil];
     
     MKNetworkOperation *op = [self operationWithPath:@"v0.9/core/Account.svc/session"
@@ -63,8 +61,8 @@ static Appacitive *sharedObject = nil;
     [op onCompletion:^(MKNetworkOperation *completedOperation){
         
         NSDictionary *dictionary = (NSDictionary*) completedOperation.responseJSON;
-        NSDictionary *session = [dictionary objectForKey:@"Session"];
-        _session = [session objectForKey:@"SessionKey"];
+        NSDictionary *session = dictionary[@"Session"];
+        _session = session[@"SessionKey"];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SessionReceivedNotification object:self];
         DLog(@"%@", self.session);
