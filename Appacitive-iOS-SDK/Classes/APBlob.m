@@ -10,6 +10,7 @@
 #import "Appacitive.h"
 #import "APHelperMethods.h"
 #import "APError.h"
+#import "NSString+APString.h"
 
 @implementation APBlob
 
@@ -29,10 +30,10 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"blob?deploymentId=%@", sharedObject.deploymentId];
-        path = [path stringByAppendingFormat:@"&session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:nil httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"POST"];
         [op addFile:fileName forKey:@"fileUpload" mimeType:mimeType];
         
         [op onUploadProgressChanged:^(double progress) {
@@ -82,10 +83,11 @@
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString *)fileName downloadProgressBlock:(MKNKProgressBlock)downloadProgressBlock successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *urlWithSession = [NSString stringWithFormat:@"%@?session=%@", url, sharedObject.session];
-        NSString *urlEncodedPath = [urlWithSession stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithURLString:urlEncodedPath];
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSString *path = [url stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithURLString:path];
         [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:fileName append:YES]];
         
         [op onDownloadProgressChanged:^(double progress) {

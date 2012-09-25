@@ -10,6 +10,7 @@
 #import "Appacitive.h"
 #import "APError.h"
 #import "APHelperMethods.h"
+#import "NSString+APString.h"
 
 @implementation APObject
 
@@ -50,14 +51,21 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, schemaName];
-        if (queryString) {
-            path = [path stringByAppendingFormat:@"?%@&session=%@", queryString, sharedObject.session];
-        } else {
-            path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        }
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
+        [queryParams setObject:sharedObject.session forKey:@"session"];
+        [queryParams setObject:NSStringFromBOOL(sharedObject.enableDebugForEachRequest) forKey:@"debug"];
+        
+        if (queryString) {
+            NSDictionary *queryStringParams = [queryString queryParameters];
+            [queryStringParams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+                [queryParams setObject:obj forKey:key];
+            }];
+        }
+        
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
@@ -97,12 +105,13 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, schemaName];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
+        path = [path stringByAppendingQueryParameters:queryParams];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:params httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:params httpMethod:@"POST"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
@@ -145,10 +154,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];
+        NSDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog("%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
@@ -187,7 +197,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, schemaName];
-        path = [path stringByAppendingFormat:@"?session=%@&idlist=", sharedObject.session];
+        
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        path = [path stringByAppendingString:@"&idlist="];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
@@ -196,9 +210,8 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
                 path = [path stringByAppendingString:@","];
             }
         }];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
@@ -235,10 +248,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]];
-        path = [path stringByAppendingFormat:@"?session=%@&idlist=", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+
+        MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
@@ -279,10 +293,10 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.schemaType];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:[self postParamerters] httpMethod:@"PUT"];
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+                
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self postParamerters] httpMethod:@"PUT"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -325,8 +339,9 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [SEARCH_PATH stringByAppendingFormat:@"%@/filter", sharedObject.deploymentId];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
         
         NSError *error;
         NSMutableDictionary *postParams = [NSJSONSerialization JSONObjectWithData:[query dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
@@ -334,7 +349,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
             DLog(@"Error created JSON, please check the syntax of the graph query");
             return;
         }
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:postParams httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -373,8 +388,9 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [SEARCH_PATH stringByAppendingFormat:@"%@/project", sharedObject.deploymentId];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
         
         NSError *error;
         NSMutableDictionary *postParams = [NSJSONSerialization JSONObjectWithData:[query dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
@@ -382,7 +398,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
             DLog(@"Error created JSON, please check the syntax of the graph query");
             return;
         }
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:postParams httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {

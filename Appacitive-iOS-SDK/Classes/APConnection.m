@@ -11,6 +11,7 @@
 #import "APObject.h"
 #import "APError.h"
 #import "APHelperMethods.h"
+#import "NSString+APString.h"
 
 @implementation APConnection
 
@@ -48,10 +49,12 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, relationName];
+        
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
         if (queryString) {
-            path = [path stringByAppendingFormat:@"?%@&session=%@",queryString, sharedObject.session];
-        } else {
-            path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
+            path = [path stringByAppendingFormat:@"&%@",queryString];
         }
         
         NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -100,10 +103,11 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.relationName];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:[self parameters] httpMethod:@"PUT"];
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self parameters] httpMethod:@"PUT"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -201,7 +205,10 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationName];
-        path = [path stringByAppendingFormat:@"?session=%@&idlist=", sharedObject.session];
+        
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        path = [path stringByAppendingString:@"&idlist="];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
@@ -211,9 +218,7 @@
             }
         }];
 
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
@@ -256,12 +261,13 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationName];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:params httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:params httpMethod:@"POST"];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
@@ -305,10 +311,11 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationName, self.objectId.longLongValue];
-        path = [path stringByAppendingFormat:@"?session=%@", sharedObject.session];
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath params:nil httpMethod:@"DELETE"];
+        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             DLog("%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];

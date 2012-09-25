@@ -9,6 +9,8 @@
 @class APError;
 @interface APHelperMethods : NSObject
 
+#define NSStringFromBOOL(aBOOL) aBOOL ? @"YES" : @"NO"
+
 /**
  Helper method used to check for any errors.
  

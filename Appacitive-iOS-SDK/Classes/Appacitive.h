@@ -27,6 +27,12 @@ extern NSString *const SessionReceivedNotification;
 @property (nonatomic, strong, readonly) NSString *deploymentId;
 
 /**
+ If true the SDK will send a debug flag with every request.
+ This will cause a lot of logging on Appacitives side and help you debug the problem.
+ */
+@property (nonatomic, readwrite) BOOL enableDebugForEachRequest;
+
+/**
  Method used to create a shared appacitive object.
  
  @param apiKey Api key generated while app setup
