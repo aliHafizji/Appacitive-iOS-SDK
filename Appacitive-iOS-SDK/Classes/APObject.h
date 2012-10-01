@@ -22,7 +22,7 @@ extern NSString *const ARTICLE_PATH;
  This property is used for user management, used to define the user who created this article.
  If no value is specified it defaults to "TestUser"
  */
-@property (nonatomic, strong, readonly) NSString *createdBy;
+@property (nonatomic, strong) NSString *createdBy;
 
 /**
  This property represents the article Id.
