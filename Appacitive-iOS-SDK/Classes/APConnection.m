@@ -57,8 +57,7 @@
             path = [path stringByAppendingFormat:@"&%@",queryString];
         }
         
-        NSString *urlEncodedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        MKNetworkOperation *op = [sharedObject operationWithPath:urlEncodedPath];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             DLog(@"%@", completedOperation.description);
