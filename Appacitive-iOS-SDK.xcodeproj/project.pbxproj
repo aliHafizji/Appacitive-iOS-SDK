@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C03431D16281ECD00C5C6B3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */; };
+		2C03431E16281ECD00C5C6B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
+		2C03431F16281ECD00C5C6B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
+		2C03433416281F3000C5C6B3 /* libAppacitive-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0A15EDF8FD00F98FB8 /* libAppacitive-iOS-SDK.a */; };
+		2C03433516281F3800C5C6B3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1015F4848D009A8578 /* Security.framework */; };
+		2C03433616281F4000C5C6B3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
+		2C03433716281F4A00C5C6B3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A0E15F48488009A8578 /* CFNetwork.framework */; };
+		2C03433816281F5100C5C6B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61388C1515F8667000C79F1F /* CoreLocation.framework */; };
+		2C03433C1628218900C5C6B3 /* APConnectionKiwiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C03433A1628218900C5C6B3 /* APConnectionKiwiTest.m */; };
+		2C03433D1628218900C5C6B3 /* APObjectKiwiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C03433B1628218900C5C6B3 /* APObjectKiwiTest.m */; };
 		39510000989F40589B1E62B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE18E91493A45BE9CFB5B14 /* libPods.a */; };
 		612CCDFA15FDA37000A78F3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61388C1515F8667000C79F1F /* CoreLocation.framework */; };
 		612E3E0E15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
@@ -49,6 +59,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C03433216281F1300C5C6B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 612E3E0115EDF8FD00F98FB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 612E3E0915EDF8FD00F98FB8;
+			remoteInfo = "Appacitive-iOS-SDK";
+		};
 		612E3E2015EDF8FE00F98FB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 612E3E0115EDF8FD00F98FB8 /* Project object */;
@@ -61,6 +78,12 @@
 /* Begin PBXFileReference section */
 		01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		0AE18E91493A45BE9CFB5B14 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C03431C16281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Appacitive-iOS-KiwiTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C03432216281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Appacitive-iOS-KiwiTests-Info.plist"; sourceTree = "<group>"; };
+		2C03432416281ECD00C5C6B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2C03432916281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appacitive-iOS-KiwiTests-Prefix.pch"; sourceTree = "<group>"; };
+		2C03433A1628218900C5C6B3 /* APConnectionKiwiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APConnectionKiwiTest.m; sourceTree = "<group>"; };
+		2C03433B1628218900C5C6B3 /* APObjectKiwiTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APObjectKiwiTest.m; sourceTree = "<group>"; };
 		612E3E0A15EDF8FD00F98FB8 /* libAppacitive-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAppacitive-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		612E3E1A15EDF8FE00F98FB8 /* Appacitive-iOS-SDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Appacitive-iOS-SDKTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +127,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C03431816281ECD00C5C6B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C03433816281F5100C5C6B3 /* CoreLocation.framework in Frameworks */,
+				2C03433716281F4A00C5C6B3 /* CFNetwork.framework in Frameworks */,
+				2C03433616281F4000C5C6B3 /* SystemConfiguration.framework in Frameworks */,
+				2C03433516281F3800C5C6B3 /* Security.framework in Frameworks */,
+				2C03433416281F3000C5C6B3 /* libAppacitive-iOS-SDK.a in Frameworks */,
+				2C03431D16281ECD00C5C6B3 /* SenTestingKit.framework in Frameworks */,
+				2C03431E16281ECD00C5C6B3 /* UIKit.framework in Frameworks */,
+				2C03431F16281ECD00C5C6B3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		612E3E0715EDF8FD00F98FB8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,11 +170,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C03432016281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C03433A1628218900C5C6B3 /* APConnectionKiwiTest.m */,
+				2C03433B1628218900C5C6B3 /* APObjectKiwiTest.m */,
+				2C03432116281ECD00C5C6B3 /* Supporting Files */,
+			);
+			path = "Appacitive-iOS-KiwiTests";
+			sourceTree = "<group>";
+		};
+		2C03432116281ECD00C5C6B3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C03432216281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests-Info.plist */,
+				2C03432316281ECD00C5C6B3 /* InfoPlist.strings */,
+				2C03432916281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		612E3DFF15EDF8FD00F98FB8 = {
 			isa = PBXGroup;
 			children = (
 				612E3E0F15EDF8FE00F98FB8 /* Appacitive-iOS-SDK */,
 				612E3E2315EDF8FE00F98FB8 /* Appacitive-iOS-SDKTests */,
+				2C03432016281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests */,
 				612E3E0C15EDF8FE00F98FB8 /* Frameworks */,
 				612E3E0B15EDF8FD00F98FB8 /* Products */,
 				01DC32F44D8D45CAA1F2A598 /* Pods.xcconfig */,
@@ -149,6 +208,7 @@
 			children = (
 				612E3E0A15EDF8FD00F98FB8 /* libAppacitive-iOS-SDK.a */,
 				612E3E1A15EDF8FE00F98FB8 /* Appacitive-iOS-SDKTests.octest */,
+				2C03431C16281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -276,6 +336,26 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2C03431B16281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C03432C16281ECD00C5C6B3 /* Build configuration list for PBXNativeTarget "Appacitive-iOS-KiwiTests" */;
+			buildPhases = (
+				2C03431716281ECD00C5C6B3 /* Sources */,
+				2C03431816281ECD00C5C6B3 /* Frameworks */,
+				2C03431916281ECD00C5C6B3 /* Resources */,
+				2C03433916281F5D00C5C6B3 /* Copy Pods Resources */,
+				2C03431A16281ECD00C5C6B3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C03433316281F1300C5C6B3 /* PBXTargetDependency */,
+			);
+			name = "Appacitive-iOS-KiwiTests";
+			productName = "Appacitive-iOS-KiwiTests";
+			productReference = 2C03431C16281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		612E3E0915EDF8FD00F98FB8 /* Appacitive-iOS-SDK */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 612E3E2E15EDF8FE00F98FB8 /* Build configuration list for PBXNativeTarget "Appacitive-iOS-SDK" */;
@@ -336,11 +416,19 @@
 			targets = (
 				612E3E0915EDF8FD00F98FB8 /* Appacitive-iOS-SDK */,
 				612E3E1915EDF8FE00F98FB8 /* Appacitive-iOS-SDKTests */,
+				2C03431B16281ECD00C5C6B3 /* Appacitive-iOS-KiwiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2C03431916281ECD00C5C6B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		612E3E1715EDF8FE00F98FB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,6 +439,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C03431A16281ECD00C5C6B3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		2C03433916281F5D00C5C6B3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"";
+		};
 		457415B4877F48E0AA55786C /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +496,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C03431716281ECD00C5C6B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C03433C1628218900C5C6B3 /* APConnectionKiwiTest.m in Sources */,
+				2C03433D1628218900C5C6B3 /* APObjectKiwiTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		612E3E0615EDF8FD00F98FB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,6 +535,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C03433316281F1300C5C6B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 612E3E0915EDF8FD00F98FB8 /* Appacitive-iOS-SDK */;
+			targetProxy = 2C03433216281F1300C5C6B3 /* PBXContainerItemProxy */;
+		};
 		612E3E2115EDF8FE00F98FB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 612E3E0915EDF8FD00F98FB8 /* Appacitive-iOS-SDK */;
@@ -419,6 +548,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2C03432316281ECD00C5C6B3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C03432416281ECD00C5C6B3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		61D62C2815F885D300C57AA3 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -430,6 +567,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2C03432A16281ECD00C5C6B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Appacitive-iOS-KiwiTests/Appacitive-iOS-KiwiTests-Prefix.pch";
+				INFOPLIST_FILE = "Appacitive-iOS-KiwiTests/Appacitive-iOS-KiwiTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PODS_BUILD_HEADERS_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\" \"${PODS_ROOT}/BuildHeaders/Kiwi\" \"${PODS_ROOT}/BuildHeaders/MKNetworkKit\" \"${PODS_ROOT}/BuildHeaders/MKNetworkKit/Categories\" \"${PODS_ROOT}/BuildHeaders/Reachability\"";
+				PODS_HEADERS_SEARCH_PATHS = "${PODS_PUBLIC_HEADERS_SEARCH_PATHS}";
+				PODS_PUBLIC_HEADERS_SEARCH_PATHS = "\"${PODS_ROOT}/Headers\" \"${PODS_ROOT}/Headers/Kiwi\" \"${PODS_ROOT}/Headers/MKNetworkKit\" \"${PODS_ROOT}/Headers/MKNetworkKit/Categories\" \"${PODS_ROOT}/Headers/Reachability\"";
+				PODS_ROOT = "${SRCROOT}/Pods";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PODS_HEADERS_SEARCH_PATHS}/**";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2C03432B16281ECD00C5C6B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Appacitive-iOS-KiwiTests/Appacitive-iOS-KiwiTests-Prefix.pch";
+				INFOPLIST_FILE = "Appacitive-iOS-KiwiTests/Appacitive-iOS-KiwiTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PODS_BUILD_HEADERS_SEARCH_PATHS = "";
+				PODS_HEADERS_SEARCH_PATHS = "";
+				PODS_PUBLIC_HEADERS_SEARCH_PATHS = "";
+				PODS_ROOT = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		612E3E2C15EDF8FE00F98FB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -555,6 +750,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2C03432C16281ECD00C5C6B3 /* Build configuration list for PBXNativeTarget "Appacitive-iOS-KiwiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C03432A16281ECD00C5C6B3 /* Debug */,
+				2C03432B16281ECD00C5C6B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		612E3E0415EDF8FD00F98FB8 /* Build configuration list for PBXProject "Appacitive-iOS-SDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
