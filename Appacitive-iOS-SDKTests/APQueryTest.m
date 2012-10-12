@@ -206,7 +206,7 @@
     NSString *expectedString = @"*location within_polygon 123.000000,444.000000|200.000000,300.000000|400.000000,500.000000";
     NSString *query = [APQuery queryStringForPolygonSearch:@"location" withPolygonCoordinates:coordinates];
     
-    STAssertEquals(query, expectedString, @"Test case for polygon search failed");
+    STAssertEqualObjects(query, expectedString, @"Test case for polygon search failed");
 }
 
 /**
@@ -224,7 +224,7 @@
 - (void) testFreeTextHelperMethod {
     NSString *expectedString = @"freeText=a b c";
     NSString *queryString = [APQuery queryStringForSearchWithFreeText:[NSArray arrayWithObjects:@"a", @"b", @"c", nil]];
-    STAssertEquals(queryString, expectedString, @"Test case for free text failed");
+    STAssertEqualObjects(queryString, expectedString, @"Test case for free text failed");
 }
 
 /**
@@ -244,7 +244,7 @@
     
     NSString *expectedString = @"tagged_with_one_or_more ('a,b')";
     NSString *queryString = [APQuery queryStringForSearchWithOneOrMoreTags:tags];
-    STAssertEquals(queryString, expectedString, @"Test case for one or more tags helper method failed");
+    STAssertEqualObjects(queryString, expectedString, @"Test case for one or more tags helper method failed");
 }
 
 /**
@@ -255,7 +255,7 @@
     
     NSString *expectedString = @"tagged_with_all ('a,b')";
     NSString *queryString = [APQuery queryStringForSearchWithAllTags:tags];
-    STAssertEquals(queryString, expectedString, @"Test case for all tags helper method failed");
+    STAssertEqualObjects(queryString, expectedString, @"Test case for all tags helper method failed");
 }
 
 /**
@@ -266,6 +266,6 @@
     NSString *expectedString = @"*location within_circle 123.000000, 200.000000, 12.000000 km";
     NSString *queryString = [APQuery queryStringForGeoCodeProperty:@"location" location:location distance:kKilometers raduis:[NSNumber numberWithInt:12]];
     
-    STAssertEquals(queryString, expectedString, @"Test case for geo code helper method failed");
+    STAssertEqualObjects(queryString, expectedString, @"Test case for geo code helper method failed");
 }
 @end
