@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Appacitive-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>Appacitive_iOS_AsyncTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2C03431B16281ECD00C5C6B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CEB0E92162BD2AB0074DA50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>612E3E0915EDF8FD00F98FB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>612E3E1915EDF8FE00F98FB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

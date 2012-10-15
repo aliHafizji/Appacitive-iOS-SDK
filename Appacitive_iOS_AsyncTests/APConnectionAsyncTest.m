@@ -1,10 +1,3 @@
-/**
-    
- Asynchronous test for APConnection.
- 
- */
-
-
 #import "Appacitive.h"
 #import "APObject.h"
 #import "APError.h"
@@ -12,11 +5,11 @@
 
 SPEC_BEGIN(APConnectionTests)
 
-context(@"APConnectionKiwiTests", ^{
+context(@"APConnectionTests", ^{
     
 #pragma mark - Appacitive Session generation tests
     
-    it(@"should verify that the session is not created for invalid API key and deploymentId", ^{
+    it(@"Test case for creating a session with invalid API key and deploymentId Failed", ^{
 //        Bug ::: Issue Raised To Ali on GitHub  ::  Can be uncommented after issue resolution
 //        [Appacitive appacitiveWithApiKey:@"+MmuqVgHVYH7Q" deploymentId:@"rest"];
         [[expectFutureValue([[Appacitive sharedObject] session]) shouldEventuallyBeforeTimingOutAfter(10.0)] beNil];
@@ -26,7 +19,7 @@ context(@"APConnectionKiwiTests", ^{
      @purpose Test for valid API_KEY and DEPLOYMENT_ID
      @expected Session key object should not be nil
      */
-    it(@"should verify that the session is created for valid API key and deploymentId", ^{
+    it(@"Test case for creating a session with valid API key and deploymentId Failed", ^{
         
         [Appacitive appacitiveWithApiKey:@"+MmuqVgHVYH7Q+5imsGc4497fiuBAbBeCGYRkiQSCfY=" deploymentId:@"restaurantsearch"];
         [[expectFutureValue([[Appacitive sharedObject] session]) shouldEventuallyBeforeTimingOutAfter(10.0)] beNonNil];
@@ -34,8 +27,8 @@ context(@"APConnectionKiwiTests", ^{
     
     
 #pragma mark - APConnnection Creation Tests
-    it(@"should verify that the APConnection is successfully created for valid ArticleId and CommentId", ^{
-        __block BOOL isConnectionEstablished = NO;
+    it(@"Test case for creating a APConnection with valid ArticleId and CommentId Failed", ^{
+        __block BOOL isConnectionCreated = NO;
         __block NSNumber *articleId1;
         __block NSNumber *articleId2;
         
@@ -55,49 +48,49 @@ context(@"APConnectionKiwiTests", ^{
                                                                     
                                                                     [connection createConnectionWithObjectAId:articleId1 objectBId:articleId2 labelA:@"Location" labelB:@"Comment"
                                                                                                successHandler:^(void){
-                                                                                                   isConnectionEstablished = YES;
+                                                                                                   isConnectionCreated = YES;
                                                                                                }failureHandler:^(APError *error) {
-                                                                                                   isConnectionEstablished = NO;
+                                                                                                   isConnectionCreated = NO;
                                                                                                }];
                                                                 } failureHandler:^(APError *error){
-                                                                    isConnectionEstablished = NO;
+                                                                    isConnectionCreated = NO;
                                                                 }];
                                   } failureHandler:^(APError *error){
-                                      isConnectionEstablished = NO;
+                                      isConnectionCreated = NO;
                                   }];
         
-        [[expectFutureValue(theValue(isConnectionEstablished)) shouldEventuallyBeforeTimingOutAfter(30.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(30.0)] equal:theValue(YES)];
     });
     
     
-    it(@"should verify that the APConnection is not created for invalid Relation Name", ^{
-        __block BOOL isConnectionEstablished = NO;
+    it(@"Test case for creating a APConnection with invalid Relation Name Failed", ^{
+        __block BOOL isConnectionCreated = NO;
         APConnection *connection = [APConnection connectionWithRelationName:@"relationThatDoesNotExist"];
         [connection createConnectionWithObjectAId:[NSNumber numberWithLongLong:0] objectBId:[NSNumber numberWithLongLong:0] labelA:@"Location" labelB:@"Comment" successHandler:^(void){
-            isConnectionEstablished = NO;
+            isConnectionCreated = NO;
         }failureHandler:^(APError *error) {
-            isConnectionEstablished = YES;
+            isConnectionCreated = YES;
         }];
         
-        [[expectFutureValue(theValue(isConnectionEstablished)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
     
     
-    it(@"should verify that the APConnection is not created for invalid ArticleId and CommentId", ^{
-        __block BOOL isConnectionEstablished = NO;
+    it(@"Test case for creating a APConnection with invalid ArticleId and CommentId Failed", ^{
+        __block BOOL isConnectionCreated = NO;
         APConnection *connection = [APConnection connectionWithRelationName:@"LocationComment"];
         [connection createConnectionWithObjectAId:[NSNumber numberWithLongLong:0] objectBId:[NSNumber numberWithLongLong:0] labelA:@"Location" labelB:@"Comment" successHandler:^(void){
-            isConnectionEstablished = NO;
+            isConnectionCreated = NO;
         }failureHandler:^(APError *error) {
-            isConnectionEstablished = YES;
+            isConnectionCreated = YES;
         }];
-        [[expectFutureValue(theValue(isConnectionEstablished)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
     
     
 #pragma mark - APConnection's Searching Tests
     
-    it(@"should verify that the searching is successfully for valid relation name", ^{
+    it(@"Test case for searching all APConnection's objects with valid relation name Failed", ^{
         __block BOOL isSearchingSuccesfull = NO;
         [APConnection searchForAllConnectionsWithRelationName:@"LocationComment" successHandler:^(NSDictionary *result){
             isSearchingSuccesfull = YES;
@@ -107,7 +100,7 @@ context(@"APConnectionKiwiTests", ^{
         [[expectFutureValue(theValue(isSearchingSuccesfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
     
-    it(@"should verify that the searching is unsuccessfully for invalid relation name", ^{
+    it(@"Test case for searching all APConnection's objects with invalid relation name Failed", ^{
         __block BOOL isSearchingUnsuccesfull = NO;
         [APConnection searchForAllConnectionsWithRelationName:@"relationThatDoesNotExist" successHandler:^(NSDictionary *result){
             isSearchingUnsuccesfull = NO;
@@ -119,7 +112,7 @@ context(@"APConnectionKiwiTests", ^{
     
 #pragma mark - APConnection delete relation tests
     
-    it(@"should verify that the APConnection objects is deleted successfully for valid relation name and ArticleID's", ^{
+    it(@"Test case for deleting an APConnection object with valid relation name and ArticleID's Failed", ^{
         __block BOOL isConnectionDeletionSuccessfull = NO;
         
         __block NSNumber *articleId1;
@@ -153,7 +146,7 @@ context(@"APConnectionKiwiTests", ^{
     });
     
     
-    it(@"should verify that the APConnection object is not deleted for invalid relation name and ArticleID's", ^{
+    it(@"Test case for deleting an APConnection object with invalid relation name and ArticleID's Failed", ^{
         __block BOOL isConnectionDeletionUnsuccessfull = NO;
         [APConnection deleteConnectionsWithRelationName:@"relationThatDoesNotExist" objectIds:@[[NSNumber numberWithLongLong:5562780777316615],[NSNumber numberWithLongLong:5561664312312069]] successHandler:^{
             isConnectionDeletionUnsuccessfull = NO;
@@ -164,7 +157,7 @@ context(@"APConnectionKiwiTests", ^{
     });
     
     
-    it(@"should verify that the APConnection object is deleted successfully for valid APConnection object", ^{
+    it(@"Test case for deleting an APConnection object with valid APConnection objectId Failed", ^{
         __block BOOL isConnectionDeletedSuccessfully = NO;
         NSString *query = [NSString stringWithFormat:@"pnum=1&psize=1"];
         
@@ -188,7 +181,7 @@ context(@"APConnectionKiwiTests", ^{
     
 #pragma mark - APConneciton fetch tests
     
-    it(@"should verify that the APConnection is fetched successfully for valid APConnection objectId", ^{
+    it(@"Test case for fetching an APConnection object with valid APConnection objectId Failed", ^{
         __block BOOL isFetchSuccesfull = NO;
         NSString *query = [NSString stringWithFormat:@"pnum=1&psize=1"];
         
@@ -209,7 +202,7 @@ context(@"APConnectionKiwiTests", ^{
         [[expectFutureValue(theValue(isFetchSuccesfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
     
-    it(@"should verify that the APConnection is not fetched for invalid APConnection objectId", ^{
+    it(@"Test case for fetching an APConnection object with invalid APConnection objectId", ^{
         __block BOOL isFetchUnsuccesfull = NO; 
         
         [APConnection fetchConnectionWithRelationName:@"locationcomment" objectId:[NSNumber numberWithInt:2313] successHandler:^(NSDictionary *result){

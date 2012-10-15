@@ -1,9 +1,0 @@
-//
-// Prefix header for all source files of the 'Appacitive-iOS-KiwiTests' target in the 'Appacitive-iOS-KiwiTests' project
-//
-
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-    #import "Kiwi.h"
-#endif

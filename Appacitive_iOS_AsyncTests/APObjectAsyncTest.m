@@ -1,21 +1,15 @@
-/**
- 
- Asynchronous tests for APObject.
- 
- */
-
 #import "Appacitive.h"
 #import "APObject.h"
 #import "APError.h"
 #import "APQuery.h"
 
-SPEC_BEGIN(APObjectKiwiTest)
+SPEC_BEGIN(APObjectTests)
 
-context(@"APObjectKiwiTests", ^{
+context(@"APObjectTests", ^{
     
 #pragma mark - search functionality tests
 
-    it(@"should verify that the searching would be successfull with valid Schema Name", ^{
+    it(@"Test case for searching all APObject's with valid Schema Name Failed", ^{
         
         __block BOOL isSearchSuccessfull = NO;
         
@@ -28,7 +22,7 @@ context(@"APObjectKiwiTests", ^{
         [[expectFutureValue(theValue(isSearchSuccessfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
     
-    it(@"should verify that the searching would be unsuccessfull with invalid Schema Name", ^{
+    it(@"Test case for searching all APObject's with invalid Schema Name Failed", ^{
         
         __block BOOL isSearchingUnsuccessfull = NO;
         
@@ -41,7 +35,7 @@ context(@"APObjectKiwiTests", ^{
         [[expectFutureValue(theValue(isSearchingUnsuccessfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
     
-    it(@"should verify that the searching would be unsuccessfull with nil Schema Name", ^{
+    it(@"Test case for searching all APObject's with nil Schema Name Failed", ^{
         
         __block BOOL isSearchingUnsuccessfull = NO;
         
@@ -57,7 +51,7 @@ context(@"APObjectKiwiTests", ^{
     
 #pragma mark - Fetch articles tests
     
-    it(@"should verify a successfull fetch for valid articleId and valid schema name", ^{
+    it(@"Test case for fetching APObject with valid articleId and valid schema name Failed", ^{
         
        __block BOOL isFetchSuccessfull = NO;
         
@@ -81,7 +75,7 @@ context(@"APObjectKiwiTests", ^{
         [[expectFutureValue(theValue(isFetchSuccessfull)) shouldEventuallyBeforeTimingOutAfter(20.0)] equal:theValue(YES)];
     });
     
-    it(@"should verify a unsuccessfull fetch for invalid articleId and invalid schema name", ^{
+    it(@"Test case for fetching APObjects with invalid articleId and invalid schema name Failed", ^{
         
         __block BOOL isFetchUnsuccessfull = NO;
         
@@ -96,7 +90,7 @@ context(@"APObjectKiwiTests", ^{
     
 #pragma mark - Save Functionality tests
     
-    it(@"should verify that the object is getting saved for proper schema name", ^{
+    it(@"Test case for saving an APObject for proper schema name Failed", ^{
         
         __block BOOL isSaveSuccessfull = NO;
         
@@ -128,7 +122,7 @@ context(@"APObjectKiwiTests", ^{
     });
     
     
-    it(@"should verify that object is not getting saved with improper schema name", ^{
+    it(@"Test case for saving an APObject with improper schema name Failed", ^{
         __block BOOL isSaveUnsuccessfull = NO;
         APObject *object = [[APObject alloc] initWithSchemaName:@"schemaThatDoesNotExist"];
         
@@ -159,7 +153,7 @@ context(@"APObjectKiwiTests", ^{
     
 #pragma mark - Delete articles object
     
-    it(@"should verify that object is getting deleted with proper schema name", ^{
+    it(@"Test case for deleting an APObject with proper schema name Failed", ^{
         __block BOOL isDeletedSuccessfully = NO;
         
         __block NSNumber *articleId;
@@ -183,7 +177,7 @@ context(@"APObjectKiwiTests", ^{
         [[expectFutureValue(theValue(isDeletedSuccessfully)) shouldEventuallyBeforeTimingOutAfter(20.0)] equal:theValue(YES)];
     });
     
-    it(@"should verify that object is not getting deleted with improper schema name", ^{
+    it(@"Test case for deleting an APObject with improper schema name Failed", ^{
         __block BOOL isDeletionFailed = NO;
         APObject *object = [[APObject alloc] initWithSchemaName:@"schemaThatDoesNotExist"];
         [object setObjectId:[NSNumber numberWithLongLong:2319381902900]];
