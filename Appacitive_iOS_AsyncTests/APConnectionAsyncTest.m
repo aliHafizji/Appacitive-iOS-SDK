@@ -10,8 +10,7 @@ context(@"APConnectionTests", ^{
 #pragma mark - Appacitive Session generation tests
     
     it(@"Test case for creating a session with invalid API key and deploymentId Failed", ^{
-//        Bug ::: Issue Raised To Ali on GitHub  ::  Can be uncommented after issue resolution
-//        [Appacitive appacitiveWithApiKey:@"+MmuqVgHVYH7Q" deploymentId:@"rest"];
+        [Appacitive appacitiveWithApiKey:@"+MmuqVgHVYH7Q" deploymentId:@"rest"];
         [[expectFutureValue([[Appacitive sharedObject] session]) shouldEventuallyBeforeTimingOutAfter(10.0)] beNil];
     });
     
@@ -112,7 +111,7 @@ context(@"APConnectionTests", ^{
     
 #pragma mark - APConnection delete relation tests
     
-    it(@"Test case for deleting an APConnection object with valid relation name and ArticleID's Failed", ^{
+    it(@"Test case for deleting an APConnection object with valid relation name and invalid ArticleID's Failed", ^{
         __block BOOL isConnectionDeletionSuccessfull = NO;
         
         __block NSNumber *articleId1;
@@ -131,9 +130,9 @@ context(@"APConnectionTests", ^{
                                                                     articleId2 = dict[@"__Id"];
                                                                     
                                                                     [APConnection deleteConnectionsWithRelationName:@"LocationComment" objectIds:@[articleId1,articleId2] successHandler:^{
-                                                                        isConnectionDeletionSuccessfull = YES;
-                                                                    } failureHandler:^(APError *error){
                                                                         isConnectionDeletionSuccessfull = NO;
+                                                                    } failureHandler:^(APError *error){
+                                                                        isConnectionDeletionSuccessfull = YES;
                                                                     }];
                                                                     
                                                                 } failureHandler:^(APError *error){
