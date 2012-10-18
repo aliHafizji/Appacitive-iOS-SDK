@@ -36,6 +36,10 @@ static Appacitive *sharedObject = nil;
     return sharedObject;
 }
 
++ (void) setSharedObject:(Appacitive *)object {
+    sharedObject = object;
+}
+
 - (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
     self = [super initWithHostName:HOST_NAME];
     if (self) {
@@ -48,21 +52,21 @@ static Appacitive *sharedObject = nil;
 
 - (void) fetchSession {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   _apiKey, @"ApiKey",
-                                   @NO, @"IsNonSliding",
-                                   @-1, @"UsageCount",
-                                   @60, @"WindowTime", 
+                                   _apiKey, @"apikey",
+                                   @NO, @"isnonsliding",
+                                   @-1, @"usagecount",
+                                   @60, @"windowtime", 
                                    nil];
     
-    MKNetworkOperation *op = [self operationWithPath:@"v0.9/core/Account.svc/session"
+    MKNetworkOperation *op = [self operationWithPath:@"v0.9/core/Application.svc/v2/session"
                                               params:params
                                               httpMethod:@"PUT"];
     op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
     [op onCompletion:^(MKNetworkOperation *completedOperation){
         
         NSDictionary *dictionary = (NSDictionary*) completedOperation.responseJSON;
-        NSDictionary *session = dictionary[@"Session"];
-        _session = session[@"SessionKey"];
+        NSDictionary *session = dictionary[@"session"];
+        _session = session[@"sessionkey"];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SessionReceivedNotification object:self];
         DLog(@"%@", self.session);

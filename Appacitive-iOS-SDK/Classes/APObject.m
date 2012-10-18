@@ -14,7 +14,7 @@
 
 @implementation APObject
 
-NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
+NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 
 #define SEARCH_PATH @"/v0.9/core/Search.svc/"
 
@@ -35,19 +35,19 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 
 #pragma mark search method
 
-+ (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler {
-    [APObject searchForAllObjectsWithSchemaName:schemaName successHandler:successHandler failureHandler:nil];
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler {
+    [APObject searchAllObjectsWithSchemaName:schemaName successHandler:successHandler failureHandler:nil];
 }
 
-+ (void) searchForAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
-    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
+    [APObject searchObjectsWithSchemaName:schemaName withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
 }
 
-+ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
-    [APObject searchForObjectsWithSchemaName:schemaName withQueryString:queryString successHandler:successBlock failureHandler:nil];
++ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
+    [APObject searchObjectsWithSchemaName:schemaName withQueryString:queryString successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, schemaName];
@@ -432,14 +432,10 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 #pragma mark add properties method
 
 - (void) addPropertyWithKey:(NSString*) keyName value:(id) object {
-    [self addProperty:@{keyName: object}];
-}
-
-- (void) addProperty:(NSDictionary*)property {
     if (!self.properties) {
         _properties = [NSMutableArray array];
     }
-    [_properties addObject:property];
+    [_properties addObject:@{keyName: object}];
 }
 
 #pragma mark add attributes method
@@ -452,52 +448,62 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/";
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"Object Id:%lld, Created by:%@, Last updated by:%@, UTC date created:%@, UTC date updated:%@, Revision:%d, Properties:%@, Attributes:%@, SchemaId:%d, SchemaType:%@, Tag:%@", [self.objectId longLongValue], self.createdBy, self.lastUpdatedBy, self.utcDateCreated, self.utcLastUpdatedDate, [self.revision intValue], self.properties, self.attributes, [self.schemaId intValue], self.schemaType, self.tags];
+    return [NSString stringWithFormat:@"Object Id:%lld, Created by:%@, Last modified by:%@, UTC date created:%@, UTC date updated:%@, Revision:%d, Properties:%@, Attributes:%@, SchemaId:%d, SchemaType:%@, Tag:%@", [self.objectId longLongValue], self.createdBy, self.lastModifiedBy, self.utcDateCreated, self.utcLastUpdatedDate, [self.revision intValue], self.properties, self.attributes, [self.schemaId intValue], self.schemaType, self.tags];
 }
 
 #pragma mark private methods
 
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
-    NSDictionary *article = dictionary[@"Article"];
-    _createdBy = (NSString*) article[@"__CreatedBy"];
-    _objectId = (NSNumber*) article[@"__Id"];
-    _lastUpdatedBy = (NSString*) article[@"__LastUpdatedBy"];
-    _revision = (NSNumber*) article[@"__Revision"];
-    _schemaId = (NSNumber*) article[@"__SchemaId"];
-    _utcDateCreated = [self deserializeJsonDateString:article[@"__UtcDateCreated"]];
-    _utcLastUpdatedDate = [self deserializeJsonDateString:article[@"__UtcLastUpdatedDate"]];
-    _properties = article[@"__Properties"];
-    _attributes = article[@"__Attributes"];
-    _tags = article[@"__Tags"];
-    _schemaType = article[@"__SchemaType"];
+    NSDictionary *article = dictionary[@"article"];
+    _createdBy = (NSString*) article[@"__createdby"];
+    _objectId = (NSNumber*) article[@"__id"];
+    _lastModifiedBy = (NSString*) article[@"__lastmodifiedby"];
+    _revision = (NSNumber*) article[@"__revision"];
+    _schemaId = (NSNumber*) article[@"__schemaid"];
+    _utcDateCreated = [self deserializeJsonDateString:article[@"__utcdatecreated"]];
+    _utcLastUpdatedDate = [self deserializeJsonDateString:article[@"__utclastupdateddate"]];
+    _attributes = article[@"__attributes"];
+    _tags = article[@"__tags"];
+    _schemaType = article[@"__schematype"];
+    [article enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if (![[key substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"__"]) {
+            if (!_properties) {
+                _properties = [NSMutableArray array];
+            }
+            [_properties addObject:@{key:obj}];
+        }
+    }];
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
-    NSInteger offset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
-    NSInteger startPosition = [jsonDateString rangeOfString:@"("].location + 1;
-    NSTimeInterval unixTime = [[jsonDateString substringWithRange:NSMakeRange(startPosition, 13)] doubleValue] / 1000; 
-    return [[NSDate dateWithTimeIntervalSince1970:unixTime] dateByAddingTimeInterval:offset];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    return [dateFormatter dateFromString:jsonDateString];
 }
 
 - (NSMutableDictionary*) postParamerters {
     NSMutableDictionary *postParams = [NSMutableDictionary dictionary];
     if (self.attributes)
-        postParams[@"__Attributes"] = self.attributes;
+        postParams[@"__attributes"] = self.attributes;
     
     if (self.createdBy)
-        postParams[@"__CreatedBy"] = self.createdBy;
+        postParams[@"__createdby"] = self.createdBy;
     
     if (self.revision)
-        postParams[@"__Revision"] = self.revision;
+        postParams[@"__revision"] = self.revision;
 
-    if (self.properties)
-        postParams[@"__Properties"] = self.properties;
-
+    for(NSDictionary *prop in self.properties) {
+        [prop enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            [postParams setObject:obj forKey:key];
+            *stop = YES;
+        }];
+    }
+    
     if (self.schemaType)
-        postParams[@"__SchemaType"] = self.schemaType;
+        postParams[@"__schematype"] = self.schemaType;
 
     if (self.tags)
-        postParams[@"__Tags"] = self.tags;
+        postParams[@"__tags"] = self.tags;
     return postParams;
 }
 @end

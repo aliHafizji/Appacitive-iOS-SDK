@@ -14,13 +14,18 @@
 @implementation APHelperMethods
 
 + (APError*) checkForErrorStatus:(id)response {
-    NSDictionary *status = response[@"Status"];
-    NSString *statusCode = status[@"Code"];
+    NSDictionary *status;
+    if (response[@"status"]) {
+        status = response[@"status"];
+    } else {
+        status = response;
+    }
+    NSString *statusCode = status[@"code"];
     if (statusCode && ![statusCode isEqualToString:@"200"]) {
-        NSString *referenceId = status[@"ReferenceId"];
-        NSString *message = status[@"Message"];
-        NSString *version = status[@"Version"];
-        NSArray *additionalMessages = status[@"AdditionalMessages"];
+        NSString *referenceId = status[@"referenceid"];
+        NSString *message = status[@"message"];
+        NSString *version = status[@"version"];
+        NSArray *additionalMessages = status[@"additionalmessages"];
         
         NSString *errorMessage = [NSString stringWithFormat:@"Message: %@ Additional messages: %@", message, additionalMessages.description];
         NSDictionary *dictionary = @{NSLocalizedDescriptionKey: errorMessage};

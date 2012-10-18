@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-Appacitive_iOS_AsyncTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>242F0000B32143D2BBA2BDDA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2866E235FAF3476AB482467A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7BDA6AE5506A403BBC6A811C</key>
 		<dict>
 			<key>primary</key>

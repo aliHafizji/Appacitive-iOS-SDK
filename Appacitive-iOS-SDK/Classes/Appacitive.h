@@ -11,39 +11,34 @@
 extern NSString *const SessionReceivedNotification;
 
 /**
- This class is the Appacitive engine.
- It is the entry point to use the SDK
+ An Appacitive object is the entry point to use the Appacitive SDK.
+ All the network requests are queued up here and sent to the remote service.
  */
 @interface Appacitive : MKNetworkEngine
 
-/**
- Readonly property to store the session id.
- */
 @property (nonatomic, strong, readonly) NSString *session;
-
-/**
- Readonly property to store the deployment id.
- */
 @property (nonatomic, strong, readonly) NSString *deploymentId;
-
-/**
- If true the SDK will send a debug flag with every request.
- This will cause a lot of logging on Appacitives side and help you debug the problem.
- */
 @property (nonatomic, readwrite) BOOL enableDebugForEachRequest;
 
 /**
- Method used to create a shared appacitive object.
+ Creates a shared object.
  
- @param apiKey Api key generated while app setup
- @param deploymentId Deployment id generated when app is deployed.
+ This needs to be initialized when the app starts. No API call will be successful if this object does not exist.
+ 
+ @param apiKey Application API Key.
+ @param deploymentId Deployment id.
  */
 + (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
 
 /**
- Method to get the initialized appactive object.
+ Retrieve the shared appacitive object.
  
- @discussion This method will return nil if +appacitiveWithApiKey: deploymentId: is not called.
+ @discussion This method will return nil if appacitiveWithApiKey:deploymentId: is not called.
  */
 + (id) sharedObject;
+
+/**
+ Helper method to set the shared appacitive object.
+ */
++ (void) setSharedObject:(Appacitive *)object;
 @end

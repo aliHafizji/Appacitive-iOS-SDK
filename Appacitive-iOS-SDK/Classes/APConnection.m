@@ -15,40 +15,40 @@
 
 @implementation APConnection
 
-#define CONNECTION_PATH @"v0.9/core/Connection.svc/"
+#define CONNECTION_PATH @"v0.9/core/Connection.svc/v2/"
 
 #pragma mark initialization methods
 
-+ (id) connectionWithRelationName:(NSString*)relationName {
-    return [[APConnection alloc] initWithRelationName:relationName];
++ (id) connectionWithRelationType:(NSString*)relationType {
+    return [[APConnection alloc] initWithRelationType:relationType];
 }
 
-- (id) initWithRelationName:(NSString*)relationName {
+- (id) initWithRelationType:(NSString*)relationType {
     self = [super init];
     if(self) {
-        self.relationName = relationName;
+        self.relationType = relationType;
     }
     return self;
 }
 
 #pragma mark search methods
 
-+ (void) searchForAllConnectionsWithRelationName:(NSString*)relationName successHandler:(APResultSuccessBlock)successHandler {
-    [APConnection searchForAllConnectionsWithRelationName:relationName successHandler:successHandler failureHandler:nil];
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successHandler {
+    [APConnection searchForAllConnectionsWithRelationType:relationType successHandler:successHandler failureHandler:nil];
 }
 
-+ (void) searchForAllConnectionsWithRelationName:(NSString*)relationName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
-    [APConnection searchForConnectionsWithRelationName:relationName withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
+    [APConnection searchForConnectionsWithRelationType:relationType withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
 }
 
-+ (void) searchForConnectionsWithRelationName:(NSString*)relationName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
-    [APConnection searchForConnectionsWithRelationName:relationName withQueryString:queryString successHandler:successBlock failureHandler:nil];
++ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection searchForConnectionsWithRelationType:relationType withQueryString:queryString successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForConnectionsWithRelationName:(NSString*)relationName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, relationName];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, relationType];
         
         NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
@@ -101,7 +101,7 @@
 - (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.relationName];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.relationType];
         
         NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
@@ -188,22 +188,22 @@
 
 #pragma mark fetch connection methods
 
-+ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock {
-    [APConnection fetchConnectionsWithRelationName:relationName objectIds:@[objectId] successHandler:successBlock failureHandler:nil];
++ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection fetchConnectionsWithRelationType:relationType objectIds:@[objectId] successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) fetchConnectionWithRelationName:(NSString*)relationName objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
-    [APConnection fetchConnectionsWithRelationName:relationName objectIds:@[objectId] successHandler:successBlock failureHandler:failureBlock];
++ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    [APConnection fetchConnectionsWithRelationType:relationType objectIds:@[objectId] successHandler:successBlock failureHandler:failureBlock];
 }
 
-+ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock {
-    [APConnection fetchConnectionsWithRelationName:relationName objectIds:objectIds successHandler:successBlock failureHandler:nil];
++ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection fetchConnectionsWithRelationType:relationType objectIds:objectIds successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) fetchConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationName];
+        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationType];
         
         NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
@@ -248,18 +248,18 @@
 
 #pragma mark delete methods
 
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds {
-    [APConnection deleteConnectionsWithRelationName:relationName objectIds:objectIds successHandler:nil failureHandler:nil];
++ (void) deleteConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds {
+    [APConnection deleteConnectionsWithRelationType:relationType objectIds:objectIds successHandler:nil failureHandler:nil];
 }
 
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds failureHandler:(APFailureBlock)failureBlock {
-    [APConnection deleteConnectionsWithRelationName:relationName objectIds:objectIds successHandler:nil failureHandler:nil];
++ (void) deleteConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds failureHandler:(APFailureBlock)failureBlock {
+    [APConnection deleteConnectionsWithRelationType:relationType objectIds:objectIds successHandler:nil failureHandler:nil];
 }
 
-+ (void) deleteConnectionsWithRelationName:(NSString*)relationName objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) deleteConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationName];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationType];
         
         NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
@@ -309,7 +309,7 @@
 - (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationName, self.objectId.longLongValue];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationType, self.objectId.longLongValue];
         
         NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
@@ -344,69 +344,113 @@
     }
 }
 
+#pragma mark add properties method
+
+- (void) addPropertyWithKey:(NSString*) keyName value:(id) object {
+    if (!self.properties) {
+        _properties = [NSMutableArray array];
+    }
+    [_properties addObject:@{keyName: object}];
+}
+
+#pragma mark add attributes method
+
+- (void) addAttributeWithKey:(NSString*) keyName value:(id) object {
+    if (!self.attributes) {
+        _attributes = [NSMutableArray array];
+    }
+    [_attributes addObject:@{keyName: object}];
+}
+
 #pragma mark private methods
 
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
-    NSDictionary *connection = dictionary[@"Connection"];
-    _articleAId = (NSNumber*) connection[@"__ArticleAId"];
-    _articleBId = (NSNumber*) connection[@"__ArticleBId"];
-    _attributes = connection[@"__Attributes"];
-    _createdBy = (NSString*) connection[@"__CreatedBy"];
-    _objectId = (NSNumber*) connection[@"__Id"];
-    _labelA = (NSString*) connection[@"__LabelA"];
-    _labelB = (NSString*) connection[@"__LabelB"];
-    _lastUpdatedBy = (NSString*) connection[@"__LastUpdatedBy"];
-    _properties = connection[@"__Properties"];
-    _relationId = (NSNumber*) connection[@"__RelationId"];
-    _relationName = (NSString*) connection[@"__RelationName"];
-    _revision = (NSNumber*) connection[@"__Revision"];
-    _tags = connection[@"__Tags"];
-    _utcDateCreated = [self deserializeJsonDateString:connection[@"__UtcDateCreated"]];
-    _utcLastUpdatedDate = [self deserializeJsonDateString:connection[@"__UtcLastUpdatedDate"]];
+    NSDictionary *connection = dictionary[@"connection"];
+    _articleAId = (NSNumber*) connection[@"__endpointa"][@"articleid"];
+    _articleBId = (NSNumber*) connection[@"__endpointb"][@"articleid"];
+    _attributes = connection[@"__attributes"];
+    _createdBy = (NSString*) connection[@"__createdby"];
+    _objectId = (NSNumber*) connection[@"__id"];
+    _labelA = (NSString*) connection[@"__endpointa"][@"label"];
+    _labelB = (NSString*) connection[@"__endpointb"][@"label"];
+    _lastModifiedBy = (NSString*) connection[@"__lastmodifiedby"];
+    _relationId = (NSNumber*) connection[@"__relationid"];
+    _relationType = (NSString*) connection[@"__relationtype"];
+    _revision = (NSNumber*) connection[@"__revision"];
+    _tags = connection[@"__tags"];
+    _utcDateCreated = [self deserializeJsonDateString:connection[@"__createdate"]];
+    _utcLastModifiedDate = [self deserializeJsonDateString:connection[@"__lastmodified"]];
+    [connection enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if (![[key substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"__"]) {
+            if (!_properties) {
+                _properties = [NSMutableArray array];
+            }
+            [_properties addObject:@{key:obj}];
+        }
+    }];
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
-    NSInteger offset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
-    NSInteger startPosition = [jsonDateString rangeOfString:@"("].location + 1;
-    NSTimeInterval unixTime = [[jsonDateString substringWithRange:NSMakeRange(startPosition, 13)] doubleValue] / 1000; 
-    return [[NSDate dateWithTimeIntervalSince1970:unixTime] dateByAddingTimeInterval:offset];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    return [dateFormatter dateFromString:jsonDateString];
 }
 
 - (NSMutableDictionary*) parameters {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    if (self.articleAId)
-        parameters[@"__ArticleAId"] = self.articleAId;
-    
-    if (self.articleBId)
-        parameters[@"__ArticleBId"] = self.articleBId;
+    if (self.articleAId) {
+        if (!parameters[@"__endpointa"]) {
+            parameters[@"__endpointa"] = [NSMutableDictionary dictionary];
+        }
+        parameters[@"__endpointa"][@"articleid"] = [NSString stringWithFormat:@"%lld", self.articleAId.longLongValue];
+    }
+
+    if (self.articleBId) {
+        if (!parameters[@"__endpointb"]) {
+            parameters[@"__endpointb"] = [NSMutableDictionary dictionary];
+        }
+        parameters[@"__endpointb"][@"articleid"] = [NSString stringWithFormat:@"%lld", self.articleBId.longLongValue];
+    }
     
     if (self.attributes)
-        parameters[@"__Attributes"] = self.attributes;
+        parameters[@"__attributes"] = self.attributes;
     
     if (self.createdBy)
-        parameters[@"__CreatedBy"] = self.createdBy;
+        parameters[@"__createdby"] = self.createdBy;
     
-    if (self.properties)
-        parameters[@"__Properties"] = self.properties;
+    for(NSDictionary *prop in self.properties) {
+        [prop enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            [parameters setObject:obj forKey:key];
+            *stop = YES;
+        }];
+    }
     
-    if (self.labelA)
-        parameters[@"__LabelA"] = self.labelA;
+    if (self.labelA) {
+        if (!parameters[@"__endpointa"]) {
+            parameters[@"__endpointa"] = [NSMutableDictionary dictionary];
+        }
+        parameters[@"__endpointa"][@"label"] = self.labelA;
+    }
     
-    if (self.labelB)
-        parameters[@"__LabelB"] = self.labelB;
+    if (self.labelB) {
+        if (!parameters[@"__endpointb"]) {
+            parameters[@"__endpointb"] = [NSMutableDictionary dictionary];
+        }
+        parameters[@"__endpointb"][@"label"] = self.labelB;
+    }
     
-    if (self.relationName)
-        parameters[@"__RelationName"] = self.relationName;
+    if (self.relationType)
+        parameters[@"__relationtype"] = self.relationType;
     
     if (self.revision)
-        parameters[@"__Revision"] = self.revision;
+        parameters[@"__revision"] = self.revision;
     
     if (self.tags)
-        parameters[@"__Tags"] = self.tags;
+        parameters[@"__tags"] = self.tags;
     return parameters;
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"ArticleAId:%lld, ArticleBId:%lld, Attributes:%@, CreatedBy:%@, Connection Id:%lld, LabelA:%@, LabelB:%@, LastUpdatedBy:%@, Properties:%@, RelationId:%d, RelationName:%@, Revision:%d, Tags:%@, UtcDateCreated:%@, UtcLastUpdatedDate:%@", [self.articleAId longLongValue], [self.articleBId longLongValue], self.attributes, self.createdBy, [self.objectId longLongValue], self.labelA, self.labelB, self.lastUpdatedBy, self.properties, [self.relationId intValue], self.relationName, [self.revision intValue], self.tags ,self.utcDateCreated, self.utcLastUpdatedDate];
+    return [NSString stringWithFormat:@"ArticleAId:%lld, ArticleBId:%lld, Attributes:%@, CreatedBy:%@, Connection Id:%lld, LabelA:%@, LabelB:%@, LastUpdatedBy:%@, Properties:%@, RelationId:%d, Relation Type:%@, Revision:%d, Tags:%@, UtcDateCreated:%@, UtcLastUpdatedDate:%@", [self.articleAId longLongValue], [self.articleBId longLongValue], self.attributes, self.createdBy, [self.objectId longLongValue], self.labelA, self.labelB, self.lastModifiedBy, self.properties, [self.relationId intValue], self.relationType, [self.revision intValue], self.tags ,self.utcDateCreated, self.utcLastModifiedDate];
 }
 @end
