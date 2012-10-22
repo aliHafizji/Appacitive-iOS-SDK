@@ -95,6 +95,26 @@ extern NSString *const ARTICLE_PATH;
  */
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
+/**
+ @see deleteObjectWithSuccessHandler:failureHandler:
+ */
+- (void) deleteObject;
+
+/**
+ @see deleteObjectWithSuccessHandler:failureHandler:
+ */
+- (void) deleteObjectWithFailureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Deletes and APObject.
+ 
+ This method will delete the object on the remote server. It will not nullify the current properties or attributes.
+ 
+ @param successBlock Block invoked when delete operation is successful
+ @param failureBlock Block invoked when delete operation fails.
+ */
+- (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
 /** @name Fetch APObjects */
 
 /**
@@ -168,28 +188,6 @@ extern NSString *const ARTICLE_PATH;
  
  */
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
-
-/** @name Delete APObjects */
-
-/**
- @see deleteObjectWithSuccessHandler:failureHandler:
- */
-- (void) deleteObject;
-
-/**
- @see deleteObjectWithSuccessHandler:failureHandler:
- */
-- (void) deleteObjectWithFailureHandler:(APFailureBlock)failureBlock;
-
-/**
- Deletes and APObject.
-
- This method will delete the object on the remote server. It will not nullify the current properties or attributes.
-
- @param successBlock Block invoked when delete operation is successful
- @param failureBlock Block invoked when delete operation fails.
- */
-- (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Apply graph queries */
 

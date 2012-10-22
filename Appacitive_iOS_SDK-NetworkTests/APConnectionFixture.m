@@ -1,228 +1,259 @@
 #import "Appacitive.h"
 #import "APObject.h"
 #import "APError.h"
+#import "APQuery.h"
 #import "APConnection.h"
 
 SPEC_BEGIN(APConnectionTests)
 
-//context(@"APConnectionTests", ^{
+describe(@"APConnectionTests", ^{
 
-#pragma mark - Appacitive Session generation tests
+    beforeAll(^() {
+        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY deploymentId:DEPLOYMENT_ID];
+        [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
+    });
     
-//    it(@"Test case for creating a session with invalid API key and deploymentId Failed", ^{
-//        [Appacitive appacitiveWithApiKey:@"+MmuqVgHVYH7Q" deploymentId:@"rest"];
-//        [[expectFutureValue([[Appacitive sharedObject] session]) shouldEventuallyBeforeTimingOutAfter(10.0)] beNil];
-//    });
+    afterAll(^(){
+        [Appacitive setSharedObject:nil];
+    });
     
-    /**
-     @purpose Test for valid API_KEY and DEPLOYMENT_ID
-     @expected Session key object should not be nil
-     */
-    it(@"Test case for creating a session with valid API key and deploymentId Failed", ^{
+#pragma mark CREATION_TESTS
+    
+    it(@"should not return an error while creating the connection with proper objectIds", ^{
+        __block BOOL isConnectionCreated = NO;
+        __block NSNumber *objectId1;
+        __block NSNumber *objectId2;
         
-        [Appacitive appacitiveWithApiKey:@"+MmuqVgHVYH7Q+5imsGc4497fiuBAbBeCGYRkiQSCfY=" deploymentId:@"restaurantsearch"];
-        [[expectFutureValue([[Appacitive sharedObject] session]) shouldEventuallyBeforeTimingOutAfter(10.0)] beNonNil];
+        NSString *pnum = [APQuery queryStringForPageNumber:1];
+        NSString *psize = [APQuery queryStringForPageSize:1];
+        
+        NSString *query = [NSString stringWithFormat:@"%@&%@", pnum, psize];
+        
+        APConnection *connection = [APConnection connectionWithRelationType:@"LocationComment"];
+        [APObject searchObjectsWithSchemaName:@"location" withQueryString:query
+                                  successHandler:^(NSDictionary *result){
+                                      NSArray *articles = result[@"articles"];
+                                      NSDictionary *dict = [articles lastObject];
+                                      objectId1 = dict[@"__id"];
+                                      [APObject searchObjectsWithSchemaName:@"comment" withQueryString:query
+                                                    successHandler:^(NSDictionary *result){
+                                                        NSArray *articles = result[@"articles"];
+                                                        NSDictionary *dict = [articles lastObject];
+                                                        objectId2 = dict[@"__id"];
+                                                        
+                                                        [connection createConnectionWithObjectAId:objectId1 objectBId:objectId2 labelA:@"Location" labelB:@"Comment"
+                                                                                   successHandler:^(void){
+                                                                                       isConnectionCreated = YES;
+                                                                                   }failureHandler:^(APError *error) {
+                                                                                       isConnectionCreated = NO;
+                                                                                   }];
+                                                    } failureHandler:^(APError *error){
+                                                        isConnectionCreated = NO;
+                                                    }];
+                                  } failureHandler:^(APError *error){
+                                      isConnectionCreated = NO;
+                                  }];
+        
+        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
-
-    it(@"ALIS TEST", ^(){
-        __block BOOL hasFailed = NO;
-        APConnection *connection = [[APConnection alloc] initWithRelationType:@"locationcomment"];
-        connection.objectId = @5109813520498983;
-        [connection deleteConnectionWithSuccessHandler:^(){} failureHandler:^(APError *error){}];
-        [[expectFutureValue(theValue(hasFailed)) shouldEventuallyBeforeTimingOutAfter(30.0)] equal:theValue(YES)];
-    });
-//
-//
-//#pragma mark - APConnnection Creation Tests
-//    it(@"Test case for creating a APConnection with valid ArticleId and CommentId Failed", ^{
-//        __block BOOL isConnectionCreated = NO;
-//        __block NSNumber *articleId1;
-//        __block NSNumber *articleId2;
-//        
-//        NSString *query = [NSString stringWithFormat:@"&pnum=1&psize=1"];
-//        
-//        APConnection *connection = [APConnection connectionWithRelationName:@"LocationComment"];
-//        [APObject searchForObjectsWithSchemaName:@"location" withQueryString:query
-//                                  successHandler:^(NSDictionary *result){
-//                                      NSArray *articles = result[@"Articles"];
-//                                      NSDictionary *dict = [articles lastObject];
-//                                      articleId1 = dict[@"__Id"];
-//                                      [APObject searchForObjectsWithSchemaName:@"comment" withQueryString:query
-//                                                                successHandler:^(NSDictionary *result){
-//                                                                    NSArray *articles = result[@"Articles"];
-//                                                                    NSDictionary *dict = [articles lastObject];
-//                                                                    articleId2 = dict[@"__Id"];
-//                                                                    
-//                                                                    [connection createConnectionWithObjectAId:articleId1 objectBId:articleId2 labelA:@"Location" labelB:@"Comment"
-//                                                                                               successHandler:^(void){
-//                                                                                                   isConnectionCreated = YES;
-//                                                                                               }failureHandler:^(APError *error) {
-//                                                                                                   isConnectionCreated = NO;
-//                                                                                               }];
-//                                                                } failureHandler:^(APError *error){
-//                                                                    isConnectionCreated = NO;
-//                                                                }];
-//                                  } failureHandler:^(APError *error){
-//                                      isConnectionCreated = NO;
-//                                  }];
-//        
-//        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(30.0)] equal:theValue(YES)];
-//    });
-//    
-//    
-//    it(@"Test case for creating a APConnection with invalid Relation Name Failed", ^{
-//        __block BOOL isConnectionCreated = NO;
-//        APConnection *connection = [APConnection connectionWithRelationName:@"relationThatDoesNotExist"];
-//        [connection createConnectionWithObjectAId:[NSNumber numberWithLongLong:0] objectBId:[NSNumber numberWithLongLong:0] labelA:@"Location" labelB:@"Comment" successHandler:^(void){
-//            isConnectionCreated = NO;
-//        }failureHandler:^(APError *error) {
-//            isConnectionCreated = YES;
-//        }];
-//        
-//        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//    
-//    it(@"Test case for creating a APConnection with invalid ArticleId and CommentId Failed", ^{
-//        __block BOOL isConnectionCreated = NO;
-//        APConnection *connection = [APConnection connectionWithRelationName:@"LocationComment"];
-//        [connection createConnectionWithObjectAId:[NSNumber numberWithLongLong:0] objectBId:[NSNumber numberWithLongLong:0] labelA:@"Location" labelB:@"Comment" successHandler:^(void){
-//            isConnectionCreated = NO;
-//        }failureHandler:^(APError *error) {
-//            isConnectionCreated = YES;
-//        }];
-//        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//    
-//#pragma mark - APConnection's Searching Tests
-//    
-//    it(@"Test case for searching all APConnection's objects with valid relation name Failed", ^{
-//        __block BOOL isSearchingSuccesfull = NO;
-//        [APConnection searchForAllConnectionsWithRelationName:@"LocationComment" successHandler:^(NSDictionary *result){
-//            isSearchingSuccesfull = YES;
-//        }failureHandler:^(APError *error){
-//            isSearchingSuccesfull = NO;
-//        }];
-//        [[expectFutureValue(theValue(isSearchingSuccesfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
 
     
-//
-//    it(@"Test case for searching all APConnection's objects with invalid relation name Failed", ^{
-//        __block BOOL isSearchingUnsuccesfull = NO;
-//        [APConnection searchForAllConnectionsWithRelationName:@"relationThatDoesNotExist" successHandler:^(NSDictionary *result){
-//            isSearchingUnsuccesfull = NO;
-//        }failureHandler:^(APError *error){
-//            isSearchingUnsuccesfull = YES;
-//        }];
-//        [[expectFutureValue(theValue(isSearchingUnsuccesfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//#pragma mark - APConnection delete relation tests
-//    
-//    it(@"Test case for deleting an APConnection object with valid relation name and invalid ArticleID's Failed", ^{
-//        __block BOOL isConnectionDeletionSuccessfull = NO;
-//        
-//        __block NSNumber *articleId1;
-//        __block NSNumber *articleId2;
-//        NSString *query = [NSString stringWithFormat:@"&pnum=1&psize=1"];
-//        
-//        [APObject searchForObjectsWithSchemaName:@"location" withQueryString:query
-//                                  successHandler:^(NSDictionary *result){
-//                                      NSArray *articles = result[@"Articles"];
-//                                      NSDictionary *dict = [articles lastObject];
-//                                      articleId1 = dict[@"__Id"];
-//                                      [APObject searchForObjectsWithSchemaName:@"comment" withQueryString:query
-//                                                                successHandler:^(NSDictionary *result){
-//                                                                    NSArray *articles = result[@"Articles"];
-//                                                                    NSDictionary *dict = [articles lastObject];
-//                                                                    articleId2 = dict[@"__Id"];
-//                                                                    
-//                                                                    [APConnection deleteConnectionsWithRelationName:@"LocationComment" objectIds:@[articleId1,articleId2] successHandler:^{
-//                                                                        isConnectionDeletionSuccessfull = NO;
-//                                                                    } failureHandler:^(APError *error){
-//                                                                        isConnectionDeletionSuccessfull = YES;
-//                                                                    }];
-//                                                                    
-//                                                                } failureHandler:^(APError *error){
-//                                                                    isConnectionDeletionSuccessfull = NO;
-//                                                                }];
-//                                  } failureHandler:^(APError *error){
-//                                      isConnectionDeletionSuccessfull = NO;
-//                                  }];
-//        [[expectFutureValue(theValue(isConnectionDeletionSuccessfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//    
-//    it(@"Test case for deleting an APConnection object with invalid relation name and ArticleID's Failed", ^{
-//        __block BOOL isConnectionDeletionUnsuccessfull = NO;
-//        [APConnection deleteConnectionsWithRelationName:@"relationThatDoesNotExist" objectIds:@[[NSNumber numberWithLongLong:5562780777316615],[NSNumber numberWithLongLong:5561664312312069]] successHandler:^{
-//            isConnectionDeletionUnsuccessfull = NO;
-//        } failureHandler:^(APError *error){
-//            isConnectionDeletionUnsuccessfull = YES;
-//        }];
-//        [[expectFutureValue(theValue(isConnectionDeletionUnsuccessfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//    
-//    it(@"Test case for deleting an APConnection object with valid APConnection objectId Failed", ^{
-//        __block BOOL isConnectionDeletedSuccessfully = NO;
-//        NSString *query = [NSString stringWithFormat:@"pnum=1&psize=1"];
-//        
-//        [APConnection searchForConnectionsWithRelationName:@"locationcomment" withQueryString:query
-//                                            successHandler:^(NSDictionary *result){
-//                                                NSArray *connections = result[@"Connections"];
-//                                                NSDictionary *dict = [connections lastObject];
-//                                                APConnection *connectionObject = [APConnection connectionWithRelationName:@"LocationComment"];
-//                                                connectionObject.objectId = dict[@"__Id"];
-//                                                [connectionObject deleteConnectionWithSuccessHandler:^{
-//                                                    isConnectionDeletedSuccessfully = YES;
-//                                                } failureHandler:^(APError *error){
-//                                                    isConnectionDeletedSuccessfully = NO;
-//                                                }];
-//                                            } failureHandler:^(APError *error){
-//                                                isConnectionDeletedSuccessfully = NO;
-//                                            }];
-//        
-//        [[expectFutureValue(theValue(isConnectionDeletedSuccessfully)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//#pragma mark - APConneciton fetch tests
-//    
-//    it(@"Test case for fetching an APConnection object with valid APConnection objectId Failed", ^{
-//        __block BOOL isFetchSuccesfull = NO;
-//        NSString *query = [NSString stringWithFormat:@"pnum=1&psize=1"];
-//        
-//        [APConnection searchForConnectionsWithRelationName:@"locationcomment" withQueryString:query
-//                                            successHandler:^(NSDictionary *result){
-//                                                NSArray *connections = result[@"Connections"];
-//                                                NSDictionary *dict = [connections lastObject];
-//                                                NSNumber *connectionId = dict[@"__Id"];
-//                                                [APConnection fetchConnectionWithRelationName:@"locationcomment" objectId:connectionId successHandler:^(NSDictionary *result){
-//                                                    isFetchSuccesfull = YES;
-//                                                } failureHandler:^(APError *error){
-//                                                    isFetchSuccesfull = NO;
-//                                                }];
-//                                            } failureHandler:^(APError *error){
-//                                                isFetchSuccesfull = NO;
-//                                            }];
-//        
-//        [[expectFutureValue(theValue(isFetchSuccesfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//    it(@"Test case for fetching an APConnection object with invalid APConnection objectId", ^{
-//        __block BOOL isFetchUnsuccesfull = NO; 
-//        
-//        [APConnection fetchConnectionWithRelationName:@"locationcomment" objectId:[NSNumber numberWithInt:2313] successHandler:^(NSDictionary *result){
-//            isFetchUnsuccesfull = NO;
-//        } failureHandler:^(APError *error){
-//            isFetchUnsuccesfull = YES;
-//        }];
-//        
-//        [[expectFutureValue(theValue(isFetchUnsuccesfull)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
-//    });
-//    
-//});
+    it(@"should return an error for creating a connection with invalid relation type", ^{
+        __block BOOL isConnectionCreatFailed = NO;
+        
+        APConnection *connection = [APConnection connectionWithRelationType:@"relationThatDoesNotExist"];
+        [connection createConnectionWithObjectAId:@0
+                        objectBId:@0
+                        labelA:@"Location"
+                        labelB:@"Comment"
+                        successHandler:^(void){
+                            isConnectionCreatFailed = NO;
+                        } failureHandler:^(APError *error) {
+                            isConnectionCreatFailed = YES;
+                        }];
+        
+        [[expectFutureValue(theValue(isConnectionCreatFailed)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
 
+    
+    it(@"should return an error while creating a connection with invalid object id and comment id", ^{
+        __block BOOL isConnectionCreated = NO;
+        APConnection *connection = [APConnection connectionWithRelationType:@"LocationComment"];
+        [connection createConnectionWithObjectAId:@0
+                    objectBId:@0
+                    labelA:@"Location"
+                    labelB:@"Comment"
+                    successHandler:^(void){
+                        isConnectionCreated = NO;
+                    }failureHandler:^(APError *error) {
+                        isConnectionCreated = YES;
+                    }];
+        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+    
+#pragma mark SEARCH_TESTS
+    
+    it(@"should not return an error while search for valid relation types", ^{
+        __block BOOL isSearchingSuccesful = NO;
+        [APConnection
+            searchForAllConnectionsWithRelationType:@"LocationComment"
+            successHandler:^(NSDictionary *result){
+                isSearchingSuccesful = YES;
+            } failureHandler:^(APError *error){
+                isSearchingSuccesful = NO;
+            }];
+        [[expectFutureValue(theValue(isSearchingSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+    
+
+    it(@"should return an error while search for invalid connections", ^{
+        __block BOOL isSearchingUnsuccesful = NO;
+        [APConnection
+            searchForAllConnectionsWithRelationType:@"relationThatDoesNotExist"
+            successHandler:^(NSDictionary *result){
+                isSearchingUnsuccesful = NO;
+            } failureHandler:^(APError *error){
+                isSearchingUnsuccesful = YES;
+            }];
+        [[expectFutureValue(theValue(isSearchingUnsuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+    pending_(@"should not return an error with search call along with valid query string", ^(){
+    
+    });
+    
+    pending_(@"should return an error with search call along with invalid query string", ^(){
+        
+    });
+    
+#pragma mark DELETE_TESTS
+    
+    it(@"should return an error for the delete call with valid relation name and invalid objectid", ^{
+        __block BOOL isConnectionDeletionUnsuccessful = NO;
+        
+        __block NSNumber *articleId1;
+        __block NSNumber *articleId2;
+        NSString *query = [NSString stringWithFormat:@"&pnum=1&psize=1"];
+        
+        [APObject searchObjectsWithSchemaName:@"location" withQueryString:query
+                              successHandler:^(NSDictionary *result){
+                                  NSArray *articles = result[@"articles"];
+                                  NSDictionary *dict = [articles lastObject];
+                                  articleId1 = dict[@"__id"];
+                                  [APObject searchObjectsWithSchemaName:@"comment" withQueryString:query
+                                                successHandler:^(NSDictionary *result){
+                                                    NSArray *articles = result[@"articles"];
+                                                    NSDictionary *dict = [articles lastObject];
+                                                    articleId2 = dict[@"__id"];
+                                                    
+                                                    [APConnection
+                                                     deleteConnectionsWithRelationType:@"LocationComment"
+                                                     objectIds:@[articleId1,articleId2]
+                                                     successHandler:^{
+                                                         isConnectionDeletionUnsuccessful = NO;
+                                                     } failureHandler:^(APError *error){
+                                                         isConnectionDeletionUnsuccessful = YES;
+                                                     }];
+                                                    
+                                                } failureHandler:^(APError *error){
+                                                    isConnectionDeletionUnsuccessful = NO;
+                                                }];
+                              } failureHandler:^(APError *error){
+                                  isConnectionDeletionUnsuccessful = NO;
+                              }];
+        [[expectFutureValue(theValue(isConnectionDeletionUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+    
+    it(@"should return an error for delete call using invalid relation type and object id", ^{
+        __block BOOL isConnectionDeletionUnsuccessful = NO;
+        [APConnection
+            deleteConnectionsWithRelationType:@"relationThatDoesNotExist"
+            objectIds:@[@-12,@-21]
+            successHandler:^{
+                isConnectionDeletionUnsuccessful = NO;
+            } failureHandler:^(APError *error){
+                isConnectionDeletionUnsuccessful = YES;
+            }];
+        [[expectFutureValue(theValue(isConnectionDeletionUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+    
+    it(@"should not through an error while deleting a connection with valid objectid", ^{
+        __block BOOL isConnectionDeleted = NO;
+        
+        NSString *pnum = [APQuery queryStringForPageNumber:1];
+        NSString *psize = [APQuery queryStringForPageSize:1];
+        NSString *query = [NSString stringWithFormat:@"%@&%@", pnum, psize];
+        
+        [APConnection
+            searchForConnectionsWithRelationType:@"locationcomment"
+            withQueryString:query
+            successHandler:^(NSDictionary *result) {
+                NSArray *connections = result[@"connections"];
+                NSDictionary *dict = [connections lastObject];
+                
+                APConnection *connectionObject = [APConnection connectionWithRelationType:@"LocationComment"];
+                connectionObject.objectId = dict[@"__id"];
+                
+                [connectionObject deleteConnectionWithSuccessHandler:^{
+                    isConnectionDeleted = YES;
+                } failureHandler:^(APError *error){
+                    isConnectionDeleted = NO;
+                }];
+            } failureHandler:^(APError *error){
+                isConnectionDeleted = NO;
+            }];
+        
+        [[expectFutureValue(theValue(isConnectionDeleted)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+#pragma mark FETCH_TESTS
+    
+    it(@"should not return an error for fetch call with valid object id", ^{
+        
+        __block BOOL isFetchSuccesful = NO;
+        
+        NSString *pnum = [APQuery queryStringForPageNumber:1];
+        NSString *psize = [APQuery queryStringForPageSize:1];
+        NSString *query = [NSString stringWithFormat:@"%@&%@", pnum, psize];
+        
+        [APConnection searchForConnectionsWithRelationType:@"locationcomment"
+                        withQueryString:query
+                        successHandler:^(NSDictionary *result){
+                            NSArray *connections = result[@"connections"];
+                            NSDictionary *dict = [connections lastObject];
+                            NSNumber *connectionId = dict[@"__id"];
+                            [APConnection
+                                fetchConnectionWithRelationType:@"locationcomment"
+                                objectId:connectionId
+                                successHandler:^(NSDictionary *result){
+                                    isFetchSuccesful = YES;
+                                } failureHandler:^(APError *error){
+                                    isFetchSuccesful = NO;
+                                }];
+                        } failureHandler:^(APError *error){
+                            isFetchSuccesful = NO;
+                        }];
+        
+        [[expectFutureValue(theValue(isFetchSuccesful)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
+    });
+
+    it(@"should return an error for fetch call with invalid object id", ^{
+        __block BOOL isFetchUnsuccesful = NO; 
+        
+        [APConnection
+            fetchConnectionWithRelationType:@"locationcomment"
+            objectId:@2313
+            successHandler:^(NSDictionary *result){
+                isFetchUnsuccesful = NO;
+            } failureHandler:^(APError *error){
+                isFetchUnsuccesful = YES;
+            }];
+
+        [[expectFutureValue(theValue(isFetchUnsuccesful)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
+    });
+});
 SPEC_END

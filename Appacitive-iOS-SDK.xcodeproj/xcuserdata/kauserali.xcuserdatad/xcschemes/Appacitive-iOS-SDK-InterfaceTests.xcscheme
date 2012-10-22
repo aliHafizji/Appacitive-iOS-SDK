@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "612E3E1915EDF8FE00F98FB8"
-               BuildableName = "Appacitive-iOS-SDKTests.octest"
+               BuildableName = "Appacitive-iOS-SDK-InterfaceTests.octest"
                BlueprintName = "Appacitive-iOS-SDK-InterfaceTests"
                ReferencedContainer = "container:Appacitive-iOS-SDK.xcodeproj">
             </BuildableReference>

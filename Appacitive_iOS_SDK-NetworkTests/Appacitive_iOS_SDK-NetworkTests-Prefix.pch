@@ -7,3 +7,6 @@
     #import <Foundation/Foundation.h>
     #import "Kiwi.h"
 #endif
+
+#define DEPLOYMENT_ID @"restaurantsearch"
+#define API_KEY @"+MmuqVgHVYH7Q+5imsGc4497fiuBAbBeCGYRkiQSCfY="

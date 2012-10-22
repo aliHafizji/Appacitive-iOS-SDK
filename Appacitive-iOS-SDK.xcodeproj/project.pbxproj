@@ -34,8 +34,8 @@
 		616A6A1115F4848D009A8578 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1015F4848D009A8578 /* Security.framework */; };
 		616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
 		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
-		61D4A0E91635223400DB5FD9 /* APConnectionAsyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E51635223400DB5FD9 /* APConnectionAsyncTest.m */; };
-		61D4A0EA1635223400DB5FD9 /* APObjectAsyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E61635223400DB5FD9 /* APObjectAsyncTest.m */; };
+		61D4A0E91635223400DB5FD9 /* APConnectionFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */; };
+		61D4A0EA1635223400DB5FD9 /* APObjectFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E61635223400DB5FD9 /* APObjectFixture.m */; };
 		61D4A0EB1635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D4A0E71635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Info.plist */; };
 		61D4A0F81635234600DB5FD9 /* APHelperMethodsFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0ED1635234500DB5FD9 /* APHelperMethodsFixture.m */; };
 		61D4A0F91635234600DB5FD9 /* Appacitive-iOS-SDK-InterfaceTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D4A0EE1635234500DB5FD9 /* Appacitive-iOS-SDK-InterfaceTests-Info.plist */; };
@@ -96,8 +96,8 @@
 		616A6A1015F4848D009A8578 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		616A6A1215F484E7009A8578 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		616A6A1415F4850E009A8578 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		61D4A0E51635223400DB5FD9 /* APConnectionAsyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APConnectionAsyncTest.m; path = "Appacitive_iOS_SDK-NetworkTests/APConnectionAsyncTest.m"; sourceTree = SOURCE_ROOT; };
-		61D4A0E61635223400DB5FD9 /* APObjectAsyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APObjectAsyncTest.m; path = "Appacitive_iOS_SDK-NetworkTests/APObjectAsyncTest.m"; sourceTree = SOURCE_ROOT; };
+		61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APConnectionFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APConnectionFixture.m"; sourceTree = SOURCE_ROOT; };
+		61D4A0E61635223400DB5FD9 /* APObjectFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APObjectFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APObjectFixture.m"; sourceTree = SOURCE_ROOT; };
 		61D4A0E71635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Appacitive_iOS_SDK-NetworkTests-Info.plist"; path = "Appacitive_iOS_SDK-NetworkTests/Appacitive_iOS_SDK-NetworkTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		61D4A0E81635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Appacitive_iOS_SDK-NetworkTests-Prefix.pch"; path = "Appacitive_iOS_SDK-NetworkTests/Appacitive_iOS_SDK-NetworkTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		61D4A0EC1635234500DB5FD9 /* APHelperMethodsFixture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APHelperMethodsFixture.h; path = "Appacitive-iOS-SDK-InterfaceTests/APHelperMethodsFixture.h"; sourceTree = SOURCE_ROOT; };
@@ -173,8 +173,8 @@
 		2CEB0E97162BD2AB0074DA50 /* Appacitive_iOS_SDK-NetworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				61D4A0E51635223400DB5FD9 /* APConnectionAsyncTest.m */,
-				61D4A0E61635223400DB5FD9 /* APObjectAsyncTest.m */,
+				61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */,
+				61D4A0E61635223400DB5FD9 /* APObjectFixture.m */,
 				2CEB0E98162BD2AB0074DA50 /* Supporting Files */,
 			);
 			name = "Appacitive_iOS_SDK-NetworkTests";
@@ -500,8 +500,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61D4A0E91635223400DB5FD9 /* APConnectionAsyncTest.m in Sources */,
-				61D4A0EA1635223400DB5FD9 /* APObjectAsyncTest.m in Sources */,
+				61D4A0E91635223400DB5FD9 /* APConnectionFixture.m in Sources */,
+				61D4A0EA1635223400DB5FD9 /* APObjectFixture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

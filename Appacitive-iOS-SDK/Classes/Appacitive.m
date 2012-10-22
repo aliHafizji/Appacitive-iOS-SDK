@@ -24,10 +24,11 @@ static Appacitive *sharedObject = nil;
 
 + (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
     if (apiKey != nil && deploymentId != nil && ![apiKey isEqualToString:@""] && ![deploymentId isEqualToString:@""]) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            sharedObject = [[Appacitive alloc] initWithApiKey:apiKey deploymentId:deploymentId];
-        });
+        @synchronized(self) {
+            if (sharedObject == nil) {
+                sharedObject = [[Appacitive alloc] initWithApiKey:apiKey deploymentId:deploymentId];
+            }
+        }
     }
     return sharedObject;
 }

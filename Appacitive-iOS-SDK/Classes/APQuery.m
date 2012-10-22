@@ -46,11 +46,11 @@
 }
 
 + (NSString*) queryStringForPageSize:(NSUInteger)pageSize {
-    return [NSString stringWithFormat:@"psize = %d", pageSize];
+    return [NSString stringWithFormat:@"psize=%d", pageSize];
 }
 
 + (NSString*) queryStringForPageNumber:(NSUInteger)pageNumber {
-    return [NSString stringWithFormat:@"pnum = %d", pageNumber];
+    return [NSString stringWithFormat:@"pnum=%d", pageNumber];
 }
 
 + (NSString*) queryStringForGeoCodeProperty:(NSString*)propertyName location:(CLLocation*)location distance:(DistanceMetric)distanceMetric raduis:(NSNumber*)radius {
