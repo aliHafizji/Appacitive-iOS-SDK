@@ -18,11 +18,11 @@ typedef enum {
 /**
  Helper method to generate an equal to query string.
  
- @param propertyName name of the property to search for
+ @param propertyName name of the property to search for.
  @param propertyValue the value of the property to equate to.
  
  Example query would be +[APQuery queryStringForEqualCondition:@"hotelName" propertyValue:@"Le Meridian"]
- This would return "*hotelName == 'Le Meridian'" which is the format Appacitive understands
+ This would return "*hotelName == 'Le Meridian'" which is the format Appacitive understands.
  */
 + (NSString*) queryStringForEqualCondition:(NSString*)propertyName propertyValue:(NSString*)propertyValue;
 
@@ -99,7 +99,7 @@ typedef enum {
  @param radius the radios around the location to look for
  
  Example query would be +[APQuery queryStringForGeoCodeProperty:@"location" location:{123, 123} distance:kilometers raduis:12]
- This would return "*location within_circle 123,123,12" which is the format Appacitive understands
+ This would return "*location within_circle 123,123,12" which is the format Appacitive understands.
  */
 + (NSString*) queryStringForGeoCodeProperty:(NSString*)propertyName location:(CLLocation*)location distance:(DistanceMetric)distanceMetric raduis:(NSNumber*)radius;
 
@@ -110,7 +110,7 @@ typedef enum {
  @param coordinates an array of CLLocation coordinates. The array needs to have a minimum of three coordinates.
  
  Example query would be +[APQuery queryStringForPolygonSearch:@"location" withPolygonCoordinates:coordinates]
- This would return "*location within_polygon {lat,long} | {lat,long} | {lat,long}" which is the format Appacitive understands
+ This would return "*location within_polygon {lat,long} | {lat,long} | {lat,long}" which is the format Appacitive understands.
  */
 + (NSString*) queryStringForPolygonSearch:(NSString*)propertyName withPolygonCoordinates:(NSArray*)coordinates;
 

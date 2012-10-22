@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Appacitive-iOS-SDK-InterfaceTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Appacitive-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Appacitive-iOS-SDKTests.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>Appacitive_iOS_AsyncTests.xcscheme</key>
+		<key>Appacitive_iOS_SDK-NetworkTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
