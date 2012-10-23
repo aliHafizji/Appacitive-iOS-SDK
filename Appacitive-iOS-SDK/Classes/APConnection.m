@@ -60,7 +60,6 @@
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation){
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -70,14 +69,12 @@
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description)
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
 
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -110,7 +107,6 @@
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -121,13 +117,11 @@
                     successBlock();
                 }
             } else {
-                DLog(@"%@", error.description)
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -219,7 +213,6 @@
 
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -229,13 +222,11 @@
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock) {
                 failureBlock((APError*) error);
             }
@@ -270,7 +261,6 @@
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
-            DLog(@"%@", completionOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completionOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -280,13 +270,11 @@
                     successBlock();
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*) error);
             }
@@ -316,7 +304,6 @@
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
         [op onCompletion:^(MKNetworkOperation *completedOperation){
-            DLog("%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -326,14 +313,12 @@
                     successBlock();
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
 
         } onError:^(NSError *error){
-            DLog(@"%@", error.description)
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -380,14 +365,8 @@
     _tags = connection[@"__tags"];
     _utcDateCreated = [self deserializeJsonDateString:connection[@"__createdate"]];
     _utcLastModifiedDate = [self deserializeJsonDateString:connection[@"__lastmodified"]];
-    [connection enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-        if (![[key substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"__"]) {
-            if (!_properties) {
-                _properties = [NSMutableArray array];
-            }
-            [_properties addObject:@{key:obj}];
-        }
-    }];
+    
+    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:dictionary].mutableCopy;
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {

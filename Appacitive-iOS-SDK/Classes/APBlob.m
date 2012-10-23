@@ -44,7 +44,6 @@
         }];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation){
-            DLog(@"%@", completedOperation.responseJSON);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -54,10 +53,11 @@
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -99,7 +99,6 @@
         }];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation){
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -109,10 +108,11 @@
                     successBlock();
                 }
             } else {
-                DLog(@"%@", error.description);
+                if (failureBlock != nil) {
+                    failureBlock(error);
+                }
             }
         } onError:^(NSError *error){
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }

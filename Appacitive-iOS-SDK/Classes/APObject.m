@@ -16,7 +16,7 @@
 
 NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 
-#define SEARCH_PATH @"/v0.9/core/Search.svc/"
+#define SEARCH_PATH @"/v0.9/core/Search.svc/v2/"
 
 #pragma mark initialization methods
 
@@ -67,7 +67,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation){
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -77,14 +76,12 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
 
         } onError:^(NSError *error){
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*) error);
             }
@@ -115,7 +112,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
-            DLog(@"%@", completionOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completionOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -125,13 +121,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock();
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*) error);
             }
@@ -160,7 +154,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog("%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -170,13 +163,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock();
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description)
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -213,7 +204,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -223,13 +213,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock) {
                 failureBlock((APError*) error);
             }
@@ -254,7 +242,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -262,13 +249,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
             if (!isErrorPresent) {
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error) {
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -300,7 +285,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -312,13 +296,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error){
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -353,7 +335,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -363,13 +344,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error){
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -402,7 +381,6 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
-            DLog(@"%@", completedOperation.description);
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -412,13 +390,11 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
                     successBlock(completedOperation.responseJSON);
                 }
             } else {
-                DLog(@"%@", error.description);
                 if (failureBlock != nil) {
                     failureBlock(error);
                 }
             }
         } onError:^(NSError *error){
-            DLog(@"%@", error.description);
             if (failureBlock != nil) {
                 failureBlock((APError*)error);
             }
@@ -465,14 +441,8 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
     _attributes = article[@"__attributes"];
     _tags = article[@"__tags"];
     _schemaType = article[@"__schematype"];
-    [article enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-        if (![[key substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"__"]) {
-            if (!_properties) {
-                _properties = [NSMutableArray array];
-            }
-            [_properties addObject:@{key:obj}];
-        }
-    }];
+    
+    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:dictionary].mutableCopy;
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {

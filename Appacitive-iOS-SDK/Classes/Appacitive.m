@@ -70,7 +70,6 @@ static Appacitive *sharedObject = nil;
         _session = session[@"sessionkey"];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SessionReceivedNotification object:self];
-        DLog(@"%@", self.session);
     } onError:^(NSError *error){
         DLog(@"%@", error);
     }];

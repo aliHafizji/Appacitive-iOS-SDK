@@ -36,4 +36,36 @@
     }
     return nil;
 }
+
++ (NSArray*) arrayOfPropertiesFromJSONResponse:(id)response {
+    if (response) {
+        __block NSMutableArray *properties;
+        [response enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            if (![[key substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"__"]) {
+                if (!properties) {
+                    properties = [NSMutableArray array];
+                }
+                [properties addObject:@{key:obj}];
+            }
+        }];
+        return properties;
+    }
+    return nil;
+}
+
++ (NSDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response {
+    if (response) {
+        __block NSMutableDictionary *properties;
+        [response enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            if (![[key substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"__"]) {
+                if (!properties) {
+                    properties = [NSMutableDictionary dictionary];
+                }
+                [properties setObject:obj forKey:key];
+            }
+        }];
+        return properties;
+    }
+    return nil;
+}
 @end

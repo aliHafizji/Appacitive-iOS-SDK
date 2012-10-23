@@ -16,4 +16,5 @@
 //error
 #import "APError.h"
 
+#import "APHelperMethods.h"
 #import "Appacitive.h"

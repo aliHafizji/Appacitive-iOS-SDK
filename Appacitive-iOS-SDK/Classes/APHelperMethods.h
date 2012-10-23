@@ -17,4 +17,20 @@
  @param response Response received from the server.
  */
 + (APError*) checkForErrorStatus:(id)response;
+
+/**
+ Helper method to parse the properties from a json response
+ 
+ @param response Response received from the server.
+ @return An array of properties
+ */
++ (NSArray*) arrayOfPropertiesFromJSONResponse:(id)response;
+
+/**
+ Helper method to parse the properties from a json response
+ 
+ @param response Response received from the server.
+ @return A dictionary of properties
+ */
++ (NSDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response;
 @end

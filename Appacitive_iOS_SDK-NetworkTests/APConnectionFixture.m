@@ -246,7 +246,7 @@ describe(@"APConnectionTests", ^{
         
         [APConnection
             fetchConnectionWithRelationType:@"locationcomment"
-            objectId:@2313
+            objectId:@-2313
             successHandler:^(NSDictionary *result){
                 isFetchUnsuccesful = NO;
             } failureHandler:^(APError *error){
