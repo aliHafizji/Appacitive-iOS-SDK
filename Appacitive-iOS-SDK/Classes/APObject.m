@@ -14,9 +14,9 @@
 
 @implementation APObject
 
-NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
+NSString *const ARTICLE_PATH = @"article/";
 
-#define SEARCH_PATH @"/v0.9/core/Search.svc/v2/"
+#define SEARCH_PATH @"search/"
 
 #pragma mark initialization methods
 
@@ -50,10 +50,9 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 + (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, schemaName];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/all", schemaName];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
-        [queryParams setObject:sharedObject.session forKey:@"session"];
         [queryParams setObject:NSStringFromBOOL(sharedObject.enableDebugForEachRequest) forKey:@"debug"];
         
         if (queryString) {
@@ -66,6 +65,8 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
@@ -88,7 +89,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -101,14 +102,16 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, schemaName];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/_bulk", schemaName];
         
-        NSDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
+        NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
         path = [path stringByAppendingQueryParameters:queryParams];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:params httpMethod:@"POST"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
@@ -132,7 +135,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -147,12 +150,14 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
-        NSDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
+        NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
         path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
@@ -174,7 +179,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -187,9 +192,9 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, schemaName];
+        __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/byidlist", schemaName];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         path = [path stringByAppendingString:@"&idlist="];
@@ -203,6 +208,8 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
@@ -224,7 +231,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -235,12 +242,14 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 - (void) fetchWithFailureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.schemaType, [self.objectId longLongValue]];
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
 
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
@@ -260,7 +269,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -277,11 +286,13 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.schemaType];
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@", self.schemaType];
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
                 
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self postParamerters] httpMethod:@"PUT"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -307,7 +318,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -320,18 +331,20 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 + (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [SEARCH_PATH stringByAppendingFormat:@"%@/filter", sharedObject.deploymentId];
+        NSString *path = [SEARCH_PATH stringByAppendingString:@"filter"];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         NSError *error;
         NSMutableDictionary *postParams = [NSJSONSerialization JSONObjectWithData:[query dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
         if (error) {
-            DLog(@"Error created JSON, please check the syntax of the graph query");
+            DLog(@"Error creating JSON, please check the syntax of the graph query");
             return;
         }
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -355,7 +368,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -366,9 +379,9 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
 + (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [SEARCH_PATH stringByAppendingFormat:@"%@/project", sharedObject.deploymentId];
+        NSString *path = [SEARCH_PATH stringByAppendingString:@"project"];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         NSError *error;
@@ -378,6 +391,8 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
             return;
         }
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -401,7 +416,7 @@ NSString *const ARTICLE_PATH = @"v0.9/core/Article.svc/v2/";
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 

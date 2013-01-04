@@ -15,18 +15,17 @@ NSString *const SessionReceivedNotification = @"SessionReceivedNotification";
 @interface Appacitive() {
     NSString *_apiKey;
 }
-- (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
 @end
 
 static Appacitive *sharedObject = nil;
 
 @implementation Appacitive
 
-+ (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
-    if (apiKey != nil && deploymentId != nil && ![apiKey isEqualToString:@""] && ![deploymentId isEqualToString:@""]) {
++ (id) appacitiveWithApiKey:(NSString*)apiKey {
+    if (apiKey != nil && ![apiKey isEqualToString:@""]) {
         @synchronized(self) {
             if (sharedObject == nil) {
-                sharedObject = [[Appacitive alloc] initWithApiKey:apiKey deploymentId:deploymentId];
+                sharedObject = [[Appacitive alloc] initWithApiKey:apiKey];
             }
         }
     }
@@ -41,12 +40,12 @@ static Appacitive *sharedObject = nil;
     sharedObject = object;
 }
 
-- (id) initWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId {
+- (id) initWithApiKey:(NSString*)apiKey {
     self = [super initWithHostName:HOST_NAME];
     if (self) {
         _apiKey = apiKey;
-        _deploymentId = deploymentId;
         [self fetchSession];
+        _enableLiveEnvironment = NO;
     }
     return self;
 }
@@ -59,7 +58,7 @@ static Appacitive *sharedObject = nil;
                                    @60, @"windowtime", 
                                    nil];
     
-    MKNetworkOperation *op = [self operationWithPath:@"v0.9/core/Application.svc/v2/session"
+    MKNetworkOperation *op = [self operationWithPath:@"application/session"
                                               params:params
                                               httpMethod:@"PUT"];
     op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
@@ -74,5 +73,12 @@ static Appacitive *sharedObject = nil;
         DLog(@"%@", error);
     }];
     [self enqueueOperation:op];
+}
+
+- (NSString*) environmentToUse {
+    if (_enableLiveEnvironment) {
+        return @"live";
+    }
+    return @"sandbox";
 }
 @end

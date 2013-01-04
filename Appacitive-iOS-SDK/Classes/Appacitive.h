@@ -17,7 +17,8 @@ extern NSString *const SessionReceivedNotification;
 @interface Appacitive : MKNetworkEngine
 
 @property (nonatomic, strong, readonly) NSString *session;
-@property (nonatomic, strong, readonly) NSString *deploymentId;
+@property (nonatomic, strong, readonly) NSString *deploymentId;//remove this
+@property (nonatomic, readwrite) BOOL enableLiveEnvironment;
 @property (nonatomic, readwrite) BOOL enableDebugForEachRequest;
 
 /**
@@ -26,9 +27,8 @@ extern NSString *const SessionReceivedNotification;
  This needs to be initialized when the app starts. No API call will be successful if this object does not exist.
  
  @param apiKey Application API Key.
- @param deploymentId Deployment id.
  */
-+ (id) appacitiveWithApiKey:(NSString*)apiKey deploymentId:(NSString*)deploymentId;
++ (id) appacitiveWithApiKey:(NSString*)apiKey;
 
 /**
  Retrieve the shared appacitive object.
@@ -41,4 +41,6 @@ extern NSString *const SessionReceivedNotification;
  Helper method to set the shared appacitive object.
  */
 + (void) setSharedObject:(Appacitive *)object;
+
+- (NSString*) environmentToUse;
 @end

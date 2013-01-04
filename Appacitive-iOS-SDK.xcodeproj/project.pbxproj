@@ -36,7 +36,6 @@
 		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
 		61D4A0E91635223400DB5FD9 /* APConnectionFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */; };
 		61D4A0EA1635223400DB5FD9 /* APObjectFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E61635223400DB5FD9 /* APObjectFixture.m */; };
-		61D4A0EB1635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D4A0E71635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Info.plist */; };
 		61D4A0F81635234600DB5FD9 /* APHelperMethodsFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0ED1635234500DB5FD9 /* APHelperMethodsFixture.m */; };
 		61D4A0F91635234600DB5FD9 /* Appacitive-iOS-SDK-InterfaceTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D4A0EE1635234500DB5FD9 /* Appacitive-iOS-SDK-InterfaceTests-Info.plist */; };
 		61D4A0FA1635234600DB5FD9 /* AppacitiveFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0F01635234500DB5FD9 /* AppacitiveFixture.m */; };
@@ -396,7 +395,7 @@
 		612E3E0115EDF8FD00F98FB8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Appacitive Software Pvt. Ltd";
 			};
 			buildConfigurationList = 612E3E0415EDF8FD00F98FB8 /* Build configuration list for PBXProject "Appacitive-iOS-SDK" */;
@@ -423,7 +422,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61D4A0EB1635223400DB5FD9 /* Appacitive_iOS_SDK-NetworkTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

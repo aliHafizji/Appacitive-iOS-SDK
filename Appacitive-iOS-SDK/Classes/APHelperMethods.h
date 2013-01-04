@@ -33,4 +33,6 @@
  @return A dictionary of properties
  */
 + (NSDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response;
+
++(void) addHeadersToMKNetworkOperation:(MKNetworkOperation *)operation;
 @end

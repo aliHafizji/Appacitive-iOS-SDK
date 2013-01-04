@@ -8,6 +8,7 @@
 
 #import "APHelperMethods.h"
 #import "APError.h"
+#import "Appacitive.h"
 
 #define ERROR_DOMAIN @"appyoda.appacitive.com"
 
@@ -67,5 +68,12 @@
         return properties;
     }
     return nil;
+}
+
++(void) addHeadersToMKNetworkOperation:(MKNetworkOperation *)operation {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    [operation addHeaders:
+     @{EnvironmentHeaderKey:[sharedObject environmentToUse],
+         SessionHeaderKey:sharedObject.session}];
 }
 @end
