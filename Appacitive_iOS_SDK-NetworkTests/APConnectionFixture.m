@@ -5,11 +5,12 @@
 #import "APConnection.h"
 
 SPEC_BEGIN(APConnectionTests)
-/*
+
 describe(@"APConnectionTests", ^{
 
     beforeAll(^() {
-        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY deploymentId:DEPLOYMENT_ID];
+        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
+        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
     
@@ -28,7 +29,7 @@ describe(@"APConnectionTests", ^{
         NSString *psize = [APQuery queryStringForPageSize:1];
         
         NSString *query = [NSString stringWithFormat:@"%@&%@", pnum, psize];
-        
+
         APConnection *connection = [APConnection connectionWithRelationType:@"LocationComment"];
         [APObject searchObjectsWithSchemaName:@"location" withQueryString:query
                                   successHandler:^(NSDictionary *result){
@@ -54,10 +55,10 @@ describe(@"APConnectionTests", ^{
                                       isConnectionCreated = NO;
                                   }];
         
-        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
 
-    
+     
     it(@"should return an error for creating a connection with invalid relation type", ^{
         __block BOOL isConnectionCreatFailed = NO;
         
@@ -129,9 +130,9 @@ describe(@"APConnectionTests", ^{
     });
     
 #pragma mark DELETE_TESTS
-    
-    it(@"should return an error for the delete call with valid relation name and invalid objectid", ^{
-        __block BOOL isConnectionDeletionUnsuccessful = NO;
+
+    it(@"should not return an error for the delete call with valid relation name and valid objectid", ^{
+        __block BOOL isConnectionDeletionSuccessful = NO;
         
         __block NSNumber *articleId1;
         __block NSNumber *articleId2;
@@ -152,18 +153,18 @@ describe(@"APConnectionTests", ^{
                                                      deleteConnectionsWithRelationType:@"LocationComment"
                                                      objectIds:@[articleId1,articleId2]
                                                      successHandler:^{
-                                                         isConnectionDeletionUnsuccessful = NO;
+                                                         isConnectionDeletionSuccessful = YES;
                                                      } failureHandler:^(APError *error){
-                                                         isConnectionDeletionUnsuccessful = YES;
+                                                         isConnectionDeletionSuccessful = NO;
                                                      }];
                                                     
                                                 } failureHandler:^(APError *error){
-                                                    isConnectionDeletionUnsuccessful = NO;
+                                                    isConnectionDeletionSuccessful = NO;
                                                 }];
                               } failureHandler:^(APError *error){
-                                  isConnectionDeletionUnsuccessful = NO;
+                                  isConnectionDeletionSuccessful = NO;
                               }];
-        [[expectFutureValue(theValue(isConnectionDeletionUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isConnectionDeletionSuccessful)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
 
     
@@ -187,7 +188,7 @@ describe(@"APConnectionTests", ^{
         NSString *pnum = [APQuery queryStringForPageNumber:1];
         NSString *psize = [APQuery queryStringForPageSize:1];
         NSString *query = [NSString stringWithFormat:@"%@&%@", pnum, psize];
-        
+
         [APConnection
             searchForConnectionsWithRelationType:@"locationcomment"
             withQueryString:query
@@ -207,7 +208,7 @@ describe(@"APConnectionTests", ^{
                 isConnectionDeleted = NO;
             }];
         
-        [[expectFutureValue(theValue(isConnectionDeleted)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isConnectionDeleted)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
 
 #pragma mark FETCH_TESTS
@@ -255,5 +256,5 @@ describe(@"APConnectionTests", ^{
 
         [[expectFutureValue(theValue(isFetchUnsuccesful)) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:theValue(YES)];
     });
-});*/
+});
 SPEC_END

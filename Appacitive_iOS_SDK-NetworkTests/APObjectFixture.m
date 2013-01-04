@@ -9,6 +9,7 @@ describe(@"APObject", ^{
     
     beforeAll(^() {
         __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
+        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
     
@@ -20,7 +21,6 @@ describe(@"APObject", ^{
     
     it(@"should return non-nil for search API call with valid schema name", ^{
         __block BOOL isSearchSuccessful = NO;
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         
         [APObject searchAllObjectsWithSchemaName:@"Comment"
                                      successHandler:^(NSDictionary *result){
@@ -69,15 +69,15 @@ describe(@"APObject", ^{
     });
     
     it(@"should return an error for search API call with invalid query string", ^(){
-        __block BOOL isSearchSuccessful = NO;
+        __block BOOL isSearchUnSuccessful = NO;
         [APObject searchObjectsWithSchemaName:@"location"
-                              withQueryString:@"abc=*1"
+                              withQueryString:@"abc=++1"
                                successHandler:^(NSDictionary *result) {
-                                   isSearchSuccessful = NO;
+                                   isSearchUnSuccessful = NO;
                                } failureHandler:^(APError *error) {
-                                   isSearchSuccessful = YES;
+                                   isSearchUnSuccessful = YES;
                                }];
-        [[expectFutureValue(theValue(isSearchSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+        [[expectFutureValue(theValue(isSearchUnSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
 
     });
     
@@ -91,7 +91,6 @@ describe(@"APObject", ^{
         
         NSString *query = [NSString stringWithFormat:@"%@&%@", pnumString, psizeString];
         
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [APObject searchObjectsWithSchemaName:@"Comment" withQueryString:query
                                   successHandler:^(NSDictionary *result){
                                       NSArray *articles = result[@"articles"];
@@ -251,28 +250,11 @@ describe(@"APObject", ^{
         [[expectFutureValue(theValue(isDeleteUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
-#pragma mark BULK_DELETE_TEST
-    
-    it(@"should not return an error for the bulk delete API call improper schema name", ^{
-        __block BOOL isDeleteSuccesful = NO;
-        
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
-        [APObject deleteObjectsWithIds:@[@"12082385777721614", @"12094464603586988"]
-                  schemaName:@"Comment"
-                  successHandler:^{
-                      isDeleteSuccesful = YES;
-                  } failureHandler:^(APError *error) {
-                      isDeleteSuccesful = NO;
-                  }];
-        [[expectFutureValue(theValue(isDeleteSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
-    });
-    
 #pragma mark GRAPH_QUERY_TESTS
     
     it(@"should not return an error for a valid filter graph query", ^{
         __block BOOL isFilterQuerySuccessful = NO;
         
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [APObject applyFilterGraphQuery:@"{\"Children\": [{\"Edge\": \"LocationAlbum\",\"Name\": \"Images\"}, {\"Edge\": \"LocationComment\",\"Name\": \"Comments\"}],\"Input\": [926256],\"Name\": \"Location\",\"Type\": \"Location\"}"
          
                          successHandler:^(NSDictionary* result) {
@@ -287,7 +269,6 @@ describe(@"APObject", ^{
     it(@"should not return an error for a valid projection graph query", ^{
         __block BOOL isFilterQuerySuccessful = NO;
         
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [APObject applyProjectionGraphQuery:@"{\"Children\": [{\"Edge\": \"LocationAlbum\",\"Name\": \"Images\"}, {\"Edge\": \"LocationComment\",\"Name\": \"Comments\"}],\"Input\": [926256],\"Name\": \"Location\",\"Type\": \"Location\"}"
          
                          successHandler:^(NSDictionary* result) {
@@ -299,5 +280,4 @@ describe(@"APObject", ^{
         [[expectFutureValue(theValue(isFilterQuerySuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
 });
-
 SPEC_END

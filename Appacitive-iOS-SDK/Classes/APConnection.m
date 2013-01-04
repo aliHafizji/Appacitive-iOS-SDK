@@ -15,7 +15,7 @@
 
 @implementation APConnection
 
-#define CONNECTION_PATH @"v0.9/core/Connection.svc/v2/"
+#define CONNECTION_PATH @"connection/"
 
 #pragma mark initialization methods
 
@@ -48,9 +48,9 @@
 + (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/all", sharedObject.deploymentId, relationType];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/find/all", relationType];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         if (queryString) {
@@ -58,6 +58,7 @@
         }
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
@@ -81,7 +82,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -98,12 +99,14 @@
 - (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", sharedObject.deploymentId, self.relationType];
+        NSString *path = [CONNECTION_PATH stringByAppendingString:self.relationType];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self parameters] httpMethod:@"PUT"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -128,7 +131,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -197,9 +200,9 @@
 + (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/find/byidlist", sharedObject.deploymentId, relationType];
+        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/find/byidlist", relationType];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         path = [path stringByAppendingString:@"&idlist="];
         
@@ -212,6 +215,8 @@
         }];
 
         MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
@@ -233,7 +238,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -250,14 +255,16 @@
 + (void) deleteConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/_bulk", sharedObject.deploymentId, relationType];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/_bulk", relationType];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:params httpMethod:@"POST"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [op onCompletion:^(MKNetworkOperation *completionOperation) {
@@ -281,7 +288,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 
 }
@@ -297,12 +304,14 @@
 - (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@/%lld", sharedObject.deploymentId, self.relationType, self.objectId.longLongValue];
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%lld", self.relationType, self.objectId.longLongValue];
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op onCompletion:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
@@ -325,7 +334,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
