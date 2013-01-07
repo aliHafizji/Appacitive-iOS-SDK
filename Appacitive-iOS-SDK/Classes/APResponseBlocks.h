@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-@class APError;
+@class APError, APUser;
 
 /**
  Success block that returns nothing.
@@ -22,3 +22,5 @@ typedef void (^APResultSuccessBlock)(NSDictionary *result);
  Block parameter expected for a failure response which returns a 'AYError'.
  */
 typedef void (^APFailureBlock)(APError *error);
+
+typedef void (^APUserSuccessBlock)(APUser* user);

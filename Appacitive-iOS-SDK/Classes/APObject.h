@@ -17,7 +17,15 @@ extern NSString *const ARTICLE_PATH;
  It represents an instance of a schema. 
  Data can be stored in key-value pairs in the properties and attributes fields.
  */
-@interface APObject : NSObject
+@interface APObject : NSObject {
+@protected
+    NSString *_lastModifiedBy;
+    NSDate *_utcDateCreated;
+    NSDate *_utcLastUpdatedDate;
+    NSNumber *_revision;
+    NSMutableArray *_properties;
+    NSMutableArray *_attributes;
+}
 
 @property (nonatomic, strong) NSString *createdBy;
 @property (nonatomic, strong) NSNumber *objectId;
@@ -222,4 +230,6 @@ extern NSString *const ARTICLE_PATH;
  @param failureBlock Block invoked when query execution fails.
  */
 + (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+- (NSMutableDictionary*) postParamerters;
 @end
