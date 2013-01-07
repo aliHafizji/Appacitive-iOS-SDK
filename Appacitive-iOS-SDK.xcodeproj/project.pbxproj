@@ -18,9 +18,6 @@
 		39510000989F40589B1E62B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE18E91493A45BE9CFB5B14 /* libPods.a */; };
 		5C7690AFDA464064B61511E6 /* libPods-Appacitive_iOS_AsyncTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6E2583A5F5480EAE5D2808 /* libPods-Appacitive_iOS_AsyncTests.a */; };
 		6102BAEA169A93E300D78642 /* APBlobFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6102BAE9169A93E300D78642 /* APBlobFixture.m */; };
-		6102BAED169A997C00D78642 /* APUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6102BAEB169A997C00D78642 /* APUser.h */; };
-		6102BAEE169A997C00D78642 /* APUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6102BAEC169A997C00D78642 /* APUser.m */; };
-		6102BAF1169AA66200D78642 /* APUserFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6102BAF0169AA66200D78642 /* APUserFixture.m */; };
 		612CCDFA15FDA37000A78F3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61388C1515F8667000C79F1F /* CoreLocation.framework */; };
 		612E3E0E15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
 		612E3E1C15EDF8FE00F98FB8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */; };
@@ -38,8 +35,11 @@
 		616A6A1115F4848D009A8578 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1015F4848D009A8578 /* Security.framework */; };
 		616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
 		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
-		618FEE51169AB997006A1888 /* APUserDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 618FEE4F169AB997006A1888 /* APUserDetails.h */; };
-		618FEE52169AB997006A1888 /* APUserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE50169AB997006A1888 /* APUserDetails.m */; };
+		618FEE55169AEAEC006A1888 /* APUserFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE54169AEAEC006A1888 /* APUserFixture.m */; };
+		618FEE5A169AEB04006A1888 /* APUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 618FEE56169AEB04006A1888 /* APUser.h */; };
+		618FEE5B169AEB04006A1888 /* APUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE57169AEB04006A1888 /* APUser.m */; };
+		618FEE5C169AEB04006A1888 /* APUserDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 618FEE58169AEB04006A1888 /* APUserDetails.h */; };
+		618FEE5D169AEB04006A1888 /* APUserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE59169AEB04006A1888 /* APUserDetails.m */; };
 		6191E994169A926A00F87656 /* test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 6191E993169A926A00F87656 /* test_image.png */; };
 		61D4A0E91635223400DB5FD9 /* APConnectionFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */; };
 		61D4A0EA1635223400DB5FD9 /* APObjectFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D4A0E61635223400DB5FD9 /* APObjectFixture.m */; };
@@ -87,9 +87,6 @@
 		2CEB0E93162BD2AB0074DA50 /* Appacitive_iOS_SDK-NetworkTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Appacitive_iOS_SDK-NetworkTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C16A64AB7FB464E91839AF3 /* Pods-Appacitive_iOS_AsyncTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appacitive_iOS_AsyncTests.xcconfig"; path = "Pods/Pods-Appacitive_iOS_AsyncTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		6102BAE9169A93E300D78642 /* APBlobFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APBlobFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APBlobFixture.m"; sourceTree = SOURCE_ROOT; };
-		6102BAEB169A997C00D78642 /* APUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APUser.h; sourceTree = SOURCE_ROOT; };
-		6102BAEC169A997C00D78642 /* APUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APUser.m; sourceTree = SOURCE_ROOT; };
-		6102BAF0169AA66200D78642 /* APUserFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APUserFixture.m; sourceTree = SOURCE_ROOT; };
 		612E3E0A15EDF8FD00F98FB8 /* libAppacitive-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAppacitive-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		612E3E1A15EDF8FE00F98FB8 /* Appacitive-iOS-SDK-InterfaceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Appacitive-iOS-SDK-InterfaceTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,8 +103,11 @@
 		616A6A1015F4848D009A8578 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		616A6A1215F484E7009A8578 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		616A6A1415F4850E009A8578 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		618FEE4F169AB997006A1888 /* APUserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APUserDetails.h; sourceTree = SOURCE_ROOT; };
-		618FEE50169AB997006A1888 /* APUserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APUserDetails.m; sourceTree = SOURCE_ROOT; };
+		618FEE54169AEAEC006A1888 /* APUserFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUserFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APUserFixture.m"; sourceTree = SOURCE_ROOT; };
+		618FEE56169AEB04006A1888 /* APUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APUser.h; path = "Appacitive-iOS-SDK/Classes/APUser.h"; sourceTree = SOURCE_ROOT; };
+		618FEE57169AEB04006A1888 /* APUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUser.m; path = "Appacitive-iOS-SDK/Classes/APUser.m"; sourceTree = SOURCE_ROOT; };
+		618FEE58169AEB04006A1888 /* APUserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APUserDetails.h; path = "Appacitive-iOS-SDK/Classes/APUserDetails.h"; sourceTree = SOURCE_ROOT; };
+		618FEE59169AEB04006A1888 /* APUserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUserDetails.m; path = "Appacitive-iOS-SDK/Classes/APUserDetails.m"; sourceTree = SOURCE_ROOT; };
 		6191E993169A926A00F87656 /* test_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test_image.png; path = "Appacitive_iOS_SDK-NetworkTests/test_image.png"; sourceTree = SOURCE_ROOT; };
 		61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APConnectionFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APConnectionFixture.m"; sourceTree = SOURCE_ROOT; };
 		61D4A0E61635223400DB5FD9 /* APObjectFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APObjectFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APObjectFixture.m"; sourceTree = SOURCE_ROOT; };
@@ -186,7 +186,7 @@
 		2CEB0E97162BD2AB0074DA50 /* Appacitive_iOS_SDK-NetworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				6102BAF0169AA66200D78642 /* APUserFixture.m */,
+				618FEE54169AEAEC006A1888 /* APUserFixture.m */,
 				6102BAE9169A93E300D78642 /* APBlobFixture.m */,
 				6191E993169A926A00F87656 /* test_image.png */,
 				61D4A0E51635223400DB5FD9 /* APConnectionFixture.m */,
@@ -292,6 +292,10 @@
 		612E3E3415EDF9B200F98FB8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				618FEE56169AEB04006A1888 /* APUser.h */,
+				618FEE57169AEB04006A1888 /* APUser.m */,
+				618FEE58169AEB04006A1888 /* APUserDetails.h */,
+				618FEE59169AEB04006A1888 /* APUserDetails.m */,
 				613E67EC161014B6005D591C /* APBlob.h */,
 				613E67ED161014B6005D591C /* APBlob.m */,
 				61D62BFE15F8857100C57AA3 /* APConnection.h */,
@@ -308,10 +312,6 @@
 				61D62C0915F8857100C57AA3 /* APQuery.m */,
 				61D62C0A15F8857100C57AA3 /* APResponseBlocks.h */,
 				6169128E161160110086C006 /* AppacitiveSDK.h */,
-				6102BAEB169A997C00D78642 /* APUser.h */,
-				6102BAEC169A997C00D78642 /* APUser.m */,
-				618FEE4F169AB997006A1888 /* APUserDetails.h */,
-				618FEE50169AB997006A1888 /* APUserDetails.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -347,8 +347,8 @@
 				6169128C16115C3D0086C006 /* NSString+APString.h in Headers */,
 				6169128F161160110086C006 /* AppacitiveSDK.h in Headers */,
 				61691292161160790086C006 /* NSDictionary+APDictionary.h in Headers */,
-				6102BAED169A997C00D78642 /* APUser.h in Headers */,
-				618FEE51169AB997006A1888 /* APUserDetails.h in Headers */,
+				618FEE5A169AEB04006A1888 /* APUser.h in Headers */,
+				618FEE5C169AEB04006A1888 /* APUserDetails.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +525,7 @@
 				61D4A0E91635223400DB5FD9 /* APConnectionFixture.m in Sources */,
 				61D4A0EA1635223400DB5FD9 /* APObjectFixture.m in Sources */,
 				6102BAEA169A93E300D78642 /* APBlobFixture.m in Sources */,
-				6102BAF1169AA66200D78642 /* APUserFixture.m in Sources */,
+				618FEE55169AEAEC006A1888 /* APUserFixture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,8 +542,8 @@
 				613E67EF161014B6005D591C /* APBlob.m in Sources */,
 				6169128D16115C3D0086C006 /* NSString+APString.m in Sources */,
 				61691293161160790086C006 /* NSDictionary+APDictionary.m in Sources */,
-				6102BAEE169A997C00D78642 /* APUser.m in Sources */,
-				618FEE52169AB997006A1888 /* APUserDetails.m in Sources */,
+				618FEE5B169AEB04006A1888 /* APUser.m in Sources */,
+				618FEE5D169AEB04006A1888 /* APUserDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
