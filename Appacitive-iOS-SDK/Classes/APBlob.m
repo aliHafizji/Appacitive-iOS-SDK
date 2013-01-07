@@ -29,15 +29,18 @@
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType uploadProgressBlock:(MKNKProgressBlock)uploadProgressBlock successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"blob?deploymentId=%@", sharedObject.deploymentId];
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSString *path = [ARTICLE_PATH stringByAppendingString:@"blob/"];
+        
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"POST"];
+        
         [op addFile:fileName forKey:@"fileUpload" mimeType:mimeType];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         [op onUploadProgressChanged:^(double progress) {
-            DLog(@"Download progress:%lf", progress);
+            DLog(@"Upload progress:%lf", progress);
             if (uploadProgressBlock != nil) {
                 uploadProgressBlock(progress);
             }
@@ -64,7 +67,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
     }
 }
 
@@ -84,10 +87,12 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject) {
         
-        NSMutableDictionary *queryParams = @{@"session":sharedObject.session, @"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         NSString *path = [url stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithURLString:path];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
         [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:fileName append:YES]];
         
         [op onDownloadProgressChanged:^(double progress) {
@@ -119,7 +124,7 @@
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appacitive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate")
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate")
     }
 }
 @end
