@@ -33,12 +33,12 @@
 
 #pragma mark search methods
 
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successHandler {
-    [APConnection searchForAllConnectionsWithRelationType:relationType successHandler:successHandler failureHandler:nil];
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock {
+    [APConnection searchForAllConnectionsWithRelationType:relationType successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
-    [APConnection searchForConnectionsWithRelationType:relationType withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    [APConnection searchForConnectionsWithRelationType:relationType withQueryString:nil successHandler:successBlock failureHandler:failureBlock];
 }
 
 + (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {

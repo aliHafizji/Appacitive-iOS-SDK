@@ -13,10 +13,7 @@
 @interface APBlob : APObject
 
 /**
- Helper method to upload a file to the remote server.
- 
- @param fileName The file name with the path to upload.
- @param mimeType Mime type of the file being uploaded.
+ @see uploadFileWithName:mimeType:successHandler:
  */
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType;
 
@@ -51,19 +48,12 @@
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType uploadProgressBlock:(MKNKProgressBlock)uploadProgressBlock successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
- Helper method to download a file from the remote server.
- 
- @param url URL string pointing to the remote file.
- @param fileName The file with the path to download to.
+ @see downloadFileFromRemoteUrl:toFile:successHandler:failureHandler:
  */
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString*)fileName;
 
 /**
- Helper method to download a file from the remote server.
- 
- @param url URL string pointing to the remote file.
- @param fileName The file with the path to download to.
- @param successBlock Block invoked when download is successful.
+ @see downloadFileFromRemoteUrl:toFile:successHandler:failureHandler:
  */
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString *)fileName successHandler:(APSuccessBlock)successBlock;
 

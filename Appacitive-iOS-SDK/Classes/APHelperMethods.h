@@ -34,5 +34,10 @@
  */
 + (NSDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response;
 
+/**
+ Helper method to add the session id and environment to the request headers.
+ 
+ @param operation The operation to add the headers to.
+ */
 +(void) addHeadersToMKNetworkOperation:(MKNetworkOperation *)operation;
 @end

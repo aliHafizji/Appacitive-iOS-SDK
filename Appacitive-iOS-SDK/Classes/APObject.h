@@ -60,16 +60,16 @@ extern NSString *const ARTICLE_PATH;
 /**
  @see searchAllObjectsWithSchemaName:successHandler:failureHandler:
  */
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler;
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock;
 
 /**
  Searches for all APObjects of a particular schema.
  
  @param schemaName The schema that the objects should belong to.
- @param successHandler Block invoked when the search call is successful.
+ @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when search call fails.
  */
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock;
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see searchObjectsWithSchemaName:withQueryString:successHandler:failureHandler:
@@ -81,8 +81,8 @@ extern NSString *const ARTICLE_PATH;
  
  @param schemaName The schema of the objects you want to search.
  @param queryString SQL kind of query to search for specific objects. For more info http://appacitive.com
- @param successHandler Block invoked when the search call is successful.
- @param failureHandler Block invoked when the search call fails.
+ @param successBlock Block invoked when the search call is successful.
+ @param failureBlock Block invoked when the search call fails.
  */
 + (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 

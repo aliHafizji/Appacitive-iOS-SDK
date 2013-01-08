@@ -42,13 +42,18 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/appacitiveWithApiKey:deploymentId:">&nbsp;&nbsp;&nbsp;&nbsp;+ appacitiveWithApiKey:deploymentId:</option>
+	<option value="//api/name/appacitiveWithApiKey:">&nbsp;&nbsp;&nbsp;&nbsp;+ appacitiveWithApiKey:</option>
 	
 	<option value="//api/name/setSharedObject:">&nbsp;&nbsp;&nbsp;&nbsp;+ setSharedObject:</option>
 	
 	<option value="//api/name/sharedObject">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedObject</option>
 	
 	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/environmentToUse">&nbsp;&nbsp;&nbsp;&nbsp;- environmentToUse</option>
 	
 	
 	
@@ -76,7 +81,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appacitiveWithApiKey:deploymentId:">appacitiveWithApiKey:deploymentId:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appacitiveWithApiKey:">appacitiveWithApiKey:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setSharedObject:">setSharedObject:</a></span></li>
 	
@@ -85,6 +90,12 @@
 </ul></li>
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/environmentToUse">environmentToUse</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -140,7 +151,7 @@ All the network requests are queued up here and sent to the remote service.</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/appacitiveWithApiKey:deploymentId:">+&nbsp;appacitiveWithApiKey:deploymentId:</a></code>
+		<code><a href="#//api/name/appacitiveWithApiKey:">+&nbsp;appacitiveWithApiKey:</a></code>
 		<span class="tooltip"><p>Creates a shared object.</p></span>
 	</span>
 	
@@ -156,6 +167,13 @@ All the network requests are queued up here and sent to the remote service.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/setSharedObject:">+&nbsp;setSharedObject:</a></code>
 		<span class="tooltip"><p>Helper method to set the shared appacitive object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/environmentToUse">&ndash;&nbsp;environmentToUse</a></code>
+		<span class="tooltip"><p>By default the environment is set to sandbox. To change to live set the enableLiveEnvironment property of the Appacitive object.</p></span>
 	</span>
 	
 	
@@ -175,8 +193,8 @@ All the network requests are queued up here and sent to the remote service.</p>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/appacitiveWithApiKey:deploymentId:" title="appacitiveWithApiKey:deploymentId:"></a>
-	<h3 class="subsubtitle method-title">appacitiveWithApiKey:deploymentId:</h3>
+	<a name="//api/name/appacitiveWithApiKey:" title="appacitiveWithApiKey:"></a>
+	<h3 class="subsubtitle method-title">appacitiveWithApiKey:</h3>
 	
 	
 	
@@ -186,7 +204,7 @@ All the network requests are queued up here and sent to the remote service.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (id)appacitiveWithApiKey:(NSString *)<em>apiKey</em> deploymentId:(NSString *)<em>deploymentId</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (id)appacitiveWithApiKey:(NSString *)<em>apiKey</em></code></div>
 
     
 	
@@ -196,11 +214,6 @@ All the network requests are queued up here and sent to the remote service.</p>
 		<dl class="argument-def parameter-def">
 			<dt><em>apiKey</em></dt>
 			<dd><p>Application API Key.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>deploymentId</em></dt>
-			<dd><p>Deployment id.</p></dd>
 		</dl>
 		
 	</div>
@@ -290,7 +303,7 @@ All the network requests are queued up here and sent to the remote service.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>@discussion This method will return nil if <a href="#//api/name/appacitiveWithApiKey:deploymentId:">appacitiveWithApiKey:deploymentId:</a> is not called.</p>
+		<p>@discussion This method will return nil if appacitiveWithApiKey:deploymentId: is not called.</p>
 	</div>
 	
 	
@@ -311,6 +324,53 @@ All the network requests are queued up here and sent to the remote service.</p>
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/environmentToUse" title="environmentToUse"></a>
+	<h3 class="subsubtitle method-title">environmentToUse</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>By default the environment is set to sandbox. To change to live set the enableLiveEnvironment property of the Appacitive object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)environmentToUse</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The environment to use</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Appacitive.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 				</div>
 				<div class="main-navigation navigation-bottom">
@@ -322,7 +382,7 @@ All the network requests are queued up here and sent to the remote service.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-11-26)</span><br />
+						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-01-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

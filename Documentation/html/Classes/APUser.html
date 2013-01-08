@@ -40,19 +40,29 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/authenticateUserWithFacebook:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithFacebook:</option>
+	<option value="//api/name/authenticateUserWithFacebook:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithFacebook:successHandler:</option>
 	
-	<option value="//api/name/authenticateUserWithUsername:password:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithUsername:password:successHandler:</option>
+	<option value="//api/name/authenticateUserWithFacebook:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithFacebook:successHandler:failureHandler:</option>
 	
-	<option value="//api/name/authenticateUserWithUsername:password:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithUsername:password:successHandler:failureHandler:</option>
+	<option value="//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:</option>
 	
-	<option value="//api/name/createUserWithMinimalUserDetails:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ createUserWithMinimalUserDetails:successHandler:</option>
+	<option value="//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</option>
 	
-	<option value="//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ createUserWithMinimalUserDetails:successHandler:failureHandler:</option>
+	<option value="//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithTwitter:oauthSecret:successHandler:</option>
 	
-	<option value="//api/name/createUserWithUserDetails:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ createUserWithUserDetails:successHandler:failureHandler:</option>
+	<option value="//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</option>
+	
+	<option value="//api/name/authenticateUserWithUserName:password:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithUserName:password:successHandler:</option>
+	
+	<option value="//api/name/authenticateUserWithUserName:password:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ authenticateUserWithUserName:password:successHandler:failureHandler:</option>
+	
+	<option value="//api/name/createUserWithDetails:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ createUserWithDetails:successHandler:</option>
+	
+	<option value="//api/name/createUserWithDetails:successHandler:failuderHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ createUserWithDetails:successHandler:failuderHandler:</option>
 	
 	<option value="//api/name/currentUser">&nbsp;&nbsp;&nbsp;&nbsp;+ currentUser</option>
+	
+	<option value="//api/name/setCurrentUser:">&nbsp;&nbsp;&nbsp;&nbsp;+ setCurrentUser:</option>
 	
 	
 	
@@ -70,7 +80,9 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Getting the current user *">Getting the current user *</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Authenticating a user">Authenticating a user</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Create a new user">Create a new user</a></span></li>
 	
 </ul></li>
 
@@ -82,19 +94,29 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithFacebook:">authenticateUserWithFacebook:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithFacebook:successHandler:">authenticateUserWithFacebook:successHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithUsername:password:successHandler:">authenticateUserWithUsername:password:successHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithFacebook:successHandler:failureHandler:">authenticateUserWithFacebook:successHandler:failureHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithUsername:password:successHandler:failureHandler:">authenticateUserWithUsername:password:successHandler:failureHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:">authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:">createUserWithMinimalUserDetails:successHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:">authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:">createUserWithMinimalUserDetails:successHandler:failureHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:">authenticateUserWithTwitter:oauthSecret:successHandler:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createUserWithUserDetails:successHandler:failureHandler:">createUserWithUserDetails:successHandler:failureHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:">authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithUserName:password:successHandler:">authenticateUserWithUserName:password:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateUserWithUserName:password:successHandler:failureHandler:">authenticateUserWithUserName:password:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createUserWithDetails:successHandler:">createUserWithDetails:successHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createUserWithDetails:successHandler:failuderHandler:">createUserWithDetails:successHandler:failuderHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUser">currentUser</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setCurrentUser:">setCurrentUser:</a></span></li>
 	
 </ul></li>
 
@@ -139,56 +161,107 @@
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						<a title="Getting the current user *" name="task_Getting the current user *"></a>
 						
-<h3 class="subsubtitle task-title">Getting the current user *</h3>
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/currentUser">+&nbsp;currentUser</a></code>
-		<span class="tooltip"><p>Gives a handle to the currently authenticated user.</p></span>
+		<span class="tooltip"><p>Returns the current authenticated user.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/authenticateUserWithFacebook:">+&nbsp;authenticateUserWithFacebook:</a></code>
-		<span class="tooltip"><p>Authenticate a user with Facebook. This method should be invoked after login with Facebook.</p></span>
+		<code><a href="#//api/name/setCurrentUser:">+&nbsp;setCurrentUser:</a></code>
+		<span class="tooltip"><p>Helper method to set the current user.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Authenticating a user" name="task_Authenticating a user"></a>
+						<h3 class="subsubtitle task-title">Authenticating a user</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/authenticateUserWithUserName:password:successHandler:">+&nbsp;authenticateUserWithUserName:password:successHandler:</a></code>
+		<span class="tooltip"><p>authenticateUserWithUserName:password:successHandler:failureHandler</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/authenticateUserWithUsername:password:successHandler:">+&nbsp;authenticateUserWithUsername:password:successHandler:</a></code>
-		<span class="tooltip"><p>authenticateUserWithUsername:(NSString*)username password:successHandler:failureHandler:</p></span>
+		<code><a href="#//api/name/authenticateUserWithUserName:password:successHandler:failureHandler:">+&nbsp;authenticateUserWithUserName:password:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method to authenticate a user</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/authenticateUserWithUsername:password:successHandler:failureHandler:">+&nbsp;authenticateUserWithUsername:password:successHandler:failureHandler:</a></code>
-		<span class="tooltip"><p>Authenticate user with <a href="../Classes/Appacitive.html">Appacitive</a>.</p></span>
+		<code><a href="#//api/name/authenticateUserWithFacebook:successHandler:">+&nbsp;authenticateUserWithFacebook:successHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/authenticateUserWithFacebook:successHandler:failureHandler:">authenticateUserWithFacebook:successHandler:failureHandler:</a></p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:">+&nbsp;createUserWithMinimalUserDetails:successHandler:</a></code>
-		<span class="tooltip"><p><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:">createUserWithMinimalUserDetails:successHandler:failureHandler:</a></p></span>
+		<code><a href="#//api/name/authenticateUserWithFacebook:successHandler:failureHandler:">+&nbsp;authenticateUserWithFacebook:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method to authenticate a user with facebook.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:">+&nbsp;createUserWithMinimalUserDetails:successHandler:failureHandler:</a></code>
-		<span class="tooltip"><p>Create a user with the minimum set of fields.</p></span>
+		<code><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:">+&nbsp;authenticateUserWithTwitter:oauthSecret:successHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:">authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</a></p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/createUserWithUserDetails:successHandler:failureHandler:">+&nbsp;createUserWithUserDetails:successHandler:failureHandler:</a></code>
-		<span class="tooltip"><p>Create a user</p></span>
+		<code><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:">+&nbsp;authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method to authenticate a user with Twitter.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:">+&nbsp;authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:">authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:">+&nbsp;authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method to authenticate a user with Twitter.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Create a new user" name="task_Create a new user"></a>
+						<h3 class="subsubtitle task-title">Create a new user</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createUserWithDetails:successHandler:">+&nbsp;createUserWithDetails:successHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/createUserWithDetails:successHandler:failuderHandler:">createUserWithDetails:successHandler:failuderHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createUserWithDetails:successHandler:failuderHandler:">+&nbsp;createUserWithDetails:successHandler:failuderHandler:</a></code>
+		<span class="tooltip"><p>Method to create a new user</p></span>
 	</span>
 	
 	
@@ -208,156 +281,18 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/authenticateUserWithFacebook:" title="authenticateUserWithFacebook:"></a>
-	<h3 class="subsubtitle method-title">authenticateUserWithFacebook:</h3>
+	<a name="//api/name/authenticateUserWithFacebook:successHandler:" title="authenticateUserWithFacebook:successHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithFacebook:successHandler:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Authenticate a user with Facebook. This method should be invoked after login with Facebook.</p>
+		<p><a href="#//api/name/authenticateUserWithFacebook:successHandler:failureHandler:">authenticateUserWithFacebook:successHandler:failureHandler:</a></p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithFacebook:(NSString *)<em>accessToken</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>accessToken</em></dt>
-			<dd><p>The facebook access token received after login.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">APUser.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/authenticateUserWithUsername:password:successHandler:" title="authenticateUserWithUsername:password:successHandler:"></a>
-	<h3 class="subsubtitle method-title">authenticateUserWithUsername:password:successHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>authenticateUserWithUsername:(NSString*)username password:successHandler:failureHandler:</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithUsername:(NSString *)<em>username</em> password:(NSString *)<em>password</em> successHandler:(APSuccessBlock)<em>successBlock</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">APUser.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/authenticateUserWithUsername:password:successHandler:failureHandler:" title="authenticateUserWithUsername:password:successHandler:failureHandler:"></a>
-	<h3 class="subsubtitle method-title">authenticateUserWithUsername:password:successHandler:failureHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Authenticate user with <a href="../Classes/Appacitive.html">Appacitive</a>.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithUsername:(NSString *)<em>username</em> password:(NSString *)<em>password</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>username</em></dt>
-			<dd><p>The username of the user</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>password</em></dt>
-			<dd><p>The password of the user</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>successBlock</em></dt>
-			<dd><p>Block invoked when authenticate succeeds</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">APUser.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/createUserWithMinimalUserDetails:successHandler:" title="createUserWithMinimalUserDetails:successHandler:"></a>
-	<h3 class="subsubtitle method-title">createUserWithMinimalUserDetails:successHandler:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:">createUserWithMinimalUserDetails:successHandler:failureHandler:</a></p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)createUserWithMinimalUserDetails:(APUserDetails *)<em>userDetails</em> successHandler:(APSuccessBlock)<em>successBlock</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithFacebook:(NSString *)<em>accessToken</em> successHandler:(APSuccessBlock)<em>successBlock</em></code></div>
 
     
 	
@@ -375,7 +310,7 @@
 		<h4 class="method-subtitle">See Also</h4>
 		<ul>
 			
-			<li><code><p><a href="#//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:">+ createUserWithMinimalUserDetails:successHandler:failureHandler:</a></p></code></li>
+			<li><code><p><a href="#//api/name/authenticateUserWithFacebook:successHandler:failureHandler:">+ authenticateUserWithFacebook:successHandler:failureHandler:</a></p></code></li>
 			
 		</ul>
 	</div>
@@ -391,18 +326,18 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/createUserWithMinimalUserDetails:successHandler:failureHandler:" title="createUserWithMinimalUserDetails:successHandler:failureHandler:"></a>
-	<h3 class="subsubtitle method-title">createUserWithMinimalUserDetails:successHandler:failureHandler:</h3>
+	<a name="//api/name/authenticateUserWithFacebook:successHandler:failureHandler:" title="authenticateUserWithFacebook:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithFacebook:successHandler:failureHandler:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Create a user with the minimum set of fields.</p>
+		<p>Method to authenticate a user with facebook.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (void)createUserWithMinimalUserDetails:(APUserDetails *)<em>userDetails</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithFacebook:(NSString *)<em>accessToken</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
 
     
 	
@@ -410,21 +345,294 @@
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>userDetails</em></dt>
-			<dd><p>Contains the minimum required fields (for more info visit appacitive.com)</p></dd>
+			<dt><em>accessToken</em></dt>
+			<dd><p>The access token retrieved after a succesful facebook login.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>successBlock</em></dt>
-			<dd><p>Block invoked when create user call is successful</p></dd>
+			<dd><p>Block invoked when authentication with facebook is successful.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>failureBlock</em></dt>
-			<dd><p>Block invoked when create user call is unsuccessful</p></dd>
+			<dd><p>Block invoked when authentication with facebook is unsuccessful.</p></dd>
 		</dl>
 		
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If successful the <a href="#//api/name/currentUser">currentUser</a> is set to the authenticated user.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:" title="authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:">authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithTwitter:(NSString *)<em>oauthToken</em> oauthSecret:(NSString *)<em>oauthSecret</em> consumerKey:(NSString *)<em>consumerKey</em> consumerSecret:(NSString *)<em>consumerSecret</em> successHandler:(APSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:">+ authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:" title="authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithTwitter:oauthSecret:consumerKey:consumerSecret:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method to authenticate a user with Twitter.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithTwitter:(NSString *)<em>oauthToken</em> oauthSecret:(NSString *)<em>oauthSecret</em> consumerKey:(NSString *)<em>consumerKey</em> consumerSecret:(NSString *)<em>consumerSecret</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>oauthToken</em></dt>
+			<dd><p>The oauth token retrieved after twitter login.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>oauthSecret</em></dt>
+			<dd><p>The oauth secret.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>consumerKey</em></dt>
+			<dd><p>The consumer key of the application created on twitter.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>consumerSecret</em></dt>
+			<dd><p>The consumer secret of the application created on twitter.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when authentication with twitter is successful.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when authentication with twitter is unsuccessful.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If successful the <a href="#//api/name/currentUser">currentUser</a> is set to the authenticated user.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:" title="authenticateUserWithTwitter:oauthSecret:successHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithTwitter:oauthSecret:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:">authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithTwitter:(NSString *)<em>oauthToken</em> oauthSecret:(NSString *)<em>oauthSecret</em> successHandler:(APSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:">+ authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:" title="authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithTwitter:oauthSecret:successHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method to authenticate a user with Twitter.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithTwitter:(NSString *)<em>oauthToken</em> oauthSecret:(NSString *)<em>oauthSecret</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>oauthToken</em></dt>
+			<dd><p>The oauth token retrieved after twitter login.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>oauthSecret</em></dt>
+			<dd><p>The oauth secret.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when login with twitter is successful.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when login with twitter is unsuccessful.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If successful the <a href="#//api/name/currentUser">currentUser</a> is set to the authenticated user.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authenticateUserWithUserName:password:successHandler:" title="authenticateUserWithUserName:password:successHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithUserName:password:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>authenticateUserWithUserName:password:successHandler:failureHandler</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithUserName:(NSString *)<em>userName</em> password:(NSString *)<em>password</em> successHandler:(APSuccessBlock)<em>successBlock</em></code></div>
+
+    
 	
 	
 	
@@ -447,18 +655,18 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/createUserWithUserDetails:successHandler:failureHandler:" title="createUserWithUserDetails:successHandler:failureHandler:"></a>
-	<h3 class="subsubtitle method-title">createUserWithUserDetails:successHandler:failureHandler:</h3>
+	<a name="//api/name/authenticateUserWithUserName:password:successHandler:failureHandler:" title="authenticateUserWithUserName:password:successHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">authenticateUserWithUserName:password:successHandler:failureHandler:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Create a user</p>
+		<p>Method to authenticate a user</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (void)createUserWithUserDetails:(APUserDetails *)<em>userDetails</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (void)authenticateUserWithUserName:(NSString *)<em>userName</em> password:(NSString *)<em>password</em> successHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
 
     
 	
@@ -466,18 +674,23 @@
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>userDetails</em></dt>
-			<dd><p>Contains the details of the new user</p></dd>
+			<dt><em>userName</em></dt>
+			<dd><p>The username of the user to authenticate.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password of the user to authenticate.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>successBlock</em></dt>
-			<dd><p>Block invoked when create user call is successful</p></dd>
+			<dd><p>Block invoked when authentication is successful.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>failureBlock</em></dt>
-			<dd><p>Block invoked when create user call is unsuccessful</p></dd>
+			<dd><p>Block invoked when authentication is unsuccessful.</p></dd>
 		</dl>
 		
 	</div>
@@ -487,6 +700,117 @@
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If successful the <a href="#//api/name/currentUser">currentUser</a> is set to the authenticated user.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createUserWithDetails:successHandler:" title="createUserWithDetails:successHandler:"></a>
+	<h3 class="subsubtitle method-title">createUserWithDetails:successHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/createUserWithDetails:successHandler:failuderHandler:">createUserWithDetails:successHandler:failuderHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)createUserWithDetails:(APUserDetails *)<em>userDetails</em> successHandler:(APUserSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/createUserWithDetails:successHandler:failuderHandler:">+ createUserWithDetails:successHandler:failuderHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createUserWithDetails:successHandler:failuderHandler:" title="createUserWithDetails:successHandler:failuderHandler:"></a>
+	<h3 class="subsubtitle method-title">createUserWithDetails:successHandler:failuderHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method to create a new user</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)createUserWithDetails:(APUserDetails *)<em>userDetails</em> successHandler:(APUserSuccessBlock)<em>successBlock</em> failuderHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>userDetails</em></dt>
+			<dd><p>The details of the new user.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when the create request is successful.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when the create request is unsuccessful.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If successful the an object of APUser is returned in the successBlock.</p><div class="note"><p><strong>Note:</strong> This method does not set the current user as the new user.</p></div>
+	</div>
 	
 	
 	
@@ -509,7 +833,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Gives a handle to the currently authenticated user.</p>
+		<p>Returns the current authenticated user.</p>
 	</div>		
 	
     
@@ -522,8 +846,54 @@
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>currentUser or nil if not authenticated yet.</p>
+		<p>APUser or nil</p>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APUser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setCurrentUser:" title="setCurrentUser:"></a>
+	<h3 class="subsubtitle method-title">setCurrentUser:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper method to set the current user.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)setCurrentUser:(APUser *)<em>user</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>user</em></dt>
+			<dd><p>The new current user</p></dd>
+		</dl>
+		
+	</div>
+	
+	
 	
 	
 	
@@ -558,7 +928,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Appacitive software. All rights reserved. (Last updated: 2012-11-26)</span><br />
+						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-01-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

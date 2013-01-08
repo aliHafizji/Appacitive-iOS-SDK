@@ -23,4 +23,7 @@ typedef void (^APResultSuccessBlock)(NSDictionary *result);
  */
 typedef void (^APFailureBlock)(APError *error);
 
+/**
+ Block parameter expected for a success response which returns a 'APUser'.
+ */
 typedef void (^APUserSuccessBlock)(APUser* user);

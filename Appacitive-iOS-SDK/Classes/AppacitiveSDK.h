@@ -11,6 +11,8 @@
 #import "APConnection.h"
 #import "APBlob.h"
 #import "APQuery.h"
+#import "APUser.h"
+#import "APUserDetails.h"
 #import "APResponseBlocks.h"
 
 //error

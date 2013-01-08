@@ -17,7 +17,6 @@ extern NSString *const SessionReceivedNotification;
 @interface Appacitive : MKNetworkEngine
 
 @property (nonatomic, strong, readonly) NSString *session;
-@property (nonatomic, strong, readonly) NSString *deploymentId;//remove this
 @property (nonatomic, readwrite) BOOL enableLiveEnvironment;
 @property (nonatomic, readwrite) BOOL enableDebugForEachRequest;
 
@@ -42,5 +41,10 @@ extern NSString *const SessionReceivedNotification;
  */
 + (void) setSharedObject:(Appacitive *)object;
 
+/**
+ By default the environment is set to sandbox. To change to live set the enableLiveEnvironment property of the Appacitive object.
+ 
+ @return The environment to use
+ */
 - (NSString*) environmentToUse;
 @end

@@ -35,12 +35,12 @@ NSString *const ARTICLE_PATH = @"article/";
 
 #pragma mark search method
 
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler {
-    [APObject searchAllObjectsWithSchemaName:schemaName successHandler:successHandler failureHandler:nil];
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock {
+    [APObject searchAllObjectsWithSchemaName:schemaName successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock {
-    [APObject searchObjectsWithSchemaName:schemaName withQueryString:nil successHandler:successHandler failureHandler:failureBlock];
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    [APObject searchObjectsWithSchemaName:schemaName withQueryString:nil successHandler:successBlock failureHandler:failureBlock];
 }
 
 + (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {

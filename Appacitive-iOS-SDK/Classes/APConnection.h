@@ -35,14 +35,14 @@
 /** @name Getting the APConnection */
 
 /**
- Initialize and return an autoreleased APConnection for the provided relation type.
+ Initialize and return an APConnection for the provided relation type.
  
  @param relationType The name of the relation. This is specified while creating the schema.
  */
 + (id) connectionWithRelationType:(NSString*)relationType;
 
 /**
- Initialize and return an autoreleased APConnection for the provided relation type.
+ Initialize and return an APConnection for the provided relation type.
  
  @param relationType The name of the relation. This is specified while creating the schema.
  */
@@ -53,16 +53,16 @@
 /**
  @see searchForAllConnectionsWithRelationType:successHandler:failureHandler:
  */
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successHandler;
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock;
 
 /**
  Search for all APConnections of a particular relation type.
  
  @param relationType The relation type that the connections should belong to.
- @param successHandler Block invoked when the search call is successful.
+ @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when the search call fails.
  */
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successHandler failureHandler:(APFailureBlock)failureBlock;
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see searchForConnectionsWithRelationType:withQueryString:successHandler:failureHandler:
@@ -74,8 +74,8 @@
  
  @param relationType The relation type that the connections should belong to.
  @param queryString SQL kind of query to search for specific objects. For more info http://appacitive.com
- @param successHandler Block invoked when the search call is successful.
- @param failureHandler Block invoked when the search call fails.
+ @param successBlock Block invoked when the search call is successful.
+ @param failureBlock Block invoked when the search call fails.
  */
 + (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
