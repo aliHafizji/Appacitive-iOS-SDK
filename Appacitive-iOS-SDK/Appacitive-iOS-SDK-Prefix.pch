@@ -7,6 +7,3 @@
     #import "MKNetworkKit.h"
 #endif
 
-#define SessionHeaderKey @"Appacitive-Session"
-#define EnvironmentHeaderKey @"Appacitive-Environment"
-

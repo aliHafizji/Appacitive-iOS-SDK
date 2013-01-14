@@ -9,6 +9,7 @@
 #import "APHelperMethods.h"
 #import "APError.h"
 #import "Appacitive.h"
+#import "APConstants.h"
 
 #define ERROR_DOMAIN @"appyoda.appacitive.com"
 
