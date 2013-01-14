@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
+#import "MKNetworkKit.h"
+
 @class APError;
 @interface APHelperMethods : NSObject
 
