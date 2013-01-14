@@ -26,6 +26,7 @@
 		61388C1615F8667000C79F1F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61388C1515F8667000C79F1F /* CoreLocation.framework */; };
 		613E67EE161014B6005D591C /* APBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = 613E67EC161014B6005D591C /* APBlob.h */; };
 		613E67EF161014B6005D591C /* APBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 613E67ED161014B6005D591C /* APBlob.m */; };
+		614B911916A3C8BD001070DD /* APConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 614B911816A3C8BD001070DD /* APConstants.h */; };
 		6169128C16115C3D0086C006 /* NSString+APString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6169128A16115C3D0086C006 /* NSString+APString.h */; };
 		6169128D16115C3D0086C006 /* NSString+APString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6169128B16115C3D0086C006 /* NSString+APString.m */; };
 		6169128F161160110086C006 /* AppacitiveSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 6169128E161160110086C006 /* AppacitiveSDK.h */; };
@@ -35,7 +36,6 @@
 		616A6A1115F4848D009A8578 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1015F4848D009A8578 /* Security.framework */; };
 		616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
 		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
-		6171526D169C289B00E7C7DF /* APConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6171526C169C289B00E7C7DF /* APConstants.h */; };
 		618FEE55169AEAEC006A1888 /* APUserFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE54169AEAEC006A1888 /* APUserFixture.m */; };
 		618FEE5A169AEB04006A1888 /* APUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 618FEE56169AEB04006A1888 /* APUser.h */; };
 		618FEE5B169AEB04006A1888 /* APUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE57169AEB04006A1888 /* APUser.m */; };
@@ -95,6 +95,7 @@
 		61388C1515F8667000C79F1F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		613E67EC161014B6005D591C /* APBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APBlob.h; path = "Appacitive-iOS-SDK/Classes/APBlob.h"; sourceTree = SOURCE_ROOT; };
 		613E67ED161014B6005D591C /* APBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APBlob.m; path = "Appacitive-iOS-SDK/Classes/APBlob.m"; sourceTree = SOURCE_ROOT; };
+		614B911816A3C8BD001070DD /* APConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APConstants.h; path = "Appacitive-iOS-SDK/Classes/APConstants.h"; sourceTree = SOURCE_ROOT; };
 		6169128A16115C3D0086C006 /* NSString+APString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+APString.h"; sourceTree = "<group>"; };
 		6169128B16115C3D0086C006 /* NSString+APString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+APString.m"; sourceTree = "<group>"; };
 		6169128E161160110086C006 /* AppacitiveSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppacitiveSDK.h; path = "Appacitive-iOS-SDK/Classes/AppacitiveSDK.h"; sourceTree = SOURCE_ROOT; };
@@ -104,7 +105,6 @@
 		616A6A1015F4848D009A8578 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		616A6A1215F484E7009A8578 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		616A6A1415F4850E009A8578 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6171526C169C289B00E7C7DF /* APConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APConstants.h; sourceTree = SOURCE_ROOT; };
 		618FEE54169AEAEC006A1888 /* APUserFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUserFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APUserFixture.m"; sourceTree = SOURCE_ROOT; };
 		618FEE56169AEB04006A1888 /* APUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APUser.h; path = "Appacitive-iOS-SDK/Classes/APUser.h"; sourceTree = SOURCE_ROOT; };
 		618FEE57169AEB04006A1888 /* APUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUser.m; path = "Appacitive-iOS-SDK/Classes/APUser.m"; sourceTree = SOURCE_ROOT; };
@@ -294,6 +294,7 @@
 		612E3E3415EDF9B200F98FB8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				614B911816A3C8BD001070DD /* APConstants.h */,
 				618FEE56169AEB04006A1888 /* APUser.h */,
 				618FEE57169AEB04006A1888 /* APUser.m */,
 				618FEE58169AEB04006A1888 /* APUserDetails.h */,
@@ -314,7 +315,6 @@
 				61D62C0915F8857100C57AA3 /* APQuery.m */,
 				61D62C0A15F8857100C57AA3 /* APResponseBlocks.h */,
 				6169128E161160110086C006 /* AppacitiveSDK.h */,
-				6171526C169C289B00E7C7DF /* APConstants.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 				61691292161160790086C006 /* NSDictionary+APDictionary.h in Headers */,
 				618FEE5A169AEB04006A1888 /* APUser.h in Headers */,
 				618FEE5C169AEB04006A1888 /* APUserDetails.h in Headers */,
-				6171526D169C289B00E7C7DF /* APConstants.h in Headers */,
+				614B911916A3C8BD001070DD /* APConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
