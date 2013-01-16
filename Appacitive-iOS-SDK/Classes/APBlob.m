@@ -28,13 +28,13 @@
  
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType uploadProgressBlock:(MKNKProgressBlock)uploadProgressBlock successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [ARTICLE_PATH stringByAppendingString:@"blob/"];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"POST" ssl:YES];
         
         [op addFile:fileName forKey:@"fileUpload" mimeType:mimeType];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
@@ -85,7 +85,7 @@
 
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString *)fileName downloadProgressBlock:(MKNKProgressBlock)downloadProgressBlock successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         NSString *path = [url stringByAppendingQueryParameters:queryParams];

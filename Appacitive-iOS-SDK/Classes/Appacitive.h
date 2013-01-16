@@ -9,6 +9,7 @@
 #import "MKNetworkKit.h"
 
 extern NSString *const SessionReceivedNotification;
+extern NSString *const ErrorRetrievingSessionNotification;
 
 /**
  An Appacitive object is the entry point to use the Appacitive SDK.

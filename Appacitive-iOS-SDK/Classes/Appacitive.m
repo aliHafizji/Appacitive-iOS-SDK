@@ -11,6 +11,7 @@
 #define HOST_NAME @"apis.appacitive.com"
 
 NSString *const SessionReceivedNotification = @"SessionReceivedNotification";
+NSString *const ErrorRetrievingSessionNotification = @"ErrorRetrievingSessionNotification";
 
 @interface Appacitive() {
     NSString *_apiKey;
@@ -60,7 +61,7 @@ static Appacitive *sharedObject = nil;
     
     MKNetworkOperation *op = [self operationWithPath:@"application/session"
                                               params:params
-                                              httpMethod:@"PUT"];
+                                              httpMethod:@"PUT" ssl:YES];
     op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
     [op onCompletion:^(MKNetworkOperation *completedOperation){
         
@@ -71,6 +72,7 @@ static Appacitive *sharedObject = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:SessionReceivedNotification object:self];
     } onError:^(NSError *error){
         DLog(@"%@", error);
+        [[NSNotificationCenter defaultCenter] postNotificationName:ErrorRetrievingSessionNotification object:self];
     }];
     [self enqueueOperation:op];
 }

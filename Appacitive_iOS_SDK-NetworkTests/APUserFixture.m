@@ -35,7 +35,7 @@ describe(@"APUserTests", ^{
     it(@"should not return an error for authenticating with a valid facebook id", ^{
         __block BOOL isUserAuthenticateSuccesful = NO;
 
-        [APUser authenticateUserWithFacebook:@"AAACEdEose0cBAKLJLSpGUXDi0ZCRecLeNEUs8dZC28kbW6l7Amj6qoZAobWE1H1ZC5DtD9K765SQ9lIZCqBYaFc0RmubdJZBPVihFWAJMLIwZDZD"
+        [APUser authenticateUserWithFacebook:@"AAAERnfCZC8cUBAGwzBczWQy5jhWCeHxpSP2eCx8ULI2TQixtJYwG3XcWCLAIxyZC1UbUQ64uhQzdIhIRZBsFnp6CS8YqBym9UhqMexfsQZDZD"
                         successHandler:^(){
                             isUserAuthenticateSuccesful = YES;
                         } failureHandler:^(APError* error) {

@@ -49,7 +49,7 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/all", schemaName];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -64,7 +64,7 @@ NSString *const ARTICLE_PATH = @"article/";
         
         path = [path stringByAppendingQueryParameters:queryParams];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation){
@@ -101,15 +101,15 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
-        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/_bulk", schemaName];
+    if (sharedObject.session) {
+        NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/bulkdelete", schemaName];
         
         NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
         path = [path stringByAppendingQueryParameters:queryParams];
         
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"Id"];
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:objectIds forKey:@"idlist"];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:params httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:params httpMethod:@"POST" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
@@ -149,13 +149,13 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
         NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
         path = [path stringByAppendingQueryParameters:queryParams];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -191,7 +191,7 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/byidlist", schemaName];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -207,7 +207,7 @@ NSString *const ARTICLE_PATH = @"article/";
             }
         }];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -241,13 +241,13 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) fetchWithFailureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
 
-        MKNetworkOperation *op = [sharedObject operationWithPath:path];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         [op onCompletion:^(MKNetworkOperation *completedOperation) {
@@ -285,12 +285,12 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@", self.schemaType];
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
                 
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self postParamerters] httpMethod:@"PUT"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self postParamerters] httpMethod:@"PUT" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
@@ -330,7 +330,7 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [SEARCH_PATH stringByAppendingString:@"filter"];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -342,7 +342,7 @@ NSString *const ARTICLE_PATH = @"article/";
             DLog(@"Error creating JSON, please check the syntax of the graph query");
             return;
         }
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
@@ -378,7 +378,7 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [SEARCH_PATH stringByAppendingString:@"project"];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -390,7 +390,7 @@ NSString *const ARTICLE_PATH = @"article/";
             DLog(@"Error created JSON, please check the syntax of the graph query");
             return;
         }
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;

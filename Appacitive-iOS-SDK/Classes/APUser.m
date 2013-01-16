@@ -34,12 +34,12 @@ static APUser* currentUser = nil;
 + (void) authenticateUserWithUserName:(NSString*) userName password:(NSString*) password successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock)failureBlock {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path
                                                 params:@{@"username":userName, @"password":password}.mutableCopy
-                                                httpMethod:@"POST"];
+                                                httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
@@ -77,12 +77,12 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithFacebook:(NSString *) accessToken successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path
-                                               params:@{@"createNew":@YES, @"type":@"facebook", @"accesstoken":accessToken}.mutableCopy
-                                               httpMethod:@"POST"];
+                                               params:@{@"createNew":@"true", @"type":@"facebook", @"accesstoken":accessToken}.mutableCopy
+                                               httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
@@ -121,7 +121,7 @@ static APUser* currentUser = nil;
 + (void) authenticateUserWithTwitter:(NSString*) oauthToken oauthSecret:(NSString*) oauthSecret successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock) failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -130,8 +130,8 @@ static APUser* currentUser = nil;
         
         MKNetworkOperation *op = [sharedObject
                                   operationWithPath:path
-                                  params:@{@"createNew":@YES, @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret}.mutableCopy
-                                  httpMethod:@"POST"];
+                                  params:@{@"createNew":@"true", @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret}.mutableCopy
+                                  httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [APHelperMethods addHeadersToMKNetworkOperation:op];
@@ -172,7 +172,7 @@ static APUser* currentUser = nil;
 + (void) authenticateUserWithTwitter:(NSString *)oauthToken oauthSecret:(NSString *)oauthSecret consumerKey:(NSString*)consumerKey consumerSecret :(NSString*) consumerSecret successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -181,9 +181,9 @@ static APUser* currentUser = nil;
         
         MKNetworkOperation *op = [sharedObject
                                   operationWithPath:path
-                                  params:@{@"createNew":@YES, @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret,
+                                  params:@{@"createNew":@"true", @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret,
                                             @"consumerKey":consumerKey, @"consumerSecret":consumerSecret}.mutableCopy
-                                  httpMethod:@"POST"];
+                                  httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [APHelperMethods addHeadersToMKNetworkOperation:op];
@@ -226,14 +226,14 @@ static APUser* currentUser = nil;
     
     Appacitive *sharedObject = [Appacitive sharedObject];
     
-    if (sharedObject) {
+    if (sharedObject.session) {
         NSString *path = [USER_PATH stringByAppendingString:@"create"];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
         [queryParams setObject:NSStringFromBOOL(sharedObject.enableDebugForEachRequest) forKey:@"debug"];
         path = [path stringByAppendingQueryParameters:queryParams];
         
-        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[userDetails createParameters] httpMethod:@"PUT"];
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[userDetails createParameters] httpMethod:@"PUT" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
         [APHelperMethods addHeadersToMKNetworkOperation:op];
