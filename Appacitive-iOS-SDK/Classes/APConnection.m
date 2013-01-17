@@ -209,11 +209,7 @@
         APResultSuccessBlock successBlockCopy = [successBlock copy];
         APFailureBlock failureBlockCopy = [failureBlock copy];
         
-        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/find/byidlist", relationType];
-        
-        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
-        path = [path stringByAppendingQueryParameters:queryParams];
-        path = [path stringByAppendingString:@"&idlist="];
+        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/multiget/", relationType];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
@@ -222,6 +218,9 @@
                 path = [path stringByAppendingString:@","];
             }
         }];
+        
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
 
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];

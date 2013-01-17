@@ -250,6 +250,20 @@ describe(@"APObject", ^{
         [[expectFutureValue(theValue(isDeleteUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
+    it(@"should not return an error for delete call for a proper article id", ^{
+        __block BOOL isDeleteSuccessful = NO;
+        
+        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
+        [object setObjectId:[NSNumber numberWithLongLong:15334317711557540]];
+        
+        [object deleteObjectWithConnectingConnectionsSuccessHandler:^(){
+            isDeleteSuccessful = YES;
+        } failureHandler:^(APError *error) {
+            isDeleteSuccessful = NO;
+        }];
+        [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
 #pragma mark GRAPH_QUERY_TESTS
     
     it(@"should not return an error for a valid filter graph query", ^{

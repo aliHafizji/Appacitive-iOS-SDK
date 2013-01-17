@@ -154,6 +154,23 @@ NSString *const ARTICLE_PATH = @"article/";
 }
 
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    [self deleteObjectWithSuccessHandler:successBlock failureHandler:failureBlock deleteConnectingConnections:NO];
+}
+
+- (void) deleteObjectWithConnectingConnections {
+    [self deleteObjectWithSuccessHandler:nil failureHandler:nil deleteConnectingConnections:YES];
+}
+
+- (void) deleteObjectWithConnectingConnections:(APFailureBlock)failureBlock {
+    [self deleteObjectWithSuccessHandler:nil failureHandler:failureBlock deleteConnectingConnections:YES];
+}
+
+- (void) deleteObjectWithConnectingConnectionsSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    [self deleteObjectWithSuccessHandler:successBlock failureHandler:failureBlock deleteConnectingConnections:YES];
+}
+
+- (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock deleteConnectingConnections:(BOOL)deleteConnections {
+    
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
@@ -161,7 +178,7 @@ NSString *const ARTICLE_PATH = @"article/";
         
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
-        NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
+        NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest), @"deleteconnections":deleteConnections?@"true":@"false"};
         path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"DELETE" ssl:YES];
@@ -204,12 +221,7 @@ NSString *const ARTICLE_PATH = @"article/";
         APResultSuccessBlock successBlockCopy = [successBlock copy];
         APFailureBlock failureBlockCopy = [failureBlock copy];
         
-        __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/byidlist", schemaName];
-        
-        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
-        path = [path stringByAppendingQueryParameters:queryParams];
-        
-        path = [path stringByAppendingString:@"&idlist="];
+        __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/multiget/", schemaName];
         
         [objectIds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSNumber *number = (NSNumber*) obj;
@@ -218,6 +230,9 @@ NSString *const ARTICLE_PATH = @"article/";
                 path = [path stringByAppendingString:@","];
             }
         }];
+        
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];

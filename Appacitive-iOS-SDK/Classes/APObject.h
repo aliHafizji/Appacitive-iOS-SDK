@@ -123,6 +123,24 @@ extern NSString *const ARTICLE_PATH;
  */
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
+/**
+ @see deleteObjectWithConnectingConnectionsSuccessHandler:failureHandler:
+ */
+- (void) deleteObjectWithConnectingConnections;
+
+/**
+ @see deleteObjectWithConnectingConnectionsSuccessHandler:failureHandler:
+ */
+- (void) deleteObjectWithConnectingConnections:(APFailureBlock)failureBlock;
+
+/**
+ Deletes an APObject along with any connections it has.
+ 
+ @param successBlock Block invoked when delete operation is successful
+ @param failureBlock Block invoked when delete operation is unsuccessful
+ */
+- (void) deleteObjectWithConnectingConnectionsSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
 /** @name Fetch APObjects */
 
 /**
