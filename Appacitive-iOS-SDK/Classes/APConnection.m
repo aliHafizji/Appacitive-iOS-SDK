@@ -48,6 +48,9 @@
 + (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/find/all", relationType];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -66,18 +69,18 @@
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy != nil) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
 
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -99,6 +102,9 @@
 - (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [CONNECTION_PATH stringByAppendingString:self.relationType];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -116,17 +122,17 @@
             
             if (!isErrorPresent) {
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                if (successBlock != nil) {
-                    successBlock();
+                if (successBlockCopy != nil) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -200,6 +206,9 @@
 + (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/find/byidlist", relationType];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -223,17 +232,17 @@
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock) {
-                    failureBlock(error);
+                if (failureBlockCopy) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -255,6 +264,9 @@
 + (void) deleteConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/bulkdelete", relationType];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -273,17 +285,17 @@
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock) {
-                    successBlock();
+                if (successBlockCopy) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -304,6 +316,9 @@
 - (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%lld", self.relationType, self.objectId.longLongValue];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -318,18 +333,18 @@
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock();
+                if (successBlockCopy != nil) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy!= nil) {
+                    failureBlockCopy(error);
                 }
             }
 
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];

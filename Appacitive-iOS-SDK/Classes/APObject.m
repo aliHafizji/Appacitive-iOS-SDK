@@ -50,6 +50,9 @@ NSString *const ARTICLE_PATH = @"article/";
 + (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/all", schemaName];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -73,18 +76,18 @@ NSString *const ARTICLE_PATH = @"article/";
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
 
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -102,6 +105,9 @@ NSString *const ARTICLE_PATH = @"article/";
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/bulkdelete", schemaName];
         
         NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
@@ -120,17 +126,17 @@ NSString *const ARTICLE_PATH = @"article/";
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock) {
-                    successBlock();
+                if (successBlockCopy) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -150,6 +156,9 @@ NSString *const ARTICLE_PATH = @"article/";
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
         NSDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)};
@@ -164,17 +173,17 @@ NSString *const ARTICLE_PATH = @"article/";
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock();
+                if (successBlockCopy != nil) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -192,6 +201,9 @@ NSString *const ARTICLE_PATH = @"article/";
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/byidlist", schemaName];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -216,17 +228,17 @@ NSString *const ARTICLE_PATH = @"article/";
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock) {
-                    failureBlock(error);
+                if (failureBlockCopy) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -242,6 +254,7 @@ NSString *const ARTICLE_PATH = @"article/";
 - (void) fetchWithFailureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APFailureBlock failureBlockCopy = [failureBlock copy];
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -258,13 +271,13 @@ NSString *const ARTICLE_PATH = @"article/";
             if (!isErrorPresent) {
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -286,6 +299,9 @@ NSString *const ARTICLE_PATH = @"article/";
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@", self.schemaType];
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
@@ -303,17 +319,17 @@ NSString *const ARTICLE_PATH = @"article/";
             if (!isErrorPresent) {
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 
-                if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy != nil) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -331,6 +347,9 @@ NSString *const ARTICLE_PATH = @"article/";
 + (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [SEARCH_PATH stringByAppendingString:@"filter"];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -353,17 +372,17 @@ NSString *const ARTICLE_PATH = @"article/";
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy != nil) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -379,6 +398,9 @@ NSString *const ARTICLE_PATH = @"article/";
 + (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [SEARCH_PATH stringByAppendingString:@"project"];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -401,17 +423,17 @@ NSString *const ARTICLE_PATH = @"article/";
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy != nil) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];

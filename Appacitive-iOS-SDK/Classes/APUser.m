@@ -32,9 +32,12 @@ static APUser* currentUser = nil;
 }
 
 + (void) authenticateUserWithUserName:(NSString*) userName password:(NSString*) password successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock)failureBlock {
-    
+
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path
@@ -51,18 +54,18 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
             
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -78,6 +81,9 @@ static APUser* currentUser = nil;
 + (void) authenticateUserWithFacebook:(NSString *) accessToken successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path
@@ -94,18 +100,18 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
             
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*) error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -122,6 +128,9 @@ static APUser* currentUser = nil;
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -145,17 +154,17 @@ static APUser* currentUser = nil;
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
 
-                if (successBlock) {
-                    successBlock();
+                if (successBlockCopy) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -173,6 +182,9 @@ static APUser* currentUser = nil;
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -197,17 +209,17 @@ static APUser* currentUser = nil;
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 
-                if (successBlock) {
-                    successBlock();
+                if (successBlockCopy) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -227,6 +239,9 @@ static APUser* currentUser = nil;
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
+        APUserSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [USER_PATH stringByAppendingString:@"create"];
         
         NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
@@ -246,17 +261,17 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 APUser *user = [[APUser alloc] initWithSchemaName:@"user"];
                 [user setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                if (successBlock) {
-                    successBlock(user);
+                if (successBlockCopy) {
+                    successBlockCopy(user);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];

@@ -29,6 +29,10 @@
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType uploadProgressBlock:(MKNKProgressBlock)uploadProgressBlock successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
+        MKNKProgressBlock uploadProgressBlockCopy = [uploadProgressBlock copy];
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSString *path = [ARTICLE_PATH stringByAppendingString:@"blob/"];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -41,8 +45,8 @@
         
         [op onUploadProgressChanged:^(double progress) {
             DLog(@"Upload progress:%lf", progress);
-            if (uploadProgressBlock != nil) {
-                uploadProgressBlock(progress);
+            if (uploadProgressBlockCopy != nil) {
+                uploadProgressBlockCopy(progress);
             }
         }];
 
@@ -52,17 +56,17 @@
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                if (successBlockCopy != nil) {
+                    successBlockCopy(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error) {
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
@@ -87,6 +91,10 @@
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
         
+        MKNKProgressBlock downloadProgressBlockCopy = [downloadProgressBlock copy];
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         NSString *path = [url stringByAppendingQueryParameters:queryParams];
         
@@ -98,8 +106,8 @@
         [op onDownloadProgressChanged:^(double progress) {
             DLog(@"Download progress:%lf", progress);
             
-            if (downloadProgressBlock != nil) {
-                downloadProgressBlock(progress);
+            if (downloadProgressBlockCopy != nil) {
+                downloadProgressBlockCopy(progress);
             }
         }];
         
@@ -109,17 +117,17 @@
             BOOL isErrorPresent = (error != nil);
             
             if (!isErrorPresent) {
-                if (successBlock != nil) {
-                    successBlock();
+                if (successBlockCopy != nil) {
+                    successBlockCopy();
                 }
             } else {
-                if (failureBlock != nil) {
-                    failureBlock(error);
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
                 }
             }
         } onError:^(NSError *error){
-            if (failureBlock != nil) {
-                failureBlock((APError*)error);
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
