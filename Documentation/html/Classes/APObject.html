@@ -93,6 +93,8 @@
 	
 	<option value="//api/name/fetchWithFailureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- fetchWithFailureHandler:</option>
 	
+	<option value="//api/name/fetchWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- fetchWithSuccessHandler:failureHandler:</option>
+	
 	<option value="//api/name/initWithSchemaName:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSchemaName:</option>
 	
 	<option value="//api/name/saveObject">&nbsp;&nbsp;&nbsp;&nbsp;- saveObject</option>
@@ -192,6 +194,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetch">fetch</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchWithFailureHandler:">fetchWithFailureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">fetchWithSuccessHandler:failureHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSchemaName:">initWithSchemaName:</a></span></li>
 	
@@ -395,13 +399,20 @@ Data can be stored in key-value pairs in the properties and attributes fields.</
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fetch">&ndash;&nbsp;fetch</a></code>
-		<span class="tooltip"><p><a href="#//api/name/fetchWithFailureHandler:">fetchWithFailureHandler:</a></p></span>
+		<span class="tooltip"><p><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">fetchWithSuccessHandler:failureHandler:</a></p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fetchWithFailureHandler:">&ndash;&nbsp;fetchWithFailureHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">fetchWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">&ndash;&nbsp;fetchWithSuccessHandler:failureHandler:</a></code>
 		<span class="tooltip"><p>Method used to <a href="#//api/name/fetch">fetch</a> an APObject.</p></span>
 	</span>
 	
@@ -1591,7 +1602,7 @@ Attributes are used to store extra information.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/fetchWithFailureHandler:">fetchWithFailureHandler:</a></p>
+		<p><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">fetchWithSuccessHandler:failureHandler:</a></p>
 	</div>		
 	
     
@@ -1614,7 +1625,7 @@ Attributes are used to store extra information.</p>
 		<h4 class="method-subtitle">See Also</h4>
 		<ul>
 			
-			<li><code><p><a href="#//api/name/fetchWithFailureHandler:">&ndash; fetchWithFailureHandler:</a></p></code></li>
+			<li><code><p><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">&ndash; fetchWithSuccessHandler:failureHandler:</a></p></code></li>
 			
 		</ul>
 	</div>
@@ -1636,12 +1647,57 @@ Attributes are used to store extra information.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Method used to <a href="#//api/name/fetch">fetch</a> an APObject.</p>
+		<p><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">fetchWithSuccessHandler:failureHandler:</a></p>
 	</div>		
 	
     
 
 	<div class="method-subsection method-declaration"><code>- (void)fetchWithFailureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">&ndash; fetchWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetchWithSuccessHandler:failureHandler:" title="fetchWithSuccessHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">fetchWithSuccessHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to <a href="#//api/name/fetch">fetch</a> an APObject.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)fetchWithSuccessHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
 
     
 	
@@ -1885,7 +1941,7 @@ Attributes are used to store extra information.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-01-17)</span><br />
+						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-01-23)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

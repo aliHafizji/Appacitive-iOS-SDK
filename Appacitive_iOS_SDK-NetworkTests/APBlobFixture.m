@@ -10,7 +10,7 @@ describe(@"APBlobTests", ^{
     
     beforeAll(^() {
         __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
+        [[Appacitive sharedObject] setEnableLiveEnvironment:NO];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
     
@@ -23,7 +23,8 @@ describe(@"APBlobTests", ^{
     it(@"should not return an error for uploading a file with a valid mime type", ^{
         __block BOOL isUploadSuccessful = NO;
         
-        NSString *uploadPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"/test_image.png"];
+        NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
+        NSString *uploadPath = [myBundle pathForResource:@"test_image" ofType:@"png"];
         [APBlob uploadFileWithName:uploadPath mimeType:@"image/png"
                uploadProgressBlock:^(double progress) {
                    NSLog(@"Progress made %f", progress);
@@ -49,6 +50,18 @@ describe(@"APBlobTests", ^{
                     isDownloadSuccesful = YES;
                 } failureHandler:^(APError *error){
                     isDownloadSuccesful = NO;
+                }];
+        
+        [[expectFutureValue(theValue(isDownloadSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+    it(@"should not return an error for downloading a valid image", ^{
+        __block BOOL isDownloadSuccesful = NO;
+        
+        
+        [APBlob downloadImageFromRemoteUrl:@"https://portal.appacitive.com/dealfinder/article.file?fileurl=http%3A//apis.appacitive.com/articleservice.svc/blob/14530713013584212/15702745784910084/content"
+                successHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
+                    isDownloadSuccesful = YES;
                 }];
         
         [[expectFutureValue(theValue(isDownloadSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];

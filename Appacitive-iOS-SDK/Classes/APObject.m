@@ -267,6 +267,10 @@ NSString *const ARTICLE_PATH = @"article/";
 }
 
 - (void) fetchWithFailureHandler:(APFailureBlock)failureBlock {
+    [self fetchWithSuccessHandler:nil failureHandler:failureBlock];
+}
+
+- (void) fetchWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     if (sharedObject.session) {
         APFailureBlock failureBlockCopy = [failureBlock copy];
@@ -274,7 +278,7 @@ NSString *const ARTICLE_PATH = @"article/";
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
-
+        
         MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
@@ -285,6 +289,9 @@ NSString *const ARTICLE_PATH = @"article/";
             
             if (!isErrorPresent) {
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+                if (successBlock != nil) {
+                    successBlock();
+                }
             } else {
                 if (failureBlockCopy != nil) {
                     failureBlockCopy(error);

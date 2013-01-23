@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-@class APError, APUser;
+@class APError, APUser, UIImage;
 
 /**
  Success block that returns nothing.
@@ -27,3 +27,8 @@ typedef void (^APFailureBlock)(APError *error);
  Block parameter expected for a success response which returns a 'APUser'.
  */
 typedef void (^APUserSuccessBlock)(APUser* user);
+
+/**
+ Block parameter expected for image download
+ */
+typedef void (^APImageBlock) (UIImage* fetchedImage, NSURL* url, BOOL isInCache);

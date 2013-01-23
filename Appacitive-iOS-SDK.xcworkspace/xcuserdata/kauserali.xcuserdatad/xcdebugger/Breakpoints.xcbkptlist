@@ -20,14 +20,38 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Appacitive-iOS-SDK/Classes/APObject.m"
-         timestampString = "380106438.548196"
+         filePath = "Appacitive-iOS-SDK/Classes/APBlob.m"
+         timestampString = "380522895.243003"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
-         landmarkName = "-deleteObjectWithConnectingConnectionsSuccessHandler:failureHandler:"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
+         landmarkName = "+uploadFileWithName:mimeType:uploadProgressBlock:successHandler:failureHandler:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Appacitive-iOS-SDK/Classes/APBlob.m"
+         timestampString = "380526286.949039"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "+uploadFileWithName:mimeType:uploadProgressBlock:successHandler:failureHandler:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Appacitive_iOS_SDK-NetworkTests/APBlobFixture.m"
+         timestampString = "380526756.292311"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

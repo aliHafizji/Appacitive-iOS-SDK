@@ -14,6 +14,8 @@
 
 @implementation APBlob
 
+#pragma mark UPLOAD_METHODS
+
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType {
     [APBlob uploadFileWithName:fileName mimeType:mimeType successHandler:nil failureHandler:nil];
 }
@@ -75,6 +77,8 @@
     }
 }
 
+#pragma mark DOWNLOAD_METHODs
+
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString*)fileName {
     [APBlob downloadFileFromRemoteUrl:url toFile:fileName successHandler:nil failureHandler:nil];
 }
@@ -130,6 +134,24 @@
                 failureBlockCopy((APError*)error);
             }
         }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate")
+    }
+}
+
++ (void) downloadImageFromRemoteUrl:(NSString*)imageUrl successHandler:(APImageBlock)successBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject.session) {
+        APImageBlock successBlockCopy = [successBlock copy];
+        
+        NSURL *url = [NSURL URLWithString:imageUrl];
+        
+        MKNetworkOperation *op = [sharedObject imageAtURL:url onCompletion:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache){
+            successBlockCopy(fetchedImage, url, isInCache);
+        }];
+        
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate")

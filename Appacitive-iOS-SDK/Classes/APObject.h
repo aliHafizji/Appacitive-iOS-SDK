@@ -159,9 +159,14 @@ extern NSString *const ARTICLE_PATH;
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
- @see fetchWithFailureHandler:
+ @see fetchWithSuccessHandler:failureHandler:
  */
 - (void) fetch;
+
+/**
+ @see fetchWithSuccessHandler:failureHandler:
+ */
+- (void) fetchWithFailureHandler:(APFailureBlock)failureBlock;
 
 /**
  Method used to fetch an APObject.
@@ -169,9 +174,8 @@ extern NSString *const ARTICLE_PATH;
  This method will use the schemaType and objectId properties to fetch the article. If the objectId and schemaType is not set, results are unexpected.
  
  @param failureBlock Block invoked when the fetch operation fails.
- 
  */
-- (void) fetchWithFailureHandler:(APFailureBlock)failureBlock;
+- (void) fetchWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Methods to store key-value pairs */
 

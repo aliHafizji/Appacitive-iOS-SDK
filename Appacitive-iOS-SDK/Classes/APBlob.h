@@ -78,4 +78,12 @@
  @param failureBlock Block invoked when download fails.
  */
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString *)fileName downloadProgressBlock:(MKNKProgressBlock)downloadProgressBlock successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Helper method to download a image from the remote server
+ 
+ @param imageUrl url of the image to download
+ @param successBlock block called when the image is downloaded. This block give a UIImage the and also give information on whether the image was downloaded or served from the image cache.
+ */
++ (void) downloadImageFromRemoteUrl:(NSString*)imageUrl successHandler:(APImageBlock)successBlock;
 @end
