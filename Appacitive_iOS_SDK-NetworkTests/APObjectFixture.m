@@ -193,6 +193,120 @@ describe(@"APObject", ^{
         [[expectFutureValue(theValue(isFetchUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
+#pragma mark TESTING_UPDATE_PROPERTIES_METHOD
+    
+    it(@"should not return an error for updating a property of an APObject", ^{
+        
+        __block BOOL isUpdateSuccessful = NO;
+        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
+        [object setCreatedBy:@"Sandeep Dhull"];
+        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
+        [object addPropertyWithKey:@"Category" value:@"arts"];
+        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
+        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
+        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        
+        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
+            [object updatePropertyWithKey:@"name" value:@"Dhull"];
+            [object updateObjectWithSuccessHandler:^(NSDictionary *result) {
+                isUpdateSuccessful = YES;
+            } failureHandler:^(APError *error) {
+                isUpdateSuccessful = NO;
+            }];
+        }failureHandler:^(APError *error){
+            isUpdateSuccessful = NO;
+        }];
+        
+        [[expectFutureValue(theValue(isUpdateSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+#pragma mark TESTING_DELETE_PROPERTIES_METHOD
+    
+    it(@"should not return an error for deleting a property of an APObject", ^{
+        
+        __block BOOL isDeleteSuccessful = NO;
+        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
+        [object setCreatedBy:@"Sandeep Dhull"];
+        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
+        [object addPropertyWithKey:@"Category" value:@"arts"];
+        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
+        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
+        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        
+        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
+            [object removePropertyWithKey:@"address"];
+            [object updateObjectWithSuccessHandler:^(NSDictionary *result){
+                isDeleteSuccessful = YES;
+            } failureHandler:^(APError *error) {
+                isDeleteSuccessful = NO;
+            }];
+        }failureHandler:^(APError *error){
+            isDeleteSuccessful = NO;
+        }];
+        
+        [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+#pragma mark TESTING_UPDATE_ATTRIBUTES_METHOD
+    
+    it(@"should not return an error for updating an attribute of an APObject", ^{
+        
+        __block BOOL isUpdateSuccessful = NO;
+        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
+        [object setCreatedBy:@"Sandeep Dhull"];
+        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
+        [object addPropertyWithKey:@"Category" value:@"arts"];
+        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
+        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
+        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        
+        [object addAttributeWithKey:@"Test" value:@"value"];
+        [object addAttributeWithKey:@"Test2" value:@"value"];
+        
+        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
+            [object updateAttributeWithKey:@"test" value:@"value3"];
+            [object updateObjectWithSuccessHandler:^(NSDictionary *result){
+                isUpdateSuccessful = YES;
+            } failureHandler:^(APError *error) {
+                isUpdateSuccessful = NO;
+            }];
+        }failureHandler:^(APError *error){
+            isUpdateSuccessful = NO;
+        }];
+        
+        [[expectFutureValue(theValue(isUpdateSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+#pragma mark TESTING_DELETE_ATTRIBUTES_METHOD
+    
+    it(@"should not return an error for updating an attribute of an APObject", ^{
+        
+        __block BOOL isDeleteSuccessful = NO;
+        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
+        [object setCreatedBy:@"Sandeep Dhull"];
+        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
+        [object addPropertyWithKey:@"Category" value:@"arts"];
+        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
+        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
+        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        
+        [object addAttributeWithKey:@"Test" value:@"value"];
+        [object addAttributeWithKey:@"Test2" value:@"value"];
+        
+        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
+            [object removeAttributeWithKey:@"test"];
+            [object updateObjectWithSuccessHandler:^(NSDictionary *result){
+                isDeleteSuccessful = YES;
+            } failureHandler:^(APError *error) {
+                isDeleteSuccessful = NO;
+            }];
+        }failureHandler:^(APError *error){
+            isDeleteSuccessful = NO;
+        }];
+        
+        [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
 #pragma mark SAVE_TESTS
     
     it(@"should not return an error for save API call with valid schema name", ^{

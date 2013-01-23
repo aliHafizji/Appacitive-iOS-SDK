@@ -95,13 +95,29 @@
 	
 	<option value="//api/name/fetchWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- fetchWithSuccessHandler:failureHandler:</option>
 	
+	<option value="//api/name/getPropertyWithKey:">&nbsp;&nbsp;&nbsp;&nbsp;- getPropertyWithKey:</option>
+	
 	<option value="//api/name/initWithSchemaName:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSchemaName:</option>
+	
+	<option value="//api/name/removeAttributeWithKey:">&nbsp;&nbsp;&nbsp;&nbsp;- removeAttributeWithKey:</option>
+	
+	<option value="//api/name/removePropertyWithKey:">&nbsp;&nbsp;&nbsp;&nbsp;- removePropertyWithKey:</option>
 	
 	<option value="//api/name/saveObject">&nbsp;&nbsp;&nbsp;&nbsp;- saveObject</option>
 	
 	<option value="//api/name/saveObjectWithFailureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- saveObjectWithFailureHandler:</option>
 	
 	<option value="//api/name/saveObjectWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- saveObjectWithSuccessHandler:failureHandler:</option>
+	
+	<option value="//api/name/updateAttributeWithKey:value:">&nbsp;&nbsp;&nbsp;&nbsp;- updateAttributeWithKey:value:</option>
+	
+	<option value="//api/name/updateObject">&nbsp;&nbsp;&nbsp;&nbsp;- updateObject</option>
+	
+	<option value="//api/name/updateObjectWithFailureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- updateObjectWithFailureHandler:</option>
+	
+	<option value="//api/name/updateObjectWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- updateObjectWithSuccessHandler:failureHandler:</option>
+	
+	<option value="//api/name/updatePropertyWithKey:value:">&nbsp;&nbsp;&nbsp;&nbsp;- updatePropertyWithKey:value:</option>
 	
 	
 	
@@ -130,6 +146,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Methods to store key-value pairs">Methods to store key-value pairs</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Save APObjects">Save APObjects</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Update APObjects">Update APObjects</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Apply graph queries">Apply graph queries</a></span></li>
 	
@@ -197,13 +215,29 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchWithSuccessHandler:failureHandler:">fetchWithSuccessHandler:failureHandler:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getPropertyWithKey:">getPropertyWithKey:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSchemaName:">initWithSchemaName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeAttributeWithKey:">removeAttributeWithKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removePropertyWithKey:">removePropertyWithKey:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveObject">saveObject</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveObjectWithFailureHandler:">saveObjectWithFailureHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveObjectWithSuccessHandler:failureHandler:">saveObjectWithSuccessHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateAttributeWithKey:value:">updateAttributeWithKey:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateObject">updateObject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateObjectWithFailureHandler:">updateObjectWithFailureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">updateObjectWithSuccessHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updatePropertyWithKey:value:">updatePropertyWithKey:value:</a></span></li>
 	
 </ul></li>
 
@@ -434,9 +468,48 @@ Data can be stored in key-value pairs in the properties and attributes fields.</
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/updatePropertyWithKey:value:">&ndash;&nbsp;updatePropertyWithKey:value:</a></code>
+		<span class="tooltip"><p>Method used to update an existing property.
+Call update after this method call to persist the update.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removePropertyWithKey:">&ndash;&nbsp;removePropertyWithKey:</a></code>
+		<span class="tooltip"><p>Method used to delete a property.
+Call update after this method call to persist the change.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getPropertyWithKey:">&ndash;&nbsp;getPropertyWithKey:</a></code>
+		<span class="tooltip"><p>Method used to retrieve a property using its key.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/addAttributeWithKey:value:">&ndash;&nbsp;addAttributeWithKey:value:</a></code>
 		<span class="tooltip"><p>Method used to add an attibute to the APObject.
 Attributes are used to store extra information.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateAttributeWithKey:value:">&ndash;&nbsp;updateAttributeWithKey:value:</a></code>
+		<span class="tooltip"><p>Method used to update an attribute.
+Call update after this method call to persist the change</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeAttributeWithKey:">&ndash;&nbsp;removeAttributeWithKey:</a></code>
+		<span class="tooltip"><p>Method used to remove an attribute.
+Call update after this method call to persist the change</p></span>
 	</span>
 	
 	
@@ -466,6 +539,35 @@ Attributes are used to store extra information.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/saveObjectWithSuccessHandler:failureHandler:">&ndash;&nbsp;saveObjectWithSuccessHandler:failureHandler:</a></code>
 		<span class="tooltip"><p>Save the article on the remote server.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Update APObjects" name="task_Update APObjects"></a>
+						<h3 class="subsubtitle task-title">Update APObjects</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateObject">&ndash;&nbsp;updateObject</a></code>
+		<span class="tooltip"><p><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">updateObjectWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateObjectWithFailureHandler:">&ndash;&nbsp;updateObjectWithFailureHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">updateObjectWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">&ndash;&nbsp;updateObjectWithSuccessHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method used to update an APObject.</p></span>
 	</span>
 	
 	
@@ -1737,6 +1839,52 @@ Attributes are used to store extra information.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/getPropertyWithKey:" title="getPropertyWithKey:"></a>
+	<h3 class="subsubtitle method-title">getPropertyWithKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to retrieve a property using its key.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)getPropertyWithKey:(NSString *)<em>keyName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the date item to be removed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithSchemaName:" title="initWithSchemaName:"></a>
 	<h3 class="subsubtitle method-title">initWithSchemaName:</h3>
 	
@@ -1758,6 +1906,100 @@ Attributes are used to store extra information.</p>
 		<dl class="argument-def parameter-def">
 			<dt><em>schemaName</em></dt>
 			<dd><p>The schema this article represents.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeAttributeWithKey:" title="removeAttributeWithKey:"></a>
+	<h3 class="subsubtitle method-title">removeAttributeWithKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to remove an attribute.
+Call update after this method call to persist the change</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removeAttributeWithKey:(NSString *)<em>keyName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the attribute to be removed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removePropertyWithKey:" title="removePropertyWithKey:"></a>
+	<h3 class="subsubtitle method-title">removePropertyWithKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to delete a property.
+Call update after this method call to persist the change.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removePropertyWithKey:(NSString *)<em>keyName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the data item to be removed.</p></dd>
 		</dl>
 		
 	</div>
@@ -1913,6 +2155,251 @@ Attributes are used to store extra information.</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This method will save an article in the background. If save is successful the properties will be updated and the successBlock will be invoked. If not the failure block is invoked.</p>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateAttributeWithKey:value:" title="updateAttributeWithKey:value:"></a>
+	<h3 class="subsubtitle method-title">updateAttributeWithKey:value:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to update an attribute.
+Call update after this method call to persist the change</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateAttributeWithKey:(NSString *)<em>keyName</em> value:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the attribute to be updated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>Corresponding value to the key.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateObject" title="updateObject"></a>
+	<h3 class="subsubtitle method-title">updateObject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">updateObjectWithSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateObject</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">&ndash; updateObjectWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateObjectWithFailureHandler:" title="updateObjectWithFailureHandler:"></a>
+	<h3 class="subsubtitle method-title">updateObjectWithFailureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">updateObjectWithSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateObjectWithFailureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/updateObjectWithSuccessHandler:failureHandler:">&ndash; updateObjectWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateObjectWithSuccessHandler:failureHandler:" title="updateObjectWithSuccessHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">updateObjectWithSuccessHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to update an APObject.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateObjectWithSuccessHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when the update operation is successful.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when the update operation fails.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APObject.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updatePropertyWithKey:value:" title="updatePropertyWithKey:value:"></a>
+	<h3 class="subsubtitle method-title">updatePropertyWithKey:value:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to update an existing property.
+Call update after this method call to persist the update.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updatePropertyWithKey:(NSString *)<em>keyName</em> value:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the data item to be updated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>Corresponding value to the key.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
 	
 	
 	

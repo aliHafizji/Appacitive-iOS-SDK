@@ -189,6 +189,58 @@
     [self createConnectionWithSuccessHandler:successBlock failureHandler:failureBlock];
 }
 
+#pragma mark update connection methods
+
+- (void) updateConnection {
+    [self updateConnectionWithSuccessHandler:nil failureHandler:nil];
+}
+
+- (void) updateConnectionWithFailureHandler:(APFailureBlock)failureBlock {
+    [self updateConnectionWithSuccessHandler:nil failureHandler:failureBlock];
+}
+
+- (void) updateConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", self.relationType, self.objectId.description];
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:[self postParamertersUpdate] httpMethod:@"POST" ssl:YES];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
+        op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
+        
+        [op onCompletion:^(MKNetworkOperation *completedOperation) {
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+                
+                if (successBlockCopy != nil) {
+                    successBlockCopy();
+                }
+            } else {
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
+                }
+            }
+        } onError:^(NSError *error){
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+    }
+}
+
 #pragma mark fetch connection methods
 
 + (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock {
@@ -233,6 +285,54 @@
             if (!isErrorPresent) {
                 if (successBlockCopy) {
                     successBlockCopy(completedOperation.responseJSON);
+                }
+            } else {
+                if (failureBlockCopy) {
+                    failureBlockCopy(error);
+                }
+            }
+        } onError:^(NSError *error) {
+            if (failureBlockCopy) {
+                failureBlockCopy((APError*) error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+    }
+}
+
+- (void) fetchConnection {
+    [self fetchConnectionWithSuccessHandler:nil failureHandler:nil];
+}
+
+- (void) fetchConnectionWithFailureHandler:(APFailureBlock)failureBlock {
+    [self fetchConnectionWithSuccessHandler:nil failureHandler:failureBlock];
+}
+
+- (void) fetchConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    if (sharedObject.session) {
+        APSuccessBlock successBlockCopy = [successBlock copy];
+        APFailureBlock failureBlockCopy = [failureBlock copy];
+        
+        NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", self.relationType, self.objectId.description];
+        
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
+        [op onCompletion:^(MKNetworkOperation *completedOperation) {
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+                if (successBlockCopy) {
+                    successBlockCopy();
                 }
             } else {
                 if (failureBlockCopy) {
@@ -365,9 +465,55 @@
 
 - (void) addAttributeWithKey:(NSString*) keyName value:(id) object {
     if (!self.attributes) {
-        _attributes = [NSMutableArray array];
+        _attributes = [NSMutableDictionary dictionary];
     }
-    [_attributes addObject:@{keyName: object}];
+    [_attributes setObject:object forKey:keyName];
+}
+
+- (void) updateAttributeWithKey:(NSString*) keyName value:(id) object {
+    [_attributes setObject:object forKey:keyName];
+}
+
+- (void) removeAttributeWithKey:(NSString*) keyName {
+    [_attributes setObject:[NSNull null] forKey:keyName];
+}
+
+#pragma mark update properties method
+
+- (void) updatePropertyWithKey:(NSString*) keyName value:(id) object {
+    [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSMutableDictionary *dict = (NSMutableDictionary *)obj;
+        if ([dict objectForKey:keyName] != nil) {
+            [dict setObject:object forKey:keyName];
+            *stop = YES;
+        }
+    }];
+}
+
+#pragma mark delete property
+
+- (void) removePropertyWithKey:(NSString*) keyName {
+    [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSMutableDictionary *dict = (NSMutableDictionary *)obj;
+        if ([dict objectForKey:keyName] != nil) {
+            [dict setObject:[NSNull null] forKey:keyName];
+            *stop = YES;
+        }
+    }];
+}
+
+#pragma mark retrieve property
+
+- (NSDictionary*) getPropertyWithKey:(NSString*) keyName {
+    __block NSDictionary *property;
+    [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSMutableDictionary *dict = (NSMutableDictionary *)obj;
+        if ([[dict objectForKey:keyName] isEqualToString:keyName]) {
+            property = [dict objectForKey:keyName];
+            *stop = YES;
+        }
+    }];
+    return property;
 }
 
 #pragma mark private methods
@@ -376,7 +522,6 @@
     NSDictionary *connection = dictionary[@"connection"];
     _articleAId = (NSNumber*) connection[@"__endpointa"][@"articleid"];
     _articleBId = (NSNumber*) connection[@"__endpointb"][@"articleid"];
-    _attributes = connection[@"__attributes"];
     _createdBy = (NSString*) connection[@"__createdby"];
     _objectId = (NSNumber*) connection[@"__id"];
     _labelA = (NSString*) connection[@"__endpointa"][@"label"];
@@ -389,7 +534,8 @@
     _utcDateCreated = [self deserializeJsonDateString:connection[@"__createdate"]];
     _utcLastModifiedDate = [self deserializeJsonDateString:connection[@"__lastmodified"]];
     
-    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:dictionary].mutableCopy;
+    _attributes = [connection[@"__attributes"] mutableCopy];
+    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:connection].mutableCopy;
 }
 
 - (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
@@ -450,6 +596,21 @@
     if (self.tags)
         parameters[@"__tags"] = self.tags;
     return parameters;
+}
+
+- (NSMutableDictionary*) postParamertersUpdate {
+    NSMutableDictionary *postParams = [NSMutableDictionary dictionary];
+    
+    if (self.attributes && [self.attributes count] > 0)
+        postParams[@"__attributes"] = self.attributes;
+    
+    for(NSDictionary *prop in self.properties) {
+        [prop enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            [postParams setObject:obj forKey:key];
+            *stop = YES;
+        }];
+    }
+    return postParams;
 }
 
 - (NSString*) description {

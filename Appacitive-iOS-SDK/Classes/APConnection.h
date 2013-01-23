@@ -29,7 +29,7 @@
 @property (nonatomic, strong, readonly) NSDate *utcLastModifiedDate;
 @property (nonatomic, strong, readonly) NSNumber *revision;
 @property (nonatomic, strong, readonly) NSMutableArray *properties;
-@property (nonatomic, strong, readonly) NSMutableArray *attributes;
+@property (nonatomic, strong, readonly) NSMutableDictionary *attributes;
 @property (nonatomic, strong) NSArray *tags;
 
 /** @name Getting the APConnection */
@@ -167,6 +167,26 @@
  */
 - (void) createConnectionWithObjectAId:(NSNumber*)objectAId objectBId:(NSNumber*)objectBId labelA:(NSString*)labelA labelB:(NSString*)labelB successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
+/** @name Update APConnections */
+
+/**
+ @see updateConnectionWithSuccessHandler:failureHandler:
+ */
+- (void) updateConnection;
+
+/**
+ @see updateConnectionWithSuccessHandler:failureHandler:
+ */
+- (void) updateConnectionWithFailureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Method used to update an APConnection.
+ 
+ @param successBlock Block invoked when the update operation is successful.
+ @param failureBlock Block invoked when the update operation fails.
+ */
+- (void) updateConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
 /** @name Fetch APConnections */
 
 /**
@@ -198,6 +218,24 @@
  @param failureBlock Block invoked when the fetch call operation fails.
  */
 + (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+/**
+ @see fetchConnectionWithSuccessHandler:failureHandler:
+ */
+- (void) fetchConnection;
+
+/**
+ @see fetchConnectionWithSuccessHandler:failureHandler:
+ */
+- (void) fetchConnectionWithFailureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Fetch a connection. This method will use the objectId property to fetch the connecition.
+ 
+ @param successBlock Block invoked when the connection is fetched
+ @param failureBlock Block invoked when the fetch call fails
+ */
+- (void) fetchConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Delete APConnections */
 
@@ -252,10 +290,51 @@
 - (void) addPropertyWithKey:(NSString*) keyName value:(id) object;
 
 /**
+ Method used to update an existing property.
+ Call update after this method call to persist the update.
+ 
+ @param keyName key of the data item to be updated.
+ @param object Corresponding value to the key.
+ */
+- (void) updatePropertyWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to delete a property.
+ Call update after this method call to persist the change.
+ 
+ @param keyName key of the data item to be removed.
+ */
+- (void) removePropertyWithKey:(NSString*) keyName;
+
+/**
+ Method used to retrieve a property using its key.
+ 
+ @param keyName key of the date item to be removed.
+ */
+- (NSDictionary*) getPropertyWithKey:(NSString*) keyName;
+
+/**
  Method used to add an attibute to the APObject. Attributes are used to store extra information.
  
  @param keyName key of the data item to be stored.
  @param object Corresponding value to the key.
  */
 - (void) addAttributeWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to update an attribute.
+ Call update after this method call to persist the change
+ 
+ @param keyName key of the attribute to be updated.
+ @param object Corresponding value to the key.
+ */
+- (void) updateAttributeWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to remove an attribute.
+ Call update after this method call to persist the change
+ 
+ @param keyName key of the attribute to be removed.
+ */
+- (void) removeAttributeWithKey:(NSString*) keyName;
 @end

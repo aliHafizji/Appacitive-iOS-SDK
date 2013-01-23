@@ -9,7 +9,7 @@ SPEC_BEGIN(APConnectionTests)
 describe(@"APConnectionTests", ^{
 
     beforeAll(^() {
-        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
+        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:@"eIV/1u9/f0CZNNjvJgZipg=="];
         [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
@@ -17,7 +17,94 @@ describe(@"APConnectionTests", ^{
     afterAll(^(){
         [Appacitive setSharedObject:nil];
     });
+
+#pragma mark TESTING_FETCH_REQUEST
     
+    it(@"should not return an error for fetching a connection with a valid object and relationtype", ^{
+        __block BOOL isFetchSuccessful = NO;
+        
+        APConnection *connection = [APConnection connectionWithRelationType:@"deals"];
+        connection.objectId = [NSNumber numberWithLongLong:15896978683725594];
+        [connection fetchConnectionWithSuccessHandler:^(){
+            isFetchSuccessful = YES;
+        } failureHandler:^(APError *error) {
+            isFetchSuccessful = NO;
+        }];
+        
+        
+        [[expectFutureValue(theValue(isFetchSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+
+#pragma mark UPDATE_PROPERTY_TEST
+    
+    it(@"should not return an error for updating an property of a connection", ^{
+        __block BOOL isUpdateSuccessful = NO;
+        
+        __block APConnection *connection = [APConnection connectionWithRelationType:@"deals"];
+        connection.objectId = [NSNumber numberWithLongLong:15896978683725594];
+        [connection fetchConnectionWithSuccessHandler:^(){
+            [connection updatePropertyWithKey:@"test" value:@"test2"];
+            [connection updateConnectionWithSuccessHandler:^() {
+                isUpdateSuccessful = YES;
+            } failureHandler:nil];
+        } failureHandler:nil];
+        
+        [[expectFutureValue(theValue(isUpdateSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+
+#pragma mark DELETE_PROPERTY_TEST
+    
+    it(@"should not return an error for deleting a property of a connection", ^{
+        __block BOOL isDeleteSuccessful = NO;
+        
+        __block APConnection *connection = [APConnection connectionWithRelationType:@"deals"];
+        connection.objectId = [NSNumber numberWithLongLong:15896978683725594];
+        [connection fetchConnectionWithSuccessHandler:^(){
+            [connection removePropertyWithKey:@"test"];
+            [connection updateConnectionWithSuccessHandler:^() {
+                isDeleteSuccessful = YES;
+            } failureHandler:nil];
+        } failureHandler:nil];
+        
+        [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+#pragma mark UPDATE_ATTRIBUTE_TEST
+    
+    it(@"should not return an error for updating an attribute of a connection", ^{
+        __block BOOL isUpdateSuccessful = NO;
+        
+        __block APConnection *connection = [APConnection connectionWithRelationType:@"deals"];
+        connection.objectId = [NSNumber numberWithLongLong:15896978683725594];
+        [connection fetchConnectionWithSuccessHandler:^(){
+            [connection updateAttributeWithKey:@"test" value:@"value2"];
+            [connection updateConnectionWithSuccessHandler:^() {
+                isUpdateSuccessful = YES;
+            } failureHandler:nil];
+        } failureHandler:nil];
+        
+        [[expectFutureValue(theValue(isUpdateSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+#pragma mark DELETE_ATTRIBUTE_TEST
+    
+    it(@"should not return an error for deleting an attribute of a connection", ^{
+        __block BOOL isDeleteSuccessful = NO;
+        
+        __block APConnection *connection = [APConnection connectionWithRelationType:@"deals"];
+        connection.objectId = [NSNumber numberWithLongLong:15896978683725594];
+        [connection fetchConnectionWithSuccessHandler:^(){
+            [connection removeAttributeWithKey:@"test"];
+            [connection updateConnectionWithSuccessHandler:^() {
+                isDeleteSuccessful = YES;
+            } failureHandler:nil];
+        } failureHandler:nil];
+        
+        [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+
 #pragma mark CREATION_TESTS
     
     it(@"should not return an error while creating the connection with proper objectIds", ^{
@@ -92,7 +179,7 @@ describe(@"APConnectionTests", ^{
         [[expectFutureValue(theValue(isConnectionCreated)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
 
-    
+
 #pragma mark SEARCH_TESTS
     
     it(@"should not return an error while search for valid relation types", ^{

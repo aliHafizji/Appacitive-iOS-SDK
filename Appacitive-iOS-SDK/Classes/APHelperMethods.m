@@ -47,7 +47,7 @@
                 if (!properties) {
                     properties = [NSMutableArray array];
                 }
-                [properties addObject:@{key:obj}];
+                [properties addObject:@{key:obj}.mutableCopy];
             }
         }];
         return properties;
@@ -55,7 +55,7 @@
     return nil;
 }
 
-+ (NSDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response {
++ (NSMutableDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response {
     if (response) {
         __block NSMutableDictionary *properties;
         [response enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){

@@ -24,7 +24,7 @@ extern NSString *const ARTICLE_PATH;
     NSDate *_utcLastUpdatedDate;
     NSNumber *_revision;
     NSMutableArray *_properties;
-    NSMutableArray *_attributes;
+    NSMutableDictionary *_attributes;
 }
 
 @property (nonatomic, strong) NSString *createdBy;
@@ -34,7 +34,7 @@ extern NSString *const ARTICLE_PATH;
 @property (nonatomic, strong, readonly) NSDate *utcLastUpdatedDate;
 @property (nonatomic, strong, readonly) NSNumber *revision;
 @property (nonatomic, strong, readonly) NSMutableArray *properties;
-@property (nonatomic, strong, readonly) NSMutableArray *attributes;
+@property (nonatomic, strong, readonly) NSMutableDictionary *attributes;
 @property (nonatomic, strong) NSNumber *schemaId;
 @property (nonatomic, strong) NSString *schemaType;
 @property (nonatomic, strong) NSArray *tags;
@@ -188,6 +188,30 @@ extern NSString *const ARTICLE_PATH;
 - (void) addPropertyWithKey:(NSString*) keyName value:(id) object;
 
 /**
+ Method used to update an existing property.
+ Call update after this method call to persist the update.
+ 
+ @param keyName key of the data item to be updated.
+ @param object Corresponding value to the key.
+ */
+- (void) updatePropertyWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to delete a property.
+ Call update after this method call to persist the change.
+ 
+ @param keyName key of the data item to be removed.
+ */
+- (void) removePropertyWithKey:(NSString*) keyName;
+
+/**
+ Method used to retrieve a property using its key.
+ 
+ @param keyName key of the date item to be removed.
+ */
+- (NSDictionary*) getPropertyWithKey:(NSString*) keyName;
+
+/**
  Method used to add an attibute to the APObject.
  Attributes are used to store extra information.
  
@@ -195,6 +219,23 @@ extern NSString *const ARTICLE_PATH;
  @param object Corresponding value to the key.
  */
 - (void) addAttributeWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to update an attribute.
+ Call update after this method call to persist the change
+ 
+ @param keyName key of the attribute to be updated.
+ @param object Corresponding value to the key.
+ */
+- (void) updateAttributeWithKey:(NSString*) keyName value:(id) object;
+
+/**
+ Method used to remove an attribute.
+ Call update after this method call to persist the change
+ 
+ @param keyName key of the attribute to be removed.
+ */
+- (void) removeAttributeWithKey:(NSString*) keyName;
 
 /** @name Save APObjects */
 
@@ -218,6 +259,26 @@ extern NSString *const ARTICLE_PATH;
  
  */
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
+/** @name Update APObjects */
+
+/**
+ @see updateObjectWithSuccessHandler:failureHandler:
+ */
+- (void) updateObject;
+
+/**
+ @see updateObjectWithSuccessHandler:failureHandler:
+ */
+- (void) updateObjectWithFailureHandler:(APFailureBlock)failureBlock;
+
+/**
+ Method used to update an APObject.
+ 
+ @param successBlock Block invoked when the update operation is successful.
+ @param failureBlock Block invoked when the update operation fails.
+ */
+- (void) updateObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Apply graph queries */
 

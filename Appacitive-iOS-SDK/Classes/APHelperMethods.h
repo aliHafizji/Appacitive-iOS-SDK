@@ -34,7 +34,7 @@
  @param response Response received from the server.
  @return A dictionary of properties
  */
-+ (NSDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response;
++ (NSMutableDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response;
 
 /**
  Helper method to add the session id and environment to the request headers.

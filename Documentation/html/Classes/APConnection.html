@@ -105,7 +105,29 @@
 	
 	<option value="//api/name/deleteConnectionWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- deleteConnectionWithSuccessHandler:failureHandler:</option>
 	
+	<option value="//api/name/fetchConnection">&nbsp;&nbsp;&nbsp;&nbsp;- fetchConnection</option>
+	
+	<option value="//api/name/fetchConnectionWithFailureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- fetchConnectionWithFailureHandler:</option>
+	
+	<option value="//api/name/fetchConnectionWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- fetchConnectionWithSuccessHandler:failureHandler:</option>
+	
+	<option value="//api/name/getPropertyWithKey:">&nbsp;&nbsp;&nbsp;&nbsp;- getPropertyWithKey:</option>
+	
 	<option value="//api/name/initWithRelationType:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithRelationType:</option>
+	
+	<option value="//api/name/removeAttributeWithKey:">&nbsp;&nbsp;&nbsp;&nbsp;- removeAttributeWithKey:</option>
+	
+	<option value="//api/name/removePropertyWithKey:">&nbsp;&nbsp;&nbsp;&nbsp;- removePropertyWithKey:</option>
+	
+	<option value="//api/name/updateAttributeWithKey:value:">&nbsp;&nbsp;&nbsp;&nbsp;- updateAttributeWithKey:value:</option>
+	
+	<option value="//api/name/updateConnection">&nbsp;&nbsp;&nbsp;&nbsp;- updateConnection</option>
+	
+	<option value="//api/name/updateConnectionWithFailureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- updateConnectionWithFailureHandler:</option>
+	
+	<option value="//api/name/updateConnectionWithSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;- updateConnectionWithSuccessHandler:failureHandler:</option>
+	
+	<option value="//api/name/updatePropertyWithKey:value:">&nbsp;&nbsp;&nbsp;&nbsp;- updatePropertyWithKey:value:</option>
 	
 	
 	
@@ -128,6 +150,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Searching for APConnections">Searching for APConnections</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Create APConnections">Create APConnections</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Update APConnections">Update APConnections</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Fetch APConnections">Fetch APConnections</a></span></li>
 	
@@ -209,7 +233,29 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteConnectionWithSuccessHandler:failureHandler:">deleteConnectionWithSuccessHandler:failureHandler:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnection">fetchConnection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnectionWithFailureHandler:">fetchConnectionWithFailureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">fetchConnectionWithSuccessHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getPropertyWithKey:">getPropertyWithKey:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithRelationType:">initWithRelationType:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeAttributeWithKey:">removeAttributeWithKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removePropertyWithKey:">removePropertyWithKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateAttributeWithKey:value:">updateAttributeWithKey:value:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateConnection">updateConnection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateConnectionWithFailureHandler:">updateConnectionWithFailureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">updateConnectionWithSuccessHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updatePropertyWithKey:value:">updatePropertyWithKey:value:</a></span></li>
 	
 </ul></li>
 
@@ -411,6 +457,35 @@ A Connection itself can store data in its properties and attributes fields.</p>
 						</ul>
 						
 						
+						<a title="Update APConnections" name="task_Update APConnections"></a>
+						<h3 class="subsubtitle task-title">Update APConnections</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateConnection">&ndash;&nbsp;updateConnection</a></code>
+		<span class="tooltip"><p><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">updateConnectionWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateConnectionWithFailureHandler:">&ndash;&nbsp;updateConnectionWithFailureHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">updateConnectionWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">&ndash;&nbsp;updateConnectionWithSuccessHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Method used to update an APConnection.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
 						<a title="Fetch APConnections" name="task_Fetch APConnections"></a>
 						<h3 class="subsubtitle task-title">Fetch APConnections</h3>
 
@@ -440,6 +515,27 @@ A Connection itself can store data in its properties and attributes fields.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/fetchConnectionsWithRelationType:objectIds:successHandler:failureHandler:">+&nbsp;fetchConnectionsWithRelationType:objectIds:successHandler:failureHandler:</a></code>
 		<span class="tooltip"><p>Fetches multiple APConnections from the remote server.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchConnection">&ndash;&nbsp;fetchConnection</a></code>
+		<span class="tooltip"><p><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">fetchConnectionWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchConnectionWithFailureHandler:">&ndash;&nbsp;fetchConnectionWithFailureHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">fetchConnectionWithSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">&ndash;&nbsp;fetchConnectionWithSuccessHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Fetch a connection. This method will use the objectId property to fetch the connecition.</p></span>
 	</span>
 	
 	
@@ -510,8 +606,47 @@ A Connection itself can store data in its properties and attributes fields.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/updatePropertyWithKey:value:">&ndash;&nbsp;updatePropertyWithKey:value:</a></code>
+		<span class="tooltip"><p>Method used to update an existing property.
+Call update after this method call to persist the update.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removePropertyWithKey:">&ndash;&nbsp;removePropertyWithKey:</a></code>
+		<span class="tooltip"><p>Method used to delete a property.
+Call update after this method call to persist the change.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getPropertyWithKey:">&ndash;&nbsp;getPropertyWithKey:</a></code>
+		<span class="tooltip"><p>Method used to retrieve a property using its key.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/addAttributeWithKey:value:">&ndash;&nbsp;addAttributeWithKey:value:</a></code>
 		<span class="tooltip"><p>Method used to add an attibute to the <a href="../Classes/APObject.html">APObject</a>. Attributes are used to store extra information.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateAttributeWithKey:value:">&ndash;&nbsp;updateAttributeWithKey:value:</a></code>
+		<span class="tooltip"><p>Method used to update an attribute.
+Call update after this method call to persist the change</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeAttributeWithKey:">&ndash;&nbsp;removeAttributeWithKey:</a></code>
+		<span class="tooltip"><p>Method used to remove an attribute.
+Call update after this method call to persist the change</p></span>
 	</span>
 	
 	
@@ -2018,6 +2153,193 @@ A Connection itself can store data in its properties and attributes fields.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/fetchConnection" title="fetchConnection"></a>
+	<h3 class="subsubtitle method-title">fetchConnection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">fetchConnectionWithSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)fetchConnection</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">&ndash; fetchConnectionWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetchConnectionWithFailureHandler:" title="fetchConnectionWithFailureHandler:"></a>
+	<h3 class="subsubtitle method-title">fetchConnectionWithFailureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">fetchConnectionWithSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)fetchConnectionWithFailureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/fetchConnectionWithSuccessHandler:failureHandler:">&ndash; fetchConnectionWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fetchConnectionWithSuccessHandler:failureHandler:" title="fetchConnectionWithSuccessHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">fetchConnectionWithSuccessHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Fetch a connection. This method will use the objectId property to fetch the connecition.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)fetchConnectionWithSuccessHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when the connection is fetched</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when the fetch call fails</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getPropertyWithKey:" title="getPropertyWithKey:"></a>
+	<h3 class="subsubtitle method-title">getPropertyWithKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to retrieve a property using its key.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)getPropertyWithKey:(NSString *)<em>keyName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the date item to be removed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithRelationType:" title="initWithRelationType:"></a>
 	<h3 class="subsubtitle method-title">initWithRelationType:</h3>
 	
@@ -2039,6 +2361,345 @@ A Connection itself can store data in its properties and attributes fields.</p>
 		<dl class="argument-def parameter-def">
 			<dt><em>relationType</em></dt>
 			<dd><p>The name of the relation. This is specified while creating the schema.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeAttributeWithKey:" title="removeAttributeWithKey:"></a>
+	<h3 class="subsubtitle method-title">removeAttributeWithKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to remove an attribute.
+Call update after this method call to persist the change</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removeAttributeWithKey:(NSString *)<em>keyName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the attribute to be removed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removePropertyWithKey:" title="removePropertyWithKey:"></a>
+	<h3 class="subsubtitle method-title">removePropertyWithKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to delete a property.
+Call update after this method call to persist the change.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removePropertyWithKey:(NSString *)<em>keyName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the data item to be removed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateAttributeWithKey:value:" title="updateAttributeWithKey:value:"></a>
+	<h3 class="subsubtitle method-title">updateAttributeWithKey:value:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to update an attribute.
+Call update after this method call to persist the change</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateAttributeWithKey:(NSString *)<em>keyName</em> value:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the attribute to be updated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>Corresponding value to the key.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateConnection" title="updateConnection"></a>
+	<h3 class="subsubtitle method-title">updateConnection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">updateConnectionWithSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateConnection</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">&ndash; updateConnectionWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateConnectionWithFailureHandler:" title="updateConnectionWithFailureHandler:"></a>
+	<h3 class="subsubtitle method-title">updateConnectionWithFailureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">updateConnectionWithSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateConnectionWithFailureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/updateConnectionWithSuccessHandler:failureHandler:">&ndash; updateConnectionWithSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateConnectionWithSuccessHandler:failureHandler:" title="updateConnectionWithSuccessHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">updateConnectionWithSuccessHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to update an APConnection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updateConnectionWithSuccessHandler:(APSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when the update operation is successful.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when the update operation fails.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updatePropertyWithKey:value:" title="updatePropertyWithKey:value:"></a>
+	<h3 class="subsubtitle method-title">updatePropertyWithKey:value:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Method used to update an existing property.
+Call update after this method call to persist the update.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updatePropertyWithKey:(NSString *)<em>keyName</em> value:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyName</em></dt>
+			<dd><p>key of the data item to be updated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>Corresponding value to the key.</p></dd>
 		</dl>
 		
 	</div>
