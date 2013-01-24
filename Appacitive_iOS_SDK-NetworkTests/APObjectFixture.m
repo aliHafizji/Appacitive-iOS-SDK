@@ -208,7 +208,7 @@ describe(@"APObject", ^{
         
         [object saveObjectWithSuccessHandler:^(NSDictionary *result){
             [object updatePropertyWithKey:@"name" value:@"Dhull"];
-            [object updateObjectWithSuccessHandler:^(NSDictionary *result) {
+            [object updateObjectWithSuccessHandler:^() {
                 isUpdateSuccessful = YES;
             } failureHandler:^(APError *error) {
                 isUpdateSuccessful = NO;
