@@ -42,6 +42,22 @@
 + (NSMutableDictionary*) dictionaryOfPropertiesFromJSONResponse:(id)response;
 
 /**
+ Helper method to parse json response to NSDate
+ 
+ @param response Response received from the server.
+ @return date date as NSDate object.
+ */
++ (NSDate*) deserializeJsonDateString:(NSString*)jsonDateString;
+
+/**
+ Helper method to parse NSDate to NSString.
+ 
+ @param date NSDate to parse.
+ @return String from NSDate.
+ */
++ (NSString*) jsonDateStringFromDate:(NSDate*)date;
+
+/**
  Helper method to add the session id and environment to the request headers.
  
  @param operation The operation to add the headers to.
