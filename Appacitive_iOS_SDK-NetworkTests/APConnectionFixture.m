@@ -220,8 +220,8 @@ describe(@"APConnectionTests", ^{
 //    Write test here
     it(@"should return not an error while search for valid objectIds", ^{
         __block BOOL isSearchingSuccesful = NO;
-        NSArray * objectIds = [NSArray arrayWithObjects:@"15896369232480359",@"15896362656860262",@"15896351207458582",@"15896338793367317",nil];
-        NSNumber * objectId = [NSNumber numberWithLongLong:15896194350975077];
+        NSArray * objectIds = [NSArray arrayWithObjects:@"12094464603586988",@"926377",@"926372",@"926364",nil];
+        NSNumber * objectId = [NSNumber numberWithLongLong:926345];
         [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:^(NSDictionary *results){
             NSLog(@"Success block %@" , [results description]);
             isSearchingSuccesful = YES;
