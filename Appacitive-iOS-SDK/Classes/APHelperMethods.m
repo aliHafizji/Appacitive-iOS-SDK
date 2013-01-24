@@ -79,6 +79,18 @@
     return nil;
 }
 
++ (NSDate *) deserializeJsonDateString:(NSString *)jsonDateString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
+    return [dateFormatter dateFromString:jsonDateString];
+}
+
++ (NSString *) jsonDateStringFromDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'"];
+    return [dateFormatter stringFromDate:date];
+}
+
 +(void) addHeadersToMKNetworkOperation:(MKNetworkOperation *)operation {
     Appacitive *sharedObject = [Appacitive sharedObject];
     [operation addHeaders:
