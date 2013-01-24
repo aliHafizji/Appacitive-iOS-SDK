@@ -46,10 +46,12 @@
 }
 
 + (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/find/all", relationType];
         
@@ -86,6 +88,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -101,9 +106,10 @@
 
 - (void) createConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingString:self.relationType];
         
@@ -138,6 +144,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -201,9 +210,10 @@
 
 - (void) updateConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", self.relationType, self.objectId.description];
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -238,6 +248,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -257,9 +270,10 @@
 
 + (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/multiget/", relationType];
         
@@ -299,6 +313,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -312,9 +329,10 @@
 
 - (void) fetchConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%@", self.relationType, self.objectId.description];
         
@@ -347,6 +365,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -362,9 +383,10 @@
 
 + (void) deleteConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/bulkdelete", relationType];
         
@@ -400,6 +422,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 
 }
@@ -414,9 +439,10 @@
 
 - (void) deleteConnectionWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/%lld", self.relationType, self.objectId.longLongValue];
         
@@ -449,6 +475,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 

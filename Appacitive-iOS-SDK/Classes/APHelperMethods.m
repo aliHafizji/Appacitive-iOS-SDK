@@ -39,6 +39,14 @@
     return nil;
 }
 
++ (APError*) errorForSessionNotCreated {
+    NSString *errorMessage = [NSString stringWithFormat:@"Appacitive object does not have a session. Either you have not initialized the Appacitive object or you are calling SDK methods before the SessionReceivedNotification notification has been raised"];
+    NSDictionary *dictionary = @{NSLocalizedDescriptionKey: errorMessage};
+    
+    APError *error = [APError errorWithDomain:ERROR_DOMAIN code:8002 userInfo:dictionary];
+    return error;
+}
+
 + (NSArray*) arrayOfPropertiesFromJSONResponse:(id)response {
     if (response) {
         __block NSMutableArray *properties;

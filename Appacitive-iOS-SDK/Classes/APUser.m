@@ -34,9 +34,9 @@ static APUser* currentUser = nil;
 + (void) authenticateUserWithUserName:(NSString*) userName password:(NSString*) password successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock)failureBlock {
 
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -71,6 +71,9 @@ static APUser* currentUser = nil;
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -80,9 +83,10 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithFacebook:(NSString *) accessToken successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -117,6 +121,9 @@ static APUser* currentUser = nil;
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -126,10 +133,10 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithTwitter:(NSString*) oauthToken oauthSecret:(NSString*) oauthSecret successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock) failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -169,9 +176,11 @@ static APUser* currentUser = nil;
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
-
 }
 
 + (void) authenticateUserWithTwitter:(NSString *)oauthToken oauthSecret:(NSString *)oauthSecret consumerKey:(NSString*)consumerKey consumerSecret :(NSString*) consumerSecret successHandler:(APSuccessBlock)successBlock {
@@ -180,10 +189,10 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithTwitter:(NSString *)oauthToken oauthSecret:(NSString *)oauthSecret consumerKey:(NSString*)consumerKey consumerSecret :(NSString*) consumerSecret successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -224,7 +233,10 @@ static APUser* currentUser = nil;
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -237,10 +249,10 @@ static APUser* currentUser = nil;
 + (void) createUserWithDetails:(APUserDetails *)userDetails successHandler:(APUserSuccessBlock) successBlock failuderHandler:(APFailureBlock) failureBlock {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
         APUserSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"create"];
         
@@ -276,7 +288,10 @@ static APUser* currentUser = nil;
         }];
         [sharedObject enqueueOperation:op];
     } else {
-        DLog(@"Initialize the Appactive object with your API_KEY and DEPLOYMENT_ID in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 

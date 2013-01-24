@@ -21,6 +21,11 @@
 + (APError*) checkForErrorStatus:(id)response;
 
 /**
+ Helper method used to create an error for the case when a session has not been retrieved and API calls are made.
+ */
++ (APError*) errorForSessionNotCreated;
+
+/**
  Helper method to parse the properties from a json response
  
  @param response Response received from the server.

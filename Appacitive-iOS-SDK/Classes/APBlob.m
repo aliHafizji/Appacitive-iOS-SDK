@@ -30,10 +30,11 @@
  
 + (void) uploadFileWithName:(NSString*)fileName mimeType:(NSString*)mimeType uploadProgressBlock:(MKNKProgressBlock)uploadProgressBlock successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         MKNKProgressBlock uploadProgressBlockCopy = [uploadProgressBlock copy];
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [ARTICLE_PATH stringByAppendingString:@"blob/"];
         
@@ -74,6 +75,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -93,11 +97,12 @@
 
 + (void) downloadFileFromRemoteUrl:(NSString*)url toFile:(NSString *)fileName downloadProgressBlock:(MKNKProgressBlock)downloadProgressBlock successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         
         MKNKProgressBlock downloadProgressBlockCopy = [downloadProgressBlock copy];
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         NSString *path = [url stringByAppendingQueryParameters:queryParams];
@@ -137,6 +142,9 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate")
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 

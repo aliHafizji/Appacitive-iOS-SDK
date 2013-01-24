@@ -49,9 +49,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/find/all", schemaName];
         
@@ -93,6 +94,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -104,9 +108,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) deleteObjectsWithIds:(NSArray*)objectIds schemaName:(NSString*)schemaName successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/bulkdelete", schemaName];
         
@@ -142,6 +147,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -172,9 +180,10 @@ NSString *const ARTICLE_PATH = @"article/";
 - (void) deleteObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock deleteConnectingConnections:(BOOL)deleteConnections {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
@@ -206,6 +215,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -217,9 +229,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         __block NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/multiget/", schemaName];
         
@@ -259,6 +272,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -272,8 +288,9 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) fetchWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%lld", self.schemaType, [self.objectId longLongValue]];
         
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -305,6 +322,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -320,9 +340,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@", self.schemaType];
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -357,6 +378,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -372,9 +396,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) updateObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [ARTICLE_PATH stringByAppendingFormat:@"%@/%@", self.schemaType, self.objectId.description];
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
@@ -409,6 +434,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -420,9 +448,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) applyFilterGraphQuery:(NSString*)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [SEARCH_PATH stringByAppendingString:@"filter"];
         
@@ -462,6 +491,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
@@ -471,9 +503,10 @@ NSString *const ARTICLE_PATH = @"article/";
 
 + (void) applyProjectionGraphQuery:(NSString *)query successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
         APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [SEARCH_PATH stringByAppendingString:@"project"];
         
@@ -513,6 +546,9 @@ NSString *const ARTICLE_PATH = @"article/";
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
 }
 
