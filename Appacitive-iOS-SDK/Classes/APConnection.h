@@ -79,6 +79,26 @@
  */
 + (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
+/**
+  @see searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:
+ */
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds;
+
+/**
+ @see searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:
+ */
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock;
+
+/**
+ Searches for APConnections between the single article and any of the articles in the list and returns the paginated list of all connections .
+ 
+ @param objectId  The id of the APObject for which the connections are to be retrieved.
+ @param objectsId An array of objectIds.
+ @param successBlock Block invoked when the search call is successful.
+ @param failureBlock Block invoked when the search call fails.
+ */
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+
 /** @name Create APConnections */
 
 /**
