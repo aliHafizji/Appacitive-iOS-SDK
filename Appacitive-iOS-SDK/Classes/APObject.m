@@ -629,19 +629,13 @@ NSString *const ARTICLE_PATH = @"article/";
     _lastModifiedBy = (NSString*) article[@"__lastmodifiedby"];
     _revision = (NSNumber*) article[@"__revision"];
     _schemaId = (NSNumber*) article[@"__schemaid"];
-    _utcDateCreated = [self deserializeJsonDateString:article[@"__utcdatecreated"]];
-    _utcLastUpdatedDate = [self deserializeJsonDateString:article[@"__utclastupdateddate"]];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:article[@"__utcdatecreated"]];
+    _utcLastUpdatedDate = [APHelperMethods deserializeJsonDateString:article[@"__utclastupdateddate"]];
     _attributes = [article[@"__attributes"] mutableCopy];
     _tags = article[@"__tags"];
     _schemaType = article[@"__schematype"];
     
     _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:article].mutableCopy;
-}
-
-- (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    return [dateFormatter dateFromString:jsonDateString];
 }
 
 - (NSMutableDictionary*) postParamerters {
