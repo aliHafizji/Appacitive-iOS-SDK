@@ -94,6 +94,65 @@
     }
 }
 
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds {
+    [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:nil failureHandler:nil];
+}
+
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock {
+    [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:successBlock failureHandler:nil];
+}
+
+
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
+    
+    if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
+        
+        NSString *path = [CONNECTION_PATH stringByAppendingString:@"interconnects"];
+        
+        NSMutableDictionary *postParams = [[NSMutableDictionary alloc] init];
+        postParams[@"article1id"] = [NSString stringWithFormat:@"%lld",objectId.longLongValue];
+        postParams[@"article2ids"] = objectIds;
+        
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:postParams httpMethod:@"POST" ssl:YES];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
+        op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
+        
+        [op onCompletion:^(MKNetworkOperation *completedOperation){
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlockCopy != nil) {
+                    successBlockCopy(completedOperation.responseJSON);
+                }
+            } else {
+                if (failureBlockCopy != nil) {
+                    failureBlockCopy(error);
+                }
+            }
+            
+        } onError:^(NSError *error) {
+            if (failureBlockCopy != nil) {
+                failureBlockCopy((APError*)error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
+    }
+}
+
 #pragma mark create connection methods
 
 - (void) create {
@@ -560,17 +619,11 @@
     _relationType = (NSString*) connection[@"__relationtype"];
     _revision = (NSNumber*) connection[@"__revision"];
     _tags = connection[@"__tags"];
-    _utcDateCreated = [self deserializeJsonDateString:connection[@"__createdate"]];
-    _utcLastModifiedDate = [self deserializeJsonDateString:connection[@"__lastmodified"]];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:connection[@"__utcdatecreated"]];
+    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:connection[@"__utclastupdateddate"]];
     
     _attributes = [connection[@"__attributes"] mutableCopy];
     _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:connection].mutableCopy;
-}
-
-- (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-    return [dateFormatter dateFromString:jsonDateString];
 }
 
 - (NSMutableDictionary*) parameters {
