@@ -306,19 +306,13 @@ static APUser* currentUser = nil;
     _lastModifiedBy = (NSString*) user[@"__lastmodifiedby"];
     _revision = (NSNumber*) user[@"__revision"];
     self.schemaId = (NSNumber*) user[@"__schemaid"];
-    _utcDateCreated = [self deserializeJsonDateString:user[@"__utcdatecreated"]];
-    _utcLastUpdatedDate = [self deserializeJsonDateString:user[@"__utclastupdateddate"]];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:user[@"__utcdatecreated"]];
+    _utcLastUpdatedDate = [APHelperMethods deserializeJsonDateString:user[@"__utclastupdateddate"]];
     _attributes = user[@"__attributes"];
     self.tags = user[@"__tags"];
     self.schemaType = user[@"__schematype"];
     
     _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:user].mutableCopy;
-}
-
-- (NSDate *) deserializeJsonDateString: (NSString *)jsonDateString {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY'-'MM'-'dd'T'HH':'mm':'ss.SSSSSSS'Z'"];
-    return [dateFormatter dateFromString:jsonDateString];
 }
 
 - (NSString*) description {
