@@ -111,10 +111,7 @@
         
         NSString *path = [CONNECTION_PATH stringByAppendingString:@"interconnects"];
         
-        NSMutableDictionary *postParams = [[NSMutableDictionary alloc] init];
-        postParams[@"article1id"] = [NSString stringWithFormat:@"%lld",objectId.longLongValue];
-        postParams[@"article2ids"] = objectIds;
-        
+        NSMutableDictionary *postParams = @{@"article1id":[NSString stringWithFormat:@"%lld",objectId.longLongValue],@"article2ids":objectIds}.mutableCopy;
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
@@ -617,8 +614,8 @@
     _relationType = (NSString*) connection[@"__relationtype"];
     _revision = (NSNumber*) connection[@"__revision"];
     _tags = connection[@"__tags"];
-    _utcDateCreated = [APHelperMethods deserializeJsonDateString:connection[@"__createdate"]];
-    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:connection[@"__lastmodified"]];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:connection[@"__utcdatecreated"]];
+    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:connection[@"__utclastupdateddate"]];
     
     _attributes = [connection[@"__attributes"] mutableCopy];
     _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:connection].mutableCopy;

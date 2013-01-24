@@ -217,7 +217,7 @@ describe(@"APConnectionTests", ^{
     });
     
 #pragma mark INTERCONNECTS_TESTS
-//    Write test here
+    
     it(@"should return not an error while search for valid objectIds", ^{
         __block BOOL isSearchingSuccesful = NO;
         NSArray * objectIds = [NSArray arrayWithObjects:@"12094464603586988",@"926377",@"926372",@"926364",nil];
