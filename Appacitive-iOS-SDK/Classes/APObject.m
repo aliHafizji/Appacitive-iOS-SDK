@@ -631,7 +631,7 @@ NSString *const ARTICLE_PATH = @"article/";
     _schemaId = (NSNumber*) article[@"__schemaid"];
     _utcDateCreated = [APHelperMethods deserializeJsonDateString:article[@"__utcdatecreated"]];
     _utcLastUpdatedDate = [APHelperMethods deserializeJsonDateString:article[@"__utclastupdateddate"]];
-        _attributes = [article[@"__attributes"] mutableCopy];
+    _attributes = [article[@"__attributes"] mutableCopy];
     _tags = article[@"__tags"];
     _schemaType = article[@"__schematype"];
     

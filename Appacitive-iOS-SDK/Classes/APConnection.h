@@ -90,7 +90,7 @@
 + (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock;
 
 /**
- Searches for APConnections between the single article and any of the articles in the list and returns the paginated list of all connections .
+ Searches for Connections between the single article and any of the articles in the list and returns the paginated list of all connections .
  
  @param objectId  The id of the APObject for which the connections are to be retrieved.
  @param objectsId An array of objectIds.

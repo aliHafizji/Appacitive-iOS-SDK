@@ -105,13 +105,16 @@
 
 + (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
+    APResultSuccessBlock successBlockCopy = [successBlock copy];
+    APFailureBlock failureBlockCopy = [failureBlock copy];
     if (sharedObject.session) {
-        APResultSuccessBlock successBlockCopy = [successBlock copy];
-        APFailureBlock failureBlockCopy = [failureBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingString:@"interconnects"];
         
-        NSMutableDictionary *postParams = @{@"article1id":[NSString stringWithFormat:@"%lld",objectId.longLongValue],@"article2ids":objectIds}.mutableCopy;
+        NSMutableDictionary *postParams = [[NSMutableDictionary alloc] init];
+        postParams[@"article1id"] = [NSString stringWithFormat:@"%lld",objectId.longLongValue];
+        postParams[@"article2ids"] = objectIds;
+        
         NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
         path = [path stringByAppendingQueryParameters:queryParams];
         
@@ -143,9 +146,10 @@
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlockCopy != nil) {
+            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        }
     }
-
-    
 }
 
 #pragma mark create connection methods
@@ -614,8 +618,8 @@
     _relationType = (NSString*) connection[@"__relationtype"];
     _revision = (NSNumber*) connection[@"__revision"];
     _tags = connection[@"__tags"];
-    _utcDateCreated = [APHelperMethods deserializeJsonDateString:connection[@"__utcdatecreated"]];
-    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:connection[@"__utclastupdateddate"]];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:connection[@"__createdate"]];
+    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:connection[@"__lastmodified"]];
     
     _attributes = [connection[@"__attributes"] mutableCopy];
     _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:connection].mutableCopy;
