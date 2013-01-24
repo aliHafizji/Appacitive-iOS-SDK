@@ -105,9 +105,10 @@
 
 + (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APResultSuccessBlock successBlockCopy = [successBlock copy];
     APFailureBlock failureBlockCopy = [failureBlock copy];
+    
     if (sharedObject.session) {
+        APResultSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [CONNECTION_PATH stringByAppendingString:@"interconnects"];
         
