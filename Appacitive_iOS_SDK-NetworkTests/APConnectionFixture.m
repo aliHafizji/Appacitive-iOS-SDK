@@ -216,6 +216,35 @@ describe(@"APConnectionTests", ^{
         
     });
     
+#pragma mark INTERCONNECTS_TESTS
+//    Write test here
+    it(@"should return not an error while search for valid objectIds", ^{
+        __block BOOL isSearchingSuccesful = NO;
+        NSArray * objectIds = [NSArray arrayWithObjects:@"12094464603586988",@"926377",@"926372",@"926364",nil];
+        NSNumber * objectId = [NSNumber numberWithLongLong:926345];
+        [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:^(NSDictionary *results){
+            NSLog(@"Success block %@" , [results description]);
+            isSearchingSuccesful = YES;
+        }failureHandler:^(APError *error) {
+            NSLog(@"Failure block %@" , [error description]);
+            isSearchingSuccesful = NO;
+        }];
+        [[expectFutureValue(theValue(isSearchingSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
+    
+    it(@"should return an error while search for invalid objectIds", ^{
+        __block BOOL isSearchingUnsuccesful = NO;
+        NSArray * objectIds = [NSArray arrayWithObjects:@"15896369232480359",@"15896362656860262",@"15896351207458582",@"15896338793367317",nil];
+        NSNumber * objectId = [NSNumber numberWithLongLong:-34432233];
+        [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:^(NSDictionary *results){
+            NSLog(@"Success block %@" , [results description]);
+            isSearchingUnsuccesful = NO;
+        }failureHandler:^(APError *error) {
+            NSLog(@"Failure block %@" , [error description]);
+            isSearchingUnsuccesful = YES;
+        }];
+        [[expectFutureValue(theValue(isSearchingUnsuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
+    });
 #pragma mark DELETE_TESTS
 
     it(@"should not return an error for the delete call with valid relation name and valid objectid", ^{
