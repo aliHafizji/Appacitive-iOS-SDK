@@ -558,7 +558,7 @@ NSString *const ARTICLE_PATH = @"article/";
     if (!self.properties) {
         _properties = [NSMutableArray array];
     }
-    [_properties addObject:@{keyName: object}];
+    [_properties addObject:@{keyName: object}.mutableCopy];
 }
 
 #pragma mark update properties method
