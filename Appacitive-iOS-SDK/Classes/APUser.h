@@ -14,6 +14,8 @@
 @interface APUser : APObject
 
 @property (nonatomic, strong, readonly) NSString *userToken;
+@property (nonatomic, readonly) BOOL loggedInWithFacebook;
+@property (nonatomic, readonly) BOOL loggedInWithTwitter;
 
 /**
  Returns the current authenticated user.

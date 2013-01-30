@@ -104,8 +104,9 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
+                [currentUser setLoggedInWithFacebook:YES];
                 if (successBlockCopy) {
-                    successBlockCopy(completedOperation.responseJSON);
+                    successBlockCopy();
                 }
             } else {
                 if (failureBlockCopy != nil) {
@@ -160,7 +161,7 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-
+                [currentUser setLoggedInWithTwitter:YES];
                 if (successBlockCopy) {
                     successBlockCopy();
                 }
@@ -217,7 +218,7 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                
+                [currentUser setLoggedInWithTwitter:YES];
                 if (successBlockCopy) {
                     successBlockCopy();
                 }
@@ -297,6 +298,13 @@ static APUser* currentUser = nil;
 
 #pragma mark private methods
 
+- (void) setLoggedInWithFacebook:(BOOL)loggedInWithFacebook {
+    _loggedInWithFacebook = YES;
+}
+
+- (void) setLoggedInWithTwitter:(BOOL)loggedInWithTwitter {
+    _loggedInWithTwitter = YES;
+}
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
     _userToken = dictionary[@"token"];
     
