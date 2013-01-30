@@ -193,6 +193,17 @@ describe(@"APObject", ^{
         [[expectFutureValue(theValue(isFetchUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
+#pragma mark TESTING_GET_PROPERTIES_METHOD
+    
+    it(@"should not return an error for retrieving a valid property with key", ^{
+        
+        APObject *object = [APObject objectWithSchemaName:@"Test"];
+        [object addPropertyWithKey:@"test" value:@"Another test"];
+        
+        id property = [object getPropertyWithKey:@"test"];
+        [property shouldNotBeNil];
+    });
+    
 #pragma mark TESTING_UPDATE_PROPERTIES_METHOD
     
     it(@"should not return an error for updating a property of an APObject", ^{

@@ -18,6 +18,16 @@ describe(@"APConnectionTests", ^{
         [Appacitive setSharedObject:nil];
     });
 
+#pragma mark TESTING_RETRIEVE_PROPERTY
+    
+    it(@"should not return a nil value for retrieving a valid property", ^{
+        APConnection *connection = [APConnection connectionWithRelationType:@"Test"];
+        [connection addPropertyWithKey:@"Test" value:@"Testing"];
+        
+        id property = [connection getPropertyWithKey:@"Test"];
+        [property shouldNotBeNil];
+    });
+    
 #pragma mark TESTING_FETCH_REQUEST
     
     it(@"should not return an error for fetching a connection with a valid object and relationtype", ^{

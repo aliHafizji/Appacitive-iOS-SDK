@@ -9,7 +9,7 @@ SPEC_BEGIN(APBlobTests)
 describe(@"APBlobTests", ^{
     
     beforeAll(^() {
-        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
+        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:@"eIV/1u9/f0CZNNjvJgZipg=="];
         [[Appacitive sharedObject] setEnableLiveEnvironment:NO];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });

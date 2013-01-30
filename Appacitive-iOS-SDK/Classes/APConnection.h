@@ -331,7 +331,7 @@
  
  @param keyName key of the date item to be removed.
  */
-- (NSDictionary*) getPropertyWithKey:(NSString*) keyName;
+- (id) getPropertyWithKey:(NSString*) keyName;
 
 /**
  Method used to add an attibute to the APObject. Attributes are used to store extra information.

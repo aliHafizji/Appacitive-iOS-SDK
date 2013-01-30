@@ -587,11 +587,11 @@ NSString *const ARTICLE_PATH = @"article/";
 
 #pragma mark retrieve property
 
-- (NSDictionary*) getPropertyWithKey:(NSString*) keyName {
-    __block NSDictionary *property;
+- (id) getPropertyWithKey:(NSString*) keyName {
+    __block id property;
     [self.properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSMutableDictionary *dict = (NSMutableDictionary *)obj;
-        if ([[dict objectForKey:keyName] isEqualToString:keyName]) {
+        if ([dict objectForKey:keyName] != nil) {
             property = [dict objectForKey:keyName];
             *stop = YES;
         }
