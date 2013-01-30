@@ -12,4 +12,5 @@
 
 #define SessionHeaderKey @"Appacitive-Session"
 #define EnvironmentHeaderKey @"Appacitive-Environment"
+#define UserAuthHeaderKey @"Appacitive-User-Auth"
 #endif

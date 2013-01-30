@@ -10,6 +10,7 @@
 #import "APError.h"
 #import "Appacitive.h"
 #import "APConstants.h"
+#import "APUser.h"
 
 #define ERROR_DOMAIN @"appyoda.appacitive.com"
 
@@ -94,7 +95,11 @@
 +(void) addHeadersToMKNetworkOperation:(MKNetworkOperation *)operation {
     Appacitive *sharedObject = [Appacitive sharedObject];
     [operation addHeaders:
-     @{EnvironmentHeaderKey:[sharedObject environmentToUse],
-         SessionHeaderKey:sharedObject.session}];
+        @{EnvironmentHeaderKey:[sharedObject environmentToUse],
+          SessionHeaderKey:sharedObject.session}];
+    
+    if ([APUser currentUser] != nil) {
+        [operation addHeaders:@{UserAuthHeaderKey:[APUser currentUser].userToken}];
+    }
 }
 @end

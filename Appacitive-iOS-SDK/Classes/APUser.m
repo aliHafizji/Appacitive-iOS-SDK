@@ -305,6 +305,7 @@ static APUser* currentUser = nil;
 - (void) setLoggedInWithTwitter:(BOOL)loggedInWithTwitter {
     _loggedInWithTwitter = YES;
 }
+
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
     _userToken = dictionary[@"token"];
     
