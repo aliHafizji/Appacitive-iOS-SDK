@@ -24,8 +24,8 @@
 		612E3E1F15EDF8FE00F98FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0D15EDF8FE00F98FB8 /* Foundation.framework */; };
 		612E3E2215EDF8FE00F98FB8 /* libAppacitive-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 612E3E0A15EDF8FD00F98FB8 /* libAppacitive-iOS-SDK.a */; };
 		61388C1615F8667000C79F1F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61388C1515F8667000C79F1F /* CoreLocation.framework */; };
-		613E67EE161014B6005D591C /* APBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = 613E67EC161014B6005D591C /* APBlob.h */; };
-		613E67EF161014B6005D591C /* APBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 613E67ED161014B6005D591C /* APBlob.m */; };
+		613E67EE161014B6005D591C /* APFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 613E67EC161014B6005D591C /* APFile.h */; };
+		613E67EF161014B6005D591C /* APFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 613E67ED161014B6005D591C /* APFile.m */; };
 		614B911916A3C8BD001070DD /* APConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 614B911816A3C8BD001070DD /* APConstants.h */; };
 		6169128C16115C3D0086C006 /* NSString+APString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6169128A16115C3D0086C006 /* NSString+APString.h */; };
 		6169128D16115C3D0086C006 /* NSString+APString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6169128B16115C3D0086C006 /* NSString+APString.m */; };
@@ -93,8 +93,8 @@
 		612E3E1A15EDF8FE00F98FB8 /* Appacitive-iOS-SDK-InterfaceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Appacitive-iOS-SDK-InterfaceTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		612E3E1B15EDF8FE00F98FB8 /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		61388C1515F8667000C79F1F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		613E67EC161014B6005D591C /* APBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APBlob.h; path = "Appacitive-iOS-SDK/Classes/APBlob.h"; sourceTree = SOURCE_ROOT; };
-		613E67ED161014B6005D591C /* APBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APBlob.m; path = "Appacitive-iOS-SDK/Classes/APBlob.m"; sourceTree = SOURCE_ROOT; };
+		613E67EC161014B6005D591C /* APFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APFile.h; path = "Appacitive-iOS-SDK/Classes/APFile.h"; sourceTree = SOURCE_ROOT; };
+		613E67ED161014B6005D591C /* APFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APFile.m; path = "Appacitive-iOS-SDK/Classes/APFile.m"; sourceTree = SOURCE_ROOT; };
 		614B911816A3C8BD001070DD /* APConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APConstants.h; path = "Appacitive-iOS-SDK/Classes/APConstants.h"; sourceTree = SOURCE_ROOT; };
 		6169128A16115C3D0086C006 /* NSString+APString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+APString.h"; sourceTree = "<group>"; };
 		6169128B16115C3D0086C006 /* NSString+APString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+APString.m"; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 				618FEE57169AEB04006A1888 /* APUser.m */,
 				618FEE58169AEB04006A1888 /* APUserDetails.h */,
 				618FEE59169AEB04006A1888 /* APUserDetails.m */,
-				613E67EC161014B6005D591C /* APBlob.h */,
-				613E67ED161014B6005D591C /* APBlob.m */,
+				613E67EC161014B6005D591C /* APFile.h */,
+				613E67ED161014B6005D591C /* APFile.m */,
 				61D62BFE15F8857100C57AA3 /* APConnection.h */,
 				61D62BFF15F8857100C57AA3 /* APConnection.m */,
 				61D62C0015F8857100C57AA3 /* APError.h */,
@@ -346,7 +346,7 @@
 				61D62C1515F8857100C57AA3 /* APQuery.h in Headers */,
 				61D62C1715F8857100C57AA3 /* APResponseBlocks.h in Headers */,
 				61D62C1A15F8858B00C57AA3 /* Appacitive-iOS-SDK-Prefix.pch in Headers */,
-				613E67EE161014B6005D591C /* APBlob.h in Headers */,
+				613E67EE161014B6005D591C /* APFile.h in Headers */,
 				6169128C16115C3D0086C006 /* NSString+APString.h in Headers */,
 				6169128F161160110086C006 /* AppacitiveSDK.h in Headers */,
 				61691292161160790086C006 /* NSDictionary+APDictionary.h in Headers */,
@@ -543,7 +543,7 @@
 				61D62C1215F8857100C57AA3 /* APObject.m in Sources */,
 				61D62C1415F8857100C57AA3 /* Appacitive.m in Sources */,
 				61D62C1615F8857100C57AA3 /* APQuery.m in Sources */,
-				613E67EF161014B6005D591C /* APBlob.m in Sources */,
+				613E67EF161014B6005D591C /* APFile.m in Sources */,
 				6169128D16115C3D0086C006 /* NSString+APString.m in Sources */,
 				61691293161160790086C006 /* NSDictionary+APDictionary.m in Sources */,
 				618FEE5B169AEB04006A1888 /* APUser.m in Sources */,

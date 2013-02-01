@@ -2,14 +2,14 @@
 #import "APObject.h"
 #import "APError.h"
 #import "APQuery.h"
-#import "APBlob.h"
+#import "APFile.h"
 
 SPEC_BEGIN(APBlobTests)
 
 describe(@"APBlobTests", ^{
     
     beforeAll(^() {
-        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:@"eIV/1u9/f0CZNNjvJgZipg=="];
+        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:@"ukaAo61yoZoeTJsGacH9TDRHnhf/J9/kH2TStR5sD3k="];
         [[Appacitive sharedObject] setEnableLiveEnvironment:NO];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
@@ -25,14 +25,18 @@ describe(@"APBlobTests", ^{
         
         NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
         NSString *uploadPath = [myBundle pathForResource:@"test_image" ofType:@"png"];
-        [APBlob uploadFileWithName:uploadPath mimeType:@"image/png"
-               uploadProgressBlock:^(double progress) {
-                   NSLog(@"Progress made %f", progress);
-               } successHandler:^(NSDictionary *result) {
-                   isUploadSuccessful = YES;
-               } failureHandler:^(APError *error) {
-                   isUploadSuccessful = NO;
-               }];
+        NSData *myData = [NSData dataWithContentsOfFile:uploadPath];
+        
+        [APFile uploadFileWithName:@"Image2"
+                data:myData
+                validUrlForTime:@10
+                contentType:@"image/png"
+                successHandler:^(NSDictionary *dictionary){
+                    NSLog(@"%@", dictionary.description);
+                    isUploadSuccessful = YES;
+                } failureHandler:^(APError *error){
+                    isUploadSuccessful = NO;
+                }];
         [[expectFutureValue(theValue(isUploadSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
@@ -41,28 +45,12 @@ describe(@"APBlobTests", ^{
     it(@"should not return an error for downloading a file with a valid url", ^{
         __block BOOL isDownloadSuccesful = NO;
         
-        
-        [APBlob downloadFileFromRemoteUrl:@""
-                toFile:@"tempfile"
-                downloadProgressBlock:^(double progress) {
-                    NSLog(@"Download progress %f", progress);
-                } successHandler:^() {
-                    isDownloadSuccesful = YES;
-                } failureHandler:^(APError *error){
-                    isDownloadSuccesful = NO;
-                }];
-        
-        [[expectFutureValue(theValue(isDownloadSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
-    });
-    
-    it(@"should not return an error for downloading a valid image", ^{
-        __block BOOL isDownloadSuccesful = NO;
-        
-        
-        [APBlob downloadImageFromRemoteUrl:@"https://portal.appacitive.com/dealfinder/article.file?fileurl=http%3A//apis.appacitive.com/articleservice.svc/blob/14530713013584212/15702745784910084/content"
-                successHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
-                    isDownloadSuccesful = YES;
-                }];
+        [APFile downloadFileWithName:@"Image2" validUrlForTime:@10 successHandler:^(NSData *data) {
+            isDownloadSuccesful = YES;
+            UIImage *image = [UIImage imageWithData:data];
+        } failureHandler:^(APError *error) {
+            isDownloadSuccesful = NO;
+        }];
         
         [[expectFutureValue(theValue(isDownloadSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });

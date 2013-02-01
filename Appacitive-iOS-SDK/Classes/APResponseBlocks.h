@@ -19,6 +19,11 @@ typedef void (^APSuccessBlock)();
 typedef void (^APResultSuccessBlock)(NSDictionary *result);
 
 /**
+ Block parameter expected for a success response which returns a 'NSData'.
+ */
+typedef void (^APFileDownloadSuccessBlock)(NSData *data);
+
+/**
  Block parameter expected for a failure response which returns a 'AYError'.
  */
 typedef void (^APFailureBlock)(APError *error);
