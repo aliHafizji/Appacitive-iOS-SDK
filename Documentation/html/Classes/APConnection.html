@@ -58,6 +58,12 @@
 	
 	<option value="//api/name/fetchConnectionsWithRelationType:objectIds:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ fetchConnectionsWithRelationType:objectIds:successHandler:failureHandler:</option>
 	
+	<option value="//api/name/searchAllConnectionsFromObjectId:toObjectIds:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchAllConnectionsFromObjectId:toObjectIds:</option>
+	
+	<option value="//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:</option>
+	
+	<option value="//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</option>
+	
 	<option value="//api/name/searchForAllConnectionsWithRelationType:successHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForAllConnectionsWithRelationType:successHandler:</option>
 	
 	<option value="//api/name/searchForAllConnectionsWithRelationType:successHandler:failureHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ searchForAllConnectionsWithRelationType:successHandler:failureHandler:</option>
@@ -184,6 +190,12 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnectionsWithRelationType:objectIds:successHandler:">fetchConnectionsWithRelationType:objectIds:successHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fetchConnectionsWithRelationType:objectIds:successHandler:failureHandler:">fetchConnectionsWithRelationType:objectIds:successHandler:failureHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:">searchAllConnectionsFromObjectId:toObjectIds:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForAllConnectionsWithRelationType:successHandler:">searchForAllConnectionsWithRelationType:successHandler:</a></span></li>
 	
@@ -358,6 +370,27 @@ A Connection itself can store data in its properties and attributes fields.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/searchForConnectionsWithRelationType:withQueryString:successHandler:failureHandler:">+&nbsp;searchForConnectionsWithRelationType:withQueryString:successHandler:failureHandler:</a></code>
 		<span class="tooltip"><p>Searches for APConnections and filters the result according to the query provided.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:">+&nbsp;searchAllConnectionsFromObjectId:toObjectIds:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:">+&nbsp;searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:</a></code>
+		<span class="tooltip"><p><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">+&nbsp;searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></code>
+		<span class="tooltip"><p>Searches for Connections between the single article and any of the articles in the list and returns the paginated list of all connections .</p></span>
 	</span>
 	
 	
@@ -1041,6 +1074,157 @@ Call update after this method call to persist the change</p></span>
 		<dl class="argument-def parameter-def">
 			<dt><em>failureBlock</em></dt>
 			<dd><p>Block invoked when the fetch call operation fails.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchAllConnectionsFromObjectId:toObjectIds:" title="searchAllConnectionsFromObjectId:toObjectIds:"></a>
+	<h3 class="subsubtitle method-title">searchAllConnectionsFromObjectId:toObjectIds:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchAllConnectionsFromObjectId:(NSNumber *)<em>objectId</em> toObjectIds:(NSArray *)<em>objectIds</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">+ searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:" title="searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:"></a>
+	<h3 class="subsubtitle method-title">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchAllConnectionsFromObjectId:(NSNumber *)<em>objectId</em> toObjectIds:(NSArray *)<em>objectIds</em> withSuccessHandler:(APResultSuccessBlock)<em>successBlock</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:">+ searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APConnection.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:" title="searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:"></a>
+	<h3 class="subsubtitle method-title">searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Searches for Connections between the single article and any of the articles in the list and returns the paginated list of all connections .</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)searchAllConnectionsFromObjectId:(NSNumber *)<em>objectId</em> toObjectIds:(NSArray *)<em>objectIds</em> withSuccessHandler:(APResultSuccessBlock)<em>successBlock</em> failureHandler:(APFailureBlock)<em>failureBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>objectId</em></dt>
+			<dd><p>The id of the <a href="../Classes/APObject.html">APObject</a> for which the connections are to be retrieved.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>successBlock</em></dt>
+			<dd><p>Block invoked when the search call is successful.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>Block invoked when the search call fails.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>objectsId</em></dt>
+			<dd><p>An array of objectIds.</p></dd>
 		</dl>
 		
 	</div>
@@ -2305,7 +2489,7 @@ Call update after this method call to persist the change</p></span>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (NSDictionary *)getPropertyWithKey:(NSString *)<em>keyName</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)getPropertyWithKey:(NSString *)<em>keyName</em></code></div>
 
     
 	
@@ -2737,7 +2921,7 @@ Call update after this method call to persist the update.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-01-24)</span><br />
+						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-02-01)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -46,9 +46,13 @@
 	
 	<option value="//api/name/checkForErrorStatus:">&nbsp;&nbsp;&nbsp;&nbsp;+ checkForErrorStatus:</option>
 	
+	<option value="//api/name/deserializeJsonDateString:">&nbsp;&nbsp;&nbsp;&nbsp;+ deserializeJsonDateString:</option>
+	
 	<option value="//api/name/dictionaryOfPropertiesFromJSONResponse:">&nbsp;&nbsp;&nbsp;&nbsp;+ dictionaryOfPropertiesFromJSONResponse:</option>
 	
 	<option value="//api/name/errorForSessionNotCreated">&nbsp;&nbsp;&nbsp;&nbsp;+ errorForSessionNotCreated</option>
+	
+	<option value="//api/name/jsonDateStringFromDate:">&nbsp;&nbsp;&nbsp;&nbsp;+ jsonDateStringFromDate:</option>
 	
 	
 	
@@ -82,9 +86,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/checkForErrorStatus:">checkForErrorStatus:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deserializeJsonDateString:">deserializeJsonDateString:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dictionaryOfPropertiesFromJSONResponse:">dictionaryOfPropertiesFromJSONResponse:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorForSessionNotCreated">errorForSessionNotCreated</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/jsonDateStringFromDate:">jsonDateStringFromDate:</a></span></li>
 	
 </ul></li>
 
@@ -158,6 +166,20 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/dictionaryOfPropertiesFromJSONResponse:">+&nbsp;dictionaryOfPropertiesFromJSONResponse:</a></code>
 		<span class="tooltip"><p>Helper method to parse the properties from a json response</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deserializeJsonDateString:">+&nbsp;deserializeJsonDateString:</a></code>
+		<span class="tooltip"><p>Helper method to parse json response to NSDate</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/jsonDateStringFromDate:">+&nbsp;jsonDateStringFromDate:</a></code>
+		<span class="tooltip"><p>Helper method to parse NSDate to NSString.</p></span>
 	</span>
 	
 	
@@ -327,6 +349,57 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/deserializeJsonDateString:" title="deserializeJsonDateString:"></a>
+	<h3 class="subsubtitle method-title">deserializeJsonDateString:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper method to parse json response to NSDate</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSDate *)deserializeJsonDateString:(NSString *)<em>jsonDateString</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>response</em></dt>
+			<dd><p>Response received from the server.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>date date as NSDate object.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APHelperMethods.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/dictionaryOfPropertiesFromJSONResponse:" title="dictionaryOfPropertiesFromJSONResponse:"></a>
 	<h3 class="subsubtitle method-title">dictionaryOfPropertiesFromJSONResponse:</h3>
 	
@@ -413,6 +486,57 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/jsonDateStringFromDate:" title="jsonDateStringFromDate:"></a>
+	<h3 class="subsubtitle method-title">jsonDateStringFromDate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper method to parse NSDate to NSString.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)jsonDateStringFromDate:(NSDate *)<em>date</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>date</em></dt>
+			<dd><p>NSDate to parse.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>String from NSDate.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">APHelperMethods.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -428,7 +552,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-01-24)</span><br />
+						<p><span class="copyright">&copy; 2013 Appacitive software. All rights reserved. (Last updated: 2013-02-01)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
