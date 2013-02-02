@@ -9,7 +9,7 @@
 //core
 #import "APObject.h"
 #import "APConnection.h"
-#import "APBlob.h"
+#import "APFile.h"
 #import "APQuery.h"
 #import "APUser.h"
 #import "APUserDetails.h"
