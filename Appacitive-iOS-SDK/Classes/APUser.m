@@ -91,7 +91,7 @@ static APUser* currentUser = nil;
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
         MKNetworkOperation *op = [sharedObject operationWithPath:path
-                                               params:@{@"createNew":@"true", @"type":@"facebook", @"accesstoken":accessToken}.mutableCopy
+                                               params:@{@"createNew":@YES, @"type":@"facebook", @"accesstoken":accessToken}.mutableCopy
                                                httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         [APHelperMethods addHeadersToMKNetworkOperation:op];
@@ -147,7 +147,7 @@ static APUser* currentUser = nil;
         
         MKNetworkOperation *op = [sharedObject
                                   operationWithPath:path
-                                  params:@{@"createNew":@"true", @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret}.mutableCopy
+                                  params:@{@"createNew":@YES, @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret}.mutableCopy
                                   httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         
@@ -203,7 +203,7 @@ static APUser* currentUser = nil;
         
         MKNetworkOperation *op = [sharedObject
                                   operationWithPath:path
-                                  params:@{@"createNew":@"true", @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret,
+                                  params:@{@"createNew":@YES, @"type":@"twitter", @"oauthtoken":oauthToken, @"oauthtokensecret":oauthSecret,
                                             @"consumerKey":consumerKey, @"consumerSecret":consumerSecret}.mutableCopy
                                   httpMethod:@"POST" ssl:YES];
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
