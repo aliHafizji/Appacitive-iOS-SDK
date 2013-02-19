@@ -1,12 +1,33 @@
-This is version 0.85 of MKNetworkKit. Read the [blog post](http://mk.sg/8w) for more. The master branch is a live working branch. Expect bugs!(?). Nah, most bugs are squashed already. Special thanks to all of you contributors.
+This is version 0.87 of MKNetworkKit. Read the [blog post](http://mk.sg/8w) for more. The latest code is still not fully testing on Mac, though iOS is complete. Caching responses and invalidation of cache is not implemented the right way for the Mac target. 
 
-If you are too chicken, you can always pickup the latest stable code at the tag [v0.83](https://github.com/MugunthKumar/MKNetworkKit/zipball/v0.83)
+MKNetworkKit is ready for production use on iOS apps. As on date, it's used by several thousands of apps including [Digg](https://itunes.apple.com/us/app/digg/id362872995?mt=8)
 
-The latest stable code is still not fully testing on Mac, though iOS is complete. Caching responses and invalidation of cache is not implemented the right way for the Mac target. MKNetworkKit is ready for production use on iOS apps.
+MKNetworkKit officially supports Cocoapods. Add the following line to your Podfile.
 
-MKNetworkKit can also be compiled to a static library and included. I will be updating the documentation on how to do this soon.
+pod 'MKNetworkKit',  '~> 0.87'
 
 ---
+
+###Why MKNetworkKit?
+
+* Single network queue for the whole app
+* Auto queue sizing and auto network indicator support
+* High performance background caching (based on HTTP 1.1 caching specs) built in
+* You don't need a separate image cache library
+* Background image decompression
+* Performs exactly one operation for similar requests
+* Background completion
+* Local notification support for operations that failed in background
+* cURL-able debug lines
+* Frozen operations. Operations like "faving a tweet" or "marking as read" are frozen when network connectivity is not available and executed when online
+
+These are just a few of most interesting features on MKNetworkKit.
+
+---
+
+###How to use
+Read the [blog post](http://mk.sg/8w) for more.
+
 ###Licensing
 
 MKNetworkKit is licensed under MIT License
@@ -31,27 +52,6 @@ THE SOFTWARE.
 ---
 ###Attribution free licensing
 In case you need attribution free licensing for MKNetworkKit, you can buy one from [my license store](http://blog.mugunthkumar.com/license-store/).
-
-###Why MKNetworkKit?
-
-MKNetworkKit is inspired by the other two popular network frameworks ASIHTTPRequest and AFNetworking.
-Mostly ASI, to some extent, AFNetworking. I've been an unofficial "evangelist" of ASIHTTPRequest till the plug was pulled.
-
-Marrying the feature set from both, MKNetworkKit throws in a bunch of new features like
-
-* Single queue for the whole app
-* Auto queue sizing
-* Auto caching and restoring
-* Performs exactly one operation for similar requests
-* Background completion
-* Full ARC support
-* cURL-able debug lines.
-
-MKNetworkKit's goal was to make it as feature rich as ASIHTTPRequest yet simple and elegant to use like AFNetworking
-
----
-###How to use
-Read the [blog post](http://mk.sg/8w) for more.
 
 ---
 ### Documentation
@@ -83,15 +83,13 @@ Gentle Bytes appledoc@gentlebytes.com
 ---
 ###TODO
 
-* Fix and test Client certificate/Server trust auth
-* Test streaming
-* Test multiple file attachments in a single request
-
-* Example code for Mac
-* Fix AppleDoc warnings
-
-
-I'll be working on this soon. But you can start forking it and getting it right
+Streaming post body test
+Twitter streams test
+multiple images upload test
+Hash implementation for MKNetworkOperation 
+Batch network queue
+A rare crash in setCache method (Multiple issues on Github that I cannot reproduce)
+Frozen operations should report via NSNotifications
 
 ---
 ###Known Issues

@@ -47,7 +47,6 @@ describe(@"APBlobTests", ^{
         
         [APFile downloadFileWithName:@"Image2" validUrlForTime:@10 successHandler:^(NSData *data) {
             isDownloadSuccesful = YES;
-            UIImage *image = [UIImage imageWithData:data];
         } failureHandler:^(APError *error) {
             isDownloadSuccesful = NO;
         }];

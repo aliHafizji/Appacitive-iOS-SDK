@@ -33,10 +33,8 @@
 + (void) uploadFileWithName:(NSString *)name data:(NSData *)data validUrlForTime:(NSNumber *)minutes contentType:(NSString *)contentType successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
-        APResultSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [FILE_PATH stringByAppendingString:@"uploadurl"];
         
@@ -51,7 +49,7 @@
         MKNetworkOperation *fetchUploadUrl = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:fetchUploadUrl];
         
-        [fetchUploadUrl onCompletion:^(MKNetworkOperation *completedOperation) {
+        [fetchUploadUrl addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -79,27 +77,27 @@
                 [NSURLConnection sendAsynchronousRequest:request
                                  queue:queue completionHandler:^(NSURLResponse *res, NSData *data, NSError *error){
                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)res;
-                                     if ([httpResponse statusCode] == 200 && successBlockCopy != nil) {
-                                         successBlockCopy(completedOperation.responseJSON);
+                                     if ([httpResponse statusCode] == 200 && successBlock != nil) {
+                                         successBlock(completedOperation.responseJSON);
                                      }
                                  }];
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
 
-        } onError:^(NSError *error) {
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*)error);
+        }  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
             }
         }];
         
         [sharedObject enqueueOperation:fetchUploadUrl];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }
@@ -113,10 +111,8 @@
 + (void) downloadFileWithName:(NSString*)name validUrlForTime:(NSNumber*)minutes successHandler:(APFileDownloadSuccessBlock) successBlock failureHandler:(APFailureBlock)failureBlock {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
-        APFileDownloadSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [FILE_PATH stringByAppendingFormat:@"download/%@", name];
         
@@ -128,7 +124,7 @@
         MKNetworkOperation *downloadOperation = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
         [APHelperMethods addHeadersToMKNetworkOperation:downloadOperation];
         
-        [downloadOperation onCompletion:^(MKNetworkOperation *completedOperation) {
+        [downloadOperation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -138,33 +134,33 @@
                 NSString *uri = [result objectForKey:@"uri"];
                 
                 MKNetworkOperation *downloadDataRequest = [[MKNetworkOperation alloc] initWithURLString:uri params:nil httpMethod:@"GET"];
-                [downloadDataRequest onCompletion:^(MKNetworkOperation *completedOperation) {
-                    if (successBlockCopy) {
-                        successBlockCopy(completedOperation.responseData);
+                [downloadDataRequest addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+                    if (successBlock) {
+                        successBlock(completedOperation.responseData);
                     }
-                } onError:^(NSError *error) {
-                    if (failureBlockCopy != nil) {
-                        failureBlockCopy((APError*)error);
+                }  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+                    if (failureBlock != nil) {
+                        failureBlock((APError*)error);
                     }
                 }];
                 [sharedObject enqueueOperation:downloadDataRequest];
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
             
-        } onError:^(NSError *error) {
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*)error);
+        }  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
             }
         }];
         
         [sharedObject enqueueOperation:downloadOperation];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }

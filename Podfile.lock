@@ -1,17 +1,17 @@
 
-COCOAPODS: 0.14.0
-
-SPEC CHECKSUMS: 
-  Reachability: 500bd76bf6cd8ff2c6fb715fc5f44ef6e4c024f2
-  Kiwi: 06407ae4d33a33310aed1202113d002eda1d56eb
-  MKNetworkKit: 300f34b9174c91d0abc6f78f0ceaa7ae9a96e4d1
-
-DEPENDENCIES: 
-- Kiwi (~> 1.1.1)
-- MKNetworkKit (~> 0.85)
+COCOAPODS: 0.16.2
 
 PODS: 
 - Kiwi (1.1.1)
-- MKNetworkKit (0.85): 
+- MKNetworkKit (0.87): 
   - Reachability (~> 3.0)
 - Reachability (3.0.0)
+
+DEPENDENCIES: 
+- Kiwi (~> 1.1.1)
+- MKNetworkKit (~> 0.87)
+
+SPEC CHECKSUMS: 
+  Reachability: 500bd76bf6cd8ff2c6fb715fc5f44ef6e4c024f2
+  Kiwi: ab0fa8d13b97dca05915e31df9b2d888d74ab717
+  MKNetworkKit: 3d3c415ced5fa3f896fd0319820b7832103c2f81

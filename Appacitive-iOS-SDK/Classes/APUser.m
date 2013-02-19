@@ -34,9 +34,8 @@ static APUser* currentUser = nil;
 + (void) authenticateUserWithUserName:(NSString*) userName password:(NSString*) password successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock)failureBlock {
 
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
+
     if (sharedObject.session) {
-        APSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -46,7 +45,7 @@ static APUser* currentUser = nil;
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
-        [op onCompletion:^(MKNetworkOperation *completedOperation){
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -54,25 +53,24 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                if (successBlockCopy) {
-                    successBlockCopy(completedOperation.responseJSON);
+                if (successBlock) {
+                    successBlock(completedOperation.responseJSON);
                 }
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
-            
-        } onError:^(NSError *error){
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*) error);
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (failureBlock != nil) {
+                failureBlock((APError*) error);
             }
         }];
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }
@@ -83,10 +81,8 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithFacebook:(NSString *) accessToken successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
-        APSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -96,7 +92,7 @@ static APUser* currentUser = nil;
         op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
-        [op onCompletion:^(MKNetworkOperation *completedOperation){
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -105,25 +101,25 @@ static APUser* currentUser = nil;
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 [currentUser setLoggedInWithFacebook:YES];
-                if (successBlockCopy) {
-                    successBlockCopy();
+                if (successBlock) {
+                    successBlock();
                 }
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
-            
-        } onError:^(NSError *error){
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*) error);
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error){
+            if (failureBlock != nil) {
+                failureBlock((APError*) error);
             }
         }];
+        
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }
@@ -134,10 +130,8 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithTwitter:(NSString*) oauthToken oauthSecret:(NSString*) oauthSecret successHandler:(APSuccessBlock) successBlock failureHandler:(APFailureBlock) failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
-        APSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -153,7 +147,7 @@ static APUser* currentUser = nil;
         
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
-        [op onCompletion:^(MKNetworkOperation *completedOperation){
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -162,24 +156,24 @@ static APUser* currentUser = nil;
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 [currentUser setLoggedInWithTwitter:YES];
-                if (successBlockCopy) {
-                    successBlockCopy();
+                if (successBlock) {
+                    successBlock();
                 }
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
-        } onError:^(NSError *error) {
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*)error);
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }
@@ -190,10 +184,8 @@ static APUser* currentUser = nil;
 
 + (void) authenticateUserWithTwitter:(NSString *)oauthToken oauthSecret:(NSString *)oauthSecret consumerKey:(NSString*)consumerKey consumerSecret :(NSString*) consumerSecret successHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
-        APSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"authenticate"];
         
@@ -210,7 +202,7 @@ static APUser* currentUser = nil;
         
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
-        [op onCompletion:^(MKNetworkOperation *completedOperation){
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -219,24 +211,24 @@ static APUser* currentUser = nil;
                 currentUser = [[APUser alloc] initWithSchemaName:@"user"];
                 [currentUser setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 [currentUser setLoggedInWithTwitter:YES];
-                if (successBlockCopy) {
-                    successBlockCopy();
+                if (successBlock) {
+                    successBlock();
                 }
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
-        } onError:^(NSError *error) {
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*)error);
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error){
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }
@@ -250,10 +242,8 @@ static APUser* currentUser = nil;
 + (void) createUserWithDetails:(APUserDetails *)userDetails successHandler:(APUserSuccessBlock) successBlock failuderHandler:(APFailureBlock) failureBlock {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
-    APFailureBlock failureBlockCopy = [failureBlock copy];
     
     if (sharedObject.session) {
-        APUserSuccessBlock successBlockCopy = [successBlock copy];
         
         NSString *path = [USER_PATH stringByAppendingString:@"create"];
         
@@ -266,7 +256,7 @@ static APUser* currentUser = nil;
         
         [APHelperMethods addHeadersToMKNetworkOperation:op];
         
-        [op onCompletion:^(MKNetworkOperation *completedOperation){
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
             APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
             
             BOOL isErrorPresent = (error != nil);
@@ -274,24 +264,24 @@ static APUser* currentUser = nil;
             if (!isErrorPresent) {
                 APUser *user = [[APUser alloc] initWithSchemaName:@"user"];
                 [user setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
-                if (successBlockCopy) {
-                    successBlockCopy(user);
+                if (successBlock) {
+                    successBlock(user);
                 }
             } else {
-                if (failureBlockCopy != nil) {
-                    failureBlockCopy(error);
+                if (failureBlock != nil) {
+                    failureBlock(error);
                 }
             }
-        } onError:^(NSError *error) {
-            if (failureBlockCopy != nil) {
-                failureBlockCopy((APError*)error);
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (failureBlock != nil) {
+                failureBlock((APError*)error);
             }
         }];
         [sharedObject enqueueOperation:op];
     } else {
         DLog(@"Initialize the Appactive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
-        if (failureBlockCopy != nil) {
-            failureBlockCopy([APHelperMethods errorForSessionNotCreated]);
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
         }
     }
 }

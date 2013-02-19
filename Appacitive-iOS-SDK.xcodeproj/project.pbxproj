@@ -36,6 +36,7 @@
 		616A6A1115F4848D009A8578 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1015F4848D009A8578 /* Security.framework */; };
 		616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
 		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
+		6183E08416D38127007CC42F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6183E08316D38127007CC42F /* CoreGraphics.framework */; };
 		618FEE55169AEAEC006A1888 /* APUserFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE54169AEAEC006A1888 /* APUserFixture.m */; };
 		618FEE5A169AEB04006A1888 /* APUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 618FEE56169AEB04006A1888 /* APUser.h */; };
 		618FEE5B169AEB04006A1888 /* APUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE57169AEB04006A1888 /* APUser.m */; };
@@ -105,6 +106,7 @@
 		616A6A1015F4848D009A8578 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		616A6A1215F484E7009A8578 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		616A6A1415F4850E009A8578 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6183E08316D38127007CC42F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		618FEE54169AEAEC006A1888 /* APUserFixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUserFixture.m; path = "Appacitive_iOS_SDK-NetworkTests/APUserFixture.m"; sourceTree = SOURCE_ROOT; };
 		618FEE56169AEB04006A1888 /* APUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APUser.h; path = "Appacitive-iOS-SDK/Classes/APUser.h"; sourceTree = SOURCE_ROOT; };
 		618FEE57169AEB04006A1888 /* APUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APUser.m; path = "Appacitive-iOS-SDK/Classes/APUser.m"; sourceTree = SOURCE_ROOT; };
@@ -145,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6183E08416D38127007CC42F /* CoreGraphics.framework in Frameworks */,
 				2CEB0EB5162BD4230074DA50 /* CoreLocation.framework in Frameworks */,
 				2CEB0EB4162BD4030074DA50 /* SystemConfiguration.framework in Frameworks */,
 				2CEB0EB3162BD3F60074DA50 /* Security.framework in Frameworks */,
@@ -235,6 +238,7 @@
 		612E3E0C15EDF8FE00F98FB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6183E08316D38127007CC42F /* CoreGraphics.framework */,
 				61388C1515F8667000C79F1F /* CoreLocation.framework */,
 				616A6A1415F4850E009A8578 /* UIKit.framework */,
 				616A6A1215F484E7009A8578 /* SystemConfiguration.framework */,

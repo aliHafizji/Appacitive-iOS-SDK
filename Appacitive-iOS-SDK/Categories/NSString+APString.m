@@ -46,7 +46,6 @@
     return @"";
 }
 
-#warning refactor
 - (NSDictionary *)queryParametersUsingArrays:(BOOL)shouldUseArrays encoding:(NSStringEncoding)encoding
 {
     NSString *stringToParse = self;

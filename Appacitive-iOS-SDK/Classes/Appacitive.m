@@ -63,17 +63,19 @@ static Appacitive *sharedObject = nil;
                                               params:params
                                               httpMethod:@"PUT" ssl:YES];
     op.postDataEncoding = MKNKPostDataEncodingTypeJSON;
-    [op onCompletion:^(MKNetworkOperation *completedOperation){
+
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation){
         
         NSDictionary *dictionary = (NSDictionary*) completedOperation.responseJSON;
         NSDictionary *session = dictionary[@"session"];
         _session = session[@"sessionkey"];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SessionReceivedNotification object:self];
-    } onError:^(NSError *error){
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         DLog(@"%@", error);
         [[NSNotificationCenter defaultCenter] postNotificationName:ErrorRetrievingSessionNotification object:self];
     }];
+    
     [self enqueueOperation:op];
 }
 
