@@ -1,8 +1,8 @@
 #Appacitive iOS SDK
 
-[Appacitive website](www.appacitive.com)
+[Appacitive website](http://www.appacitive.com)
 
-[Full reference docs](docs.appacitive.com)
+[Full reference docs](http://docs.appacitive.com)
 
 ##Getting started
 
