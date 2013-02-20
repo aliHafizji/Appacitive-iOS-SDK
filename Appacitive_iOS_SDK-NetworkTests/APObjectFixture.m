@@ -9,7 +9,6 @@ describe(@"APObject", ^{
     
     beforeAll(^() {
         __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
     
@@ -22,8 +21,8 @@ describe(@"APObject", ^{
     it(@"should return non-nil for search API call with valid schema name", ^{
         __block BOOL isSearchSuccessful = NO;
         
-        [APObject searchAllObjectsWithSchemaName:@"Comment"
-                                     successHandler:^(NSDictionary *result){
+        [APObject searchAllObjectsWithSchemaName:@"todolists"
+                                     successHandler:^(NSArray *objects){
                                          isSearchSuccessful = YES;
                                      }failureHandler:^(APError *error){
                                          isSearchSuccessful = NO;
@@ -35,7 +34,7 @@ describe(@"APObject", ^{
         
         __block BOOL isSearchUnsuccessful = NO;
         [APObject searchAllObjectsWithSchemaName:@"invalidSchemaName"
-                                     successHandler:^(NSDictionary *result){
+                                     successHandler:^(NSArray *objects){
                                          isSearchUnsuccessful = NO;
                                      }failureHandler:^(APError *error){
                                          isSearchUnsuccessful = YES;
@@ -47,7 +46,7 @@ describe(@"APObject", ^{
         
         __block BOOL isSearchUnsuccessful = NO;
         [APObject searchAllObjectsWithSchemaName:nil
-                                     successHandler:^(NSDictionary *result){
+                                     successHandler:^(NSArray *objects){
                                          isSearchUnsuccessful = NO;
                                      }failureHandler:^(APError *error){
                                          isSearchUnsuccessful = YES;
@@ -58,9 +57,9 @@ describe(@"APObject", ^{
     it(@"should not return an error for search API call with valid query string", ^(){
         __block BOOL isSearchSuccessful = NO;
         NSString *query = [APQuery queryStringForPageNumber:1];
-        [APObject searchObjectsWithSchemaName:@"location"
+        [APObject searchObjectsWithSchemaName:@"todolists"
                                withQueryString:query
-                               successHandler:^(NSDictionary *result) {
+                               successHandler:^(NSArray *objects) {
                                    isSearchSuccessful = YES;
                                } failureHandler:^(APError *error) {
                                    isSearchSuccessful = NO;
@@ -72,7 +71,7 @@ describe(@"APObject", ^{
         __block BOOL isSearchUnSuccessful = NO;
         [APObject searchObjectsWithSchemaName:@"location"
                               withQueryString:@"abc=++1"
-                               successHandler:^(NSDictionary *result) {
+                               successHandler:^(NSArray *objects) {
                                    isSearchUnSuccessful = NO;
                                } failureHandler:^(APError *error) {
                                    isSearchUnSuccessful = YES;
@@ -85,19 +84,18 @@ describe(@"APObject", ^{
 
     it(@"should return valid article for fetch API call with valid articleId and valid schema name", ^{
        __block BOOL isFetchSuccessful = NO;
-        __block NSNumber *articleId;
+        
         NSString *pnumString = [APQuery queryStringForPageNumber:1];
         NSString *psizeString = [APQuery queryStringForPageSize:1];
         
         NSString *query = [NSString stringWithFormat:@"%@&%@", pnumString, psizeString];
         
-        [APObject searchObjectsWithSchemaName:@"Comment" withQueryString:query
-                                  successHandler:^(NSDictionary *result){
-                                      NSArray *articles = result[@"articles"];
-                                      NSDictionary *dict = [articles lastObject];
-                                      articleId = dict[@"__id"];
-                                      [APObject fetchObjectWithObjectId:articleId schemaName:@"Comment"
-                                                successHandler:^(NSDictionary *result){
+        [APObject searchObjectsWithSchemaName:@"todolists" withQueryString:query
+                                  successHandler:^(NSArray *objects){
+                                      
+                                      APObject *object = objects[0];
+                                      [APObject fetchObjectWithObjectId:object.objectId schemaName:@"todolists"
+                                                successHandler:^(NSArray *objects){
                                                     isFetchSuccessful = YES;
                                                 }failureHandler:^(APError *error){
                                                     isFetchSuccessful = NO;
@@ -113,7 +111,7 @@ describe(@"APObject", ^{
         __block BOOL isFetchUnsuccessful = NO;
         
         [APObject fetchObjectWithObjectId:[NSNumber numberWithInt:0] schemaName:@"schemaThatDoesNotExist"
-                           successHandler:^(NSDictionary *result){
+                           successHandler:^(NSArray *objects){
                                isFetchUnsuccessful = NO;
                            }failureHandler:^(APError *error){
                                isFetchUnsuccessful = YES;
@@ -125,19 +123,20 @@ describe(@"APObject", ^{
         __block BOOL isMultiFetchSuccessful = NO;
         
         NSString *query = [APQuery queryStringForPageSize:2];
-        [APObject searchObjectsWithSchemaName:@"location"
+        [APObject searchObjectsWithSchemaName:@"todolists"
                                   withQueryString:query
-                                  successHandler:^(NSDictionary *result){
-                                      NSArray *articles = result[@"articles"];
-                                      NSMutableArray *objectIds = [NSMutableArray arrayWithCapacity:articles.count];
-                                      for(NSDictionary *dict in articles) {
-                                          [objectIds addObject:dict[@"__id"]];
+                                  successHandler:^(NSArray *objects){
+                                      
+                                      NSMutableArray *objectIds = [NSMutableArray arrayWithCapacity:objects.count];
+                                      for(APObject *object in objects) {
+                                          [objectIds addObject:object.objectId];
                                       }
                                       
                                       [APObject fetchObjectsWithObjectIds:objectIds
-                                                         schemaName:@"location"
-                                                         successHandler:^(NSDictionary *result){
+                                                         schemaName:@"todolists"
+                                                         successHandler:^(NSArray *objects){
                                                              isMultiFetchSuccessful = YES;
+                                                             NSLog(@"%@", objects.description);
                                                          } failureHandler:^(APError *error) {
                                                              isMultiFetchSuccessful = NO;
                                                          }];
@@ -151,7 +150,7 @@ describe(@"APObject", ^{
         __block BOOL isMultiFetchUnsuccessful = NO;
         [APObject fetchObjectsWithObjectIds:@[@-123, @-1]
                              schemaName:@"location"
-                             successHandler:^(NSDictionary *result){
+                             successHandler:^(NSArray *objects){
                                  isMultiFetchUnsuccessful = NO;
                              } failureHandler:^(APError *error){
                                  isMultiFetchUnsuccessful = YES;
@@ -164,16 +163,12 @@ describe(@"APObject", ^{
         __block APObject *object;
         NSString *query = [APQuery queryStringForPageSize:1];
         
-        [APObject searchObjectsWithSchemaName:@"location"
+        [APObject searchObjectsWithSchemaName:@"todolists"
                             withQueryString:query
-                            successHandler:^(NSDictionary *result) {
-                                NSArray *articles = result[@"articles"];
-                                NSDictionary *dict = articles[0];
+                            successHandler:^(NSArray *objects) {
                                 
-                                NSNumber *objectId = dict[@"__id"];
-                                
-                                object = [APObject objectWithSchemaName:@"location"];
-                                object.objectId = objectId;
+                                object = [APObject objectWithSchemaName:@"todolists"];
+                                object.objectId = ((APObject*)objects[0]).objectId;
                                 [object fetch];
                             } failureHandler:^(APError *error){
                                 object = nil;
@@ -209,16 +204,11 @@ describe(@"APObject", ^{
     it(@"should not return an error for updating a property of an APObject", ^{
         
         __block BOOL isUpdateSuccessful = NO;
-        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
-        [object setCreatedBy:@"Sandeep Dhull"];
-        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
-        [object addPropertyWithKey:@"Category" value:@"arts"];
-        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
-        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
-        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        APObject *object = [[APObject alloc] initWithSchemaName:@"todolists"];
+        [object addPropertyWithKey:@"list_name" value:@"Test_Case"];
         
-        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
-            [object updatePropertyWithKey:@"name" value:@"Dhull"];
+        [object saveObjectWithSuccessHandler:^(){
+            [object updatePropertyWithKey:@"list_name" value:@"Test"];
             [object updateObjectWithSuccessHandler:^() {
                 isUpdateSuccessful = YES;
             } failureHandler:^(APError *error) {
@@ -236,17 +226,13 @@ describe(@"APObject", ^{
     it(@"should not return an error for deleting a property of an APObject", ^{
         
         __block BOOL isDeleteSuccessful = NO;
-        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
-        [object setCreatedBy:@"Sandeep Dhull"];
-        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
-        [object addPropertyWithKey:@"Category" value:@"arts"];
-        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
-        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
-        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        APObject *object = [[APObject alloc] initWithSchemaName:@"todolists"];
+        [object addPropertyWithKey:@"list_name" value:@"Test_Case"];
         
-        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
-            [object removePropertyWithKey:@"address"];
-            [object updateObjectWithSuccessHandler:^(NSDictionary *result){
+        [object saveObjectWithSuccessHandler:^(){
+            [object removePropertyWithKey:@"list_name"];
+            
+            [object updateObjectWithSuccessHandler:^(){
                 isDeleteSuccessful = YES;
             } failureHandler:^(APError *error) {
                 isDeleteSuccessful = NO;
@@ -257,7 +243,7 @@ describe(@"APObject", ^{
         
         [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
-
+/*
 #pragma mark TESTING_UPDATE_ATTRIBUTES_METHOD
     
     it(@"should not return an error for updating an attribute of an APObject", ^{
@@ -317,21 +303,16 @@ describe(@"APObject", ^{
         
         [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
-
+*/
 #pragma mark SAVE_TESTS
     
     it(@"should not return an error for save API call with valid schema name", ^{
         
         __block BOOL isSaveSuccessful = NO;
-        APObject *object = [[APObject alloc] initWithSchemaName:@"location"];
-        [object setCreatedBy:@"Sandeep Dhull"];
-        [object addPropertyWithKey:@"Name" value:@"Tavisca"];
-        [object addPropertyWithKey:@"Category" value:@"arts"];
-        [object addPropertyWithKey:@"Description" value:@"Tavisca artists works here"];
-        [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
-        [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
+        APObject *object = [[APObject alloc] initWithSchemaName:@"todolists"];
+        [object addPropertyWithKey:@"list_name" value:@"Test_Case"];
         
-        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
+        [object saveObjectWithSuccessHandler:^(){
             isSaveSuccessful = YES;
         }failureHandler:^(APError *error){
             isSaveSuccessful = NO;
@@ -352,7 +333,7 @@ describe(@"APObject", ^{
         [object addPropertyWithKey:@"Address" value:@"Eon It Park Kharadi"];
         [object addPropertyWithKey:@"GeoCodes" value:@"18.551678,73.954275"];
         
-        [object saveObjectWithSuccessHandler:^(NSDictionary *result){
+        [object saveObjectWithSuccessHandler:^(){
             isSaveUnsuccessful = NO;
         }failureHandler:^(APError *error){
             isSaveUnsuccessful = YES;
@@ -374,7 +355,7 @@ describe(@"APObject", ^{
         }];
         [[expectFutureValue(theValue(isDeleteUnsuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
-    
+    /*
     it(@"should not return an error for delete call for a proper article id", ^{
         __block BOOL isDeleteSuccessful = NO;
         
@@ -387,10 +368,10 @@ describe(@"APObject", ^{
             isDeleteSuccessful = NO;
         }];
         [[expectFutureValue(theValue(isDeleteSuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
-    });
+    });*/
     
 #pragma mark GRAPH_QUERY_TESTS
-    
+    /*
     it(@"should not return an error for a valid filter graph query", ^{
         __block BOOL isFilterQuerySuccessful = NO;
         
@@ -417,6 +398,6 @@ describe(@"APObject", ^{
                          }];
         
         [[expectFutureValue(theValue(isFilterQuerySuccessful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
-    });
+    });*/
 });
 SPEC_END

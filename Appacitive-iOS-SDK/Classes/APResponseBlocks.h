@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Appacitive Software Pvt. Ltd. All rights reserved.
 //
 
-@class APError, APUser, UIImage;
+@class APError, APUser, UIImage, APConnection;
 
 /**
  Success block that returns nothing.
@@ -17,6 +17,21 @@ typedef void (^APSuccessBlock)();
  Block parameter expected for a success response which returns an 'NSDictionary'.
  */
 typedef void (^APResultSuccessBlock)(NSDictionary *result);
+
+/**
+ Block parameter expected for a success response. It returns an array of APObjects
+ */
+typedef void (^APObjectsSuccessBlock)(NSArray *array);
+
+/**
+ Block parameter expected for a success response. It returns an APConnection.
+ */
+typedef void (^APConnectionSuccessBlock)(APConnection *connection);
+
+/**
+ Block parameter expected for a success response. It returns an array of APConnections
+ */
+typedef void (^APConnectionsSuccessBlock)(NSArray *array);
 
 /**
  Block parameter expected for a success response which returns a 'NSData'.

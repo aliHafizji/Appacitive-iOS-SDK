@@ -48,12 +48,20 @@
  */
 - (id) initWithRelationType:(NSString*)relationType;
 
+/**
+ Initialize and return an autoreleased APConnection.
+ 
+ @param dictionary The dictionary to initialize the APConnection from.
+ @abstract This method parses the dictionary and creates an APConnection from it.
+ */
+- (id) initWithDictionary:(NSDictionary*)dictionary;
+
 /** @name Searching for APConnections */
 
 /**
  @see searchForAllConnectionsWithRelationType:successHandler:failureHandler:
  */
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock;
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APConnectionsSuccessBlock)successBlock;
 
 /**
  Search for all APConnections of a particular relation type.
@@ -62,12 +70,12 @@
  @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when the search call fails.
  */
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see searchForConnectionsWithRelationType:withQueryString:successHandler:failureHandler:
  */
-+ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock;
++ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APConnectionsSuccessBlock)successBlock;
 
 /**
  Searches for APConnections and filters the result according to the query provided.
@@ -77,7 +85,7 @@
  @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when the search call fails.
  */
-+ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
   @see searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:
@@ -87,7 +95,7 @@
 /**
  @see searchAllConnectionsFromObjectId:toObjectIds:withSuccessHandler:failureHandler:
  */
-+ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock;
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APConnectionsSuccessBlock)successBlock;
 
 /**
  Searches for Connections between the single article and any of the articles in the list and returns the paginated list of all connections .
@@ -97,7 +105,7 @@
  @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when the search call fails.
  */
-+ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Create APConnections */
 
@@ -212,7 +220,7 @@
 /**
  @see fetchConnectionWithRelationType:objectId:successHandler:failureHandler:
  */
-+ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock;
++ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APConnectionSuccessBlock)successBlock;
 
 /**
  Fetch an APConnection of a particular relation type.
@@ -222,12 +230,12 @@
  @param successBlock Block invoked when the fetch call is successful. The block returns the results in the form of a JSON.
  @param failureBlock Block invoked when the fetch call operation fails.
  */
-+ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APConnectionSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see fetchConnectionsWithRelationType:objectId:successHandler:failureHandler:
  */
-+ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock;
++ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APConnectionsSuccessBlock)successBlock;
 
 /**
  Fetches multiple APConnections from the remote server.
@@ -237,7 +245,7 @@
  @param successBlock Block invoked when the fetch call is successful. The block returns the results in the form of a JSON.
  @param failureBlock Block invoked when the fetch call operation fails.
  */
-+ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see fetchConnectionWithSuccessHandler:failureHandler:

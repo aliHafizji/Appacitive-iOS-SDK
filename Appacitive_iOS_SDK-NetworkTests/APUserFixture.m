@@ -9,7 +9,6 @@ describe(@"APUserTests", ^{
     
     beforeAll(^() {
         __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
-        [[Appacitive sharedObject] setEnableLiveEnvironment:YES];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
     
@@ -31,7 +30,7 @@ describe(@"APUserTests", ^{
                 }];
         [[expectFutureValue(theValue(isUserAuthenticateSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
-    
+    /*
     it(@"should not return an error for authenticating with a valid facebook id", ^{
         __block BOOL isUserAuthenticateSuccesful = NO;
 
@@ -99,6 +98,6 @@ describe(@"APUserTests", ^{
                 }];
         [[expectFutureValue(theValue(isUserCreated)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
-    
+*/    
 });
 SPEC_END

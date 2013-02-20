@@ -31,21 +31,29 @@
     return self;
 }
 
+- (id) initWithDictionary:(NSDictionary*)dictionary {
+    self = [super init];
+    if(self) {
+        [self setPropertyValuesFromDictionary:dictionary];
+    }
+    return self;
+}
+
 #pragma mark search methods
 
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock {
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APConnectionsSuccessBlock)successBlock {
     [APConnection searchForAllConnectionsWithRelationType:relationType successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchForAllConnectionsWithRelationType:(NSString*)relationType successHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     [APConnection searchForConnectionsWithRelationType:relationType withQueryString:nil successHandler:successBlock failureHandler:failureBlock];
 }
 
-+ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
++ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APConnectionsSuccessBlock)successBlock {
     [APConnection searchForConnectionsWithRelationType:relationType withQueryString:queryString successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchForConnectionsWithRelationType:(NSString*)relationType withQueryString:(NSString*)queryString successHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     
     Appacitive *sharedObject = [Appacitive sharedObject];
     
@@ -70,7 +78,19 @@
             
             if (!isErrorPresent) {
                 if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(){
+                        
+                        NSArray *connections = [completedOperation.responseJSON objectForKey:@"connections"];
+                        NSMutableArray *apConnections = [NSMutableArray arrayWithCapacity:connections.count];
+                        
+                        for (NSDictionary *connection in connections) {
+                            APConnection *conn = [[APConnection alloc] initWithDictionary:connection];
+                            [apConnections addObject:conn];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            successBlock(apConnections);
+                        });
+                    });
                 }
             } else {
                 if (failureBlock != nil) {
@@ -96,12 +116,12 @@
     [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:nil failureHandler:nil];
 }
 
-+ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock {
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APConnectionsSuccessBlock)successBlock {
     [APConnection searchAllConnectionsFromObjectId:objectId toObjectIds:objectIds withSuccessHandler:successBlock failureHandler:nil];
 }
 
 
-+ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchAllConnectionsFromObjectId:(NSNumber *)objectId toObjectIds:(NSArray *)objectIds withSuccessHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
@@ -127,7 +147,19 @@
             
             if (!isErrorPresent) {
                 if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(){
+                        
+                        NSArray *connections = [completedOperation.responseJSON objectForKey:@"connections"];
+                        NSMutableArray *apConnections = [NSMutableArray arrayWithCapacity:connections.count];
+                        
+                        for (NSDictionary *connection in connections) {
+                            APConnection *conn = [[APConnection alloc] initWithDictionary:connection];
+                            [apConnections addObject:conn];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            successBlock(apConnections);
+                        });
+                    });
                 }
             } else {
                 if (failureBlock != nil) {
@@ -307,19 +339,65 @@
 
 #pragma mark fetch connection methods
 
-+ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock {
-    [APConnection fetchConnectionsWithRelationType:relationType objectIds:@[objectId] successHandler:successBlock failureHandler:nil];
++ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APConnectionSuccessBlock)successBlock {
+    [APConnection fetchConnectionWithRelationType:relationType objectId:objectId successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
-    [APConnection fetchConnectionsWithRelationType:relationType objectIds:@[objectId] successHandler:successBlock failureHandler:failureBlock];
++ (void) fetchConnectionWithRelationType:(NSString*)relationType objectId:(NSNumber*)objectId successHandler:(APConnectionSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+    
+    Appacitive *sharedObject = [Appacitive sharedObject];
+    
+    if (sharedObject.session) {
+        
+        __block NSString *path = [CONNECTION_PATH stringByAppendingFormat:@"%@/multiget/%lld", relationType, objectId.longLongValue];
+        
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest)}.mutableCopy;
+        path = [path stringByAppendingQueryParameters:queryParams];
+        
+        MKNetworkOperation *op = [sharedObject operationWithPath:path params:nil httpMethod:@"GET" ssl:YES];
+        [APHelperMethods addHeadersToMKNetworkOperation:op];
+        
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+            APError *error = [APHelperMethods checkForErrorStatus:completedOperation.responseJSON];
+            
+            BOOL isErrorPresent = (error != nil);
+            
+            if (!isErrorPresent) {
+                if (successBlock) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(){
+                        
+                        NSArray *connections = [completedOperation.responseJSON objectForKey:@"connections"];
+                        NSDictionary *connection = connections[0];
+                        APConnection *conn = [[APConnection alloc] initWithDictionary:connection];
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            successBlock(conn);
+                        });
+                    });
+                }
+            } else {
+                if (failureBlock) {
+                    failureBlock(error);
+                }
+            }
+        }  errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (failureBlock) {
+                failureBlock((APError*) error);
+            }
+        }];
+        [sharedObject enqueueOperation:op];
+    } else {
+        DLog(@"Initialize the Appacitive object with your API_KEY in the - application: didFinishLaunchingWithOptions: method of the AppDelegate");
+        if (failureBlock != nil) {
+            failureBlock([APHelperMethods errorForSessionNotCreated]);
+        }
+    }
 }
 
-+ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock {
++ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APConnectionsSuccessBlock)successBlock {
     [APConnection fetchConnectionsWithRelationType:relationType objectIds:objectIds successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) fetchConnectionsWithRelationType:(NSString*)relationType objectIds:(NSArray*)objectIds successHandler:(APConnectionsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
@@ -347,7 +425,19 @@
             
             if (!isErrorPresent) {
                 if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(){
+                        
+                        NSArray *connections = [completedOperation.responseJSON objectForKey:@"connections"];
+                        NSMutableArray *apConnections = [NSMutableArray arrayWithCapacity:connections.count];
+                        
+                        for (NSDictionary *connection in connections) {
+                            APConnection *conn = [[APConnection alloc] initWithDictionary:connection];
+                            [apConnections addObject:conn];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            successBlock(apConnections);
+                        });
+                    });
                 }
             } else {
                 if (failureBlock) {
@@ -592,22 +682,25 @@
 
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
     NSDictionary *connection = dictionary[@"connection"];
-    _articleAId = (NSNumber*) connection[@"__endpointa"][@"articleid"];
-    _articleBId = (NSNumber*) connection[@"__endpointb"][@"articleid"];
-    _createdBy = (NSString*) connection[@"__createdby"];
-    _objectId = (NSNumber*) connection[@"__id"];
-    _labelA = (NSString*) connection[@"__endpointa"][@"label"];
-    _labelB = (NSString*) connection[@"__endpointb"][@"label"];
-    _lastModifiedBy = (NSString*) connection[@"__lastmodifiedby"];
-    _relationId = (NSNumber*) connection[@"__relationid"];
-    _relationType = (NSString*) connection[@"__relationtype"];
-    _revision = (NSNumber*) connection[@"__revision"];
-    _tags = connection[@"__tags"];
-    _utcDateCreated = [APHelperMethods deserializeJsonDateString:connection[@"__utcdatecreated"]];
-    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:connection[@"__utclastupdateddate"]];
+    [self setPropertyValuesFromDictionary:connection];
+}
+
+- (void) setPropertyValuesFromDictionary:(NSDictionary*) dictionary {
+    _articleBId = (NSNumber*) dictionary[@"__endpointb"][@"articleid"];
+    _createdBy = (NSString*) dictionary[@"__createdby"];
+    _objectId = (NSNumber*) dictionary[@"__id"];
+    _labelA = (NSString*) dictionary[@"__endpointa"][@"label"];
+    _labelB = (NSString*) dictionary[@"__endpointb"][@"label"];
+    _lastModifiedBy = (NSString*) dictionary[@"__lastmodifiedby"];
+    _relationId = (NSNumber*) dictionary[@"__relationid"];
+    _relationType = (NSString*) dictionary[@"__relationtype"];
+    _revision = (NSNumber*) dictionary[@"__revision"];
+    _tags = dictionary[@"__tags"];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:dictionary[@"__utcdatecreated"]];
+    _utcLastModifiedDate = [APHelperMethods deserializeJsonDateString:dictionary[@"__utclastupdateddate"]];
     
-    _attributes = [connection[@"__attributes"] mutableCopy];
-    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:connection].mutableCopy;
+    _attributes = [dictionary[@"__attributes"] mutableCopy];
+    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:dictionary].mutableCopy;
 }
 
 - (NSMutableDictionary*) parameters {

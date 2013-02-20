@@ -33,21 +33,29 @@ NSString *const ARTICLE_PATH = @"article/";
     return self;
 }
 
+- (id) initWithDictionary:(NSDictionary*)dictionary {
+    self = [super init];
+    if (self) {
+        [self setPropertyValuesFromDictionary:dictionary];
+    }
+    return self;
+}
+
 #pragma mark search method
 
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock {
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APObjectsSuccessBlock)successBlock {
     [APObject searchAllObjectsWithSchemaName:schemaName successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     [APObject searchObjectsWithSchemaName:schemaName withQueryString:nil successHandler:successBlock failureHandler:failureBlock];
 }
 
-+ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock {
++ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APObjectsSuccessBlock)successBlock {
     [APObject searchObjectsWithSchemaName:schemaName withQueryString:queryString successHandler:successBlock failureHandler:nil];
 }
 
-+ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
@@ -76,7 +84,19 @@ NSString *const ARTICLE_PATH = @"article/";
             
             if (!isErrorPresent) {
                 if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(){
+                        
+                        NSArray *articles = [completedOperation.responseJSON objectForKey:@"articles"];
+                        NSMutableArray *apObjects = [NSMutableArray arrayWithCapacity:articles.count];
+                        
+                        for (NSDictionary *article in articles) {
+                            APObject *object = [[APObject alloc] initWithDictionary:article];
+                            [apObjects addObject:object];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            successBlock(apObjects);
+                        });
+                    });
                 }
             } else {
                 if (failureBlock != nil) {
@@ -217,11 +237,11 @@ NSString *const ARTICLE_PATH = @"article/";
 
 #pragma mark fetch methods
 
-+ (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     [APObject fetchObjectsWithObjectIds:@[objectId] schemaName:schemaName successHandler:successBlock failureHandler:failureBlock];
 }
 
-+ (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
++ (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
@@ -249,7 +269,20 @@ NSString *const ARTICLE_PATH = @"article/";
             
             if (!isErrorPresent) {
                 if (successBlock) {
-                    successBlock(completedOperation.responseJSON);
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(){
+                        
+                        NSArray *articles = [completedOperation.responseJSON objectForKey:@"articles"];
+                        NSMutableArray *apObjects = [NSMutableArray arrayWithCapacity:articles.count];
+                        
+                        for (NSDictionary *article in articles) {
+                            APObject *object = [[APObject alloc] initWithDictionary:article];
+                            [apObjects addObject:object];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            successBlock(apObjects);
+                        });
+                    });
                 }
             } else {
                 if (failureBlock) {
@@ -329,7 +362,7 @@ NSString *const ARTICLE_PATH = @"article/";
     [self saveObjectWithSuccessHandler:nil failureHandler:failureBlock];
 }
 
-- (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
+- (void) saveObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock {
     Appacitive *sharedObject = [Appacitive sharedObject];
     
     if (sharedObject.session) {
@@ -352,7 +385,7 @@ NSString *const ARTICLE_PATH = @"article/";
                 [self setNewPropertyValuesFromDictionary:completedOperation.responseJSON];
                 
                 if (successBlock != nil) {
-                    successBlock(completedOperation.responseJSON);
+                    successBlock();
                 }
             } else {
                 if (failureBlock != nil) {
@@ -607,18 +640,22 @@ NSString *const ARTICLE_PATH = @"article/";
 
 - (void) setNewPropertyValuesFromDictionary:(NSDictionary*) dictionary {
     NSDictionary *article = dictionary[@"article"];
-    _createdBy = (NSString*) article[@"__createdby"];
-    _objectId = (NSNumber*) article[@"__id"];
-    _lastModifiedBy = (NSString*) article[@"__lastmodifiedby"];
-    _revision = (NSNumber*) article[@"__revision"];
-    _schemaId = (NSNumber*) article[@"__schemaid"];
-    _utcDateCreated = [APHelperMethods deserializeJsonDateString:article[@"__utcdatecreated"]];
-    _utcLastUpdatedDate = [APHelperMethods deserializeJsonDateString:article[@"__utclastupdateddate"]];
-    _attributes = [article[@"__attributes"] mutableCopy];
-    _tags = article[@"__tags"];
-    _schemaType = article[@"__schematype"];
+    [self setPropertyValuesFromDictionary:article];
+}
+
+- (void) setPropertyValuesFromDictionary:(NSDictionary*) dictionary {
+    _createdBy = (NSString*) dictionary[@"__createdby"];
+    _objectId = (NSNumber*) dictionary[@"__id"];
+    _lastModifiedBy = (NSString*) dictionary[@"__lastmodifiedby"];
+    _revision = (NSNumber*) dictionary[@"__revision"];
+    _schemaId = (NSNumber*) dictionary[@"__schemaid"];
+    _utcDateCreated = [APHelperMethods deserializeJsonDateString:dictionary[@"__utcdatecreated"]];
+    _utcLastUpdatedDate = [APHelperMethods deserializeJsonDateString:dictionary[@"__utclastupdateddate"]];
+    _attributes = [dictionary[@"__attributes"] mutableCopy];
+    _tags = dictionary[@"__tags"];
+    _schemaType = dictionary[@"__schematype"];
     
-    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:article].mutableCopy;
+    _properties = [APHelperMethods arrayOfPropertiesFromJSONResponse:dictionary].mutableCopy;
 }
 
 - (NSMutableDictionary*) postParamerters {

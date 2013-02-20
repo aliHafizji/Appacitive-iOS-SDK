@@ -55,12 +55,20 @@ extern NSString *const ARTICLE_PATH;
  */
 - (id) initWithSchemaName:(NSString*)schemaName;
 
+/**
+ Initialize and return an autoreleased APObject.
+ 
+ @param dictionary The dictionary to initialize the APObject from.
+ @abstract This method parses the dictionary and creates an APObject from it.
+ */
+- (id) initWithDictionary:(NSDictionary*)dictionary;
+
 /** @name Searching for APObjects */
 
 /**
  @see searchAllObjectsWithSchemaName:successHandler:failureHandler:
  */
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock;
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APObjectsSuccessBlock)successBlock;
 
 /**
  Searches for all APObjects of a particular schema.
@@ -69,12 +77,12 @@ extern NSString *const ARTICLE_PATH;
  @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when search call fails.
  */
-+ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) searchAllObjectsWithSchemaName:(NSString*) schemaName successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see searchObjectsWithSchemaName:withQueryString:successHandler:failureHandler:
  */
-+ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock;
++ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APObjectsSuccessBlock)successBlock;
 
 /**
  Searches for APObjects and filters the results according to the query string.
@@ -84,7 +92,7 @@ extern NSString *const ARTICLE_PATH;
  @param successBlock Block invoked when the search call is successful.
  @param failureBlock Block invoked when the search call fails.
  */
-+ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) searchObjectsWithSchemaName:(NSString*)schemaName withQueryString:(NSString*)queryString successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Deleting APObjects */
 
@@ -146,7 +154,7 @@ extern NSString *const ARTICLE_PATH;
 /**
  @see fetchObjectsWithObjectIds:schemaName:successHandler:failureHandler:
  */
-+ (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) fetchObjectWithObjectId:(NSNumber*)objectId schemaName:(NSString*)schemaName successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  Retrieves multiple APObjects of a particular schema.
@@ -156,7 +164,7 @@ extern NSString *const ARTICLE_PATH;
  @param successBlock Block invoked when the retrieve operation succeeds.
  @param failureBlock Block invoked when the failure operation succeeds.
  */
-+ (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
++ (void) fetchObjectsWithObjectIds:(NSArray*)objectIds schemaName:(NSString *)schemaName successHandler:(APObjectsSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /**
  @see fetchWithSuccessHandler:failureHandler:
@@ -258,7 +266,7 @@ extern NSString *const ARTICLE_PATH;
  @param failureBlock Block invoked when the save operation fails.
  
  */
-- (void) saveObjectWithSuccessHandler:(APResultSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
+- (void) saveObjectWithSuccessHandler:(APSuccessBlock)successBlock failureHandler:(APFailureBlock)failureBlock;
 
 /** @name Update APObjects */
 
