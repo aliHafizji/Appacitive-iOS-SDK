@@ -140,4 +140,26 @@ typedef enum {
  @param freeTextTokens
  */
 + (NSString*) queryStringForSearchWithFreeText:(NSArray*)freeTextTokens;
+
+/**
+ Helper method to generate a and query string.
+ 
+ @param array of queries
+ 
+ @abstract This method is useful when you have a number of filters. If you want to filter APObjects on geocode and properties you would have a query like so: *location within_circle 123,123,12 and *firstName == john.
+     Using this method you do not need to manually append the and between the two filters. The call would be [APQuery generateAndQueryString:@[[APQuery queryStringForEqualCondition:@"firstName" propertyValue:@"john"], 
+                                  [APQuery queryStringForGeoCodeProperty:@"location" location:location distance:km raduis:12] ]]
+ */
++ (NSString*) generateAndQueryString:(NSArray*) array;
+
+/**
+ Helper method to generate a or query string.
+ 
+ @param array of queries
+ 
+ @abstract This method is useful when you have a number of filters. If you want to filter APObjects on geocode or properties you would have a query like so: *location within_circle 123,123,12 or *firstName == john.
+ Using this method you do not need to manually append the or between the two filters. The call would be [APQuery generateOrQueryString:@[[APQuery queryStringForEqualCondition:@"firstName" propertyValue:@"john"],
+ [APQuery queryStringForGeoCodeProperty:@"location" location:location distance:km raduis:12] ]]
+ */
++ (NSString*) generateOrQueryString:(NSArray*) array;
 @end

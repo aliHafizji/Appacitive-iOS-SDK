@@ -268,4 +268,46 @@
     
     STAssertEqualObjects(queryString, expectedString, @"Test case for geo code helper method failed");
 }
+
+/**
+ @purpose Test the GenerateAndQuery helper method
+ */
+- (void) testGenerateAndQueryMethod {
+    NSString *query = [APQuery generateAndQueryString:
+                        @[
+                            [APQuery queryStringForEqualCondition:@"hotelName" propertyValue:@"Hilton"],
+                            [APQuery queryStringForGeoCodeProperty:@"location" location:[[CLLocation alloc] initWithLatitude:123 longitude:200] distance:kMiles raduis:@12]
+                        ]
+                     ];
+    STAssertNotNil(query, @"Test case for generateAndQueryString failed");
+}
+
+/**
+ @purpose Test the GenerateOrQuery helper method
+ */
+- (void) testGenerateOrQueryMethod {
+    NSString *query = [APQuery generateOrQueryString:
+                       @[
+                            [APQuery queryStringForEqualCondition:@"hotelName" propertyValue:@"Hilton"],
+                            [APQuery queryStringForGeoCodeProperty:@"location" location:[[CLLocation alloc] initWithLatitude:123 longitude:200] distance:kMiles raduis:@12]
+                       ]
+                       ];
+    STAssertNotNil(query, @"Test case for generateOrQueryString failed");
+}
+
+- (void) testNestedAndOrFilterQuery {
+    NSString *query = [APQuery generateOrQueryString:
+                        @[
+                            [APQuery queryStringForEqualCondition:@"hotelName" propertyValue:@"Hilton"],
+                            [APQuery queryStringForGeoCodeProperty:@"location" location:[[CLLocation alloc] initWithLatitude:123 longitude:200] distance:kMiles raduis:@12],
+                            [APQuery generateOrQueryString:
+                                @[
+                                    [APQuery queryStringForEqualCondition:@"hotelName" propertyValue:@"Hilton"],
+                                    [APQuery queryStringForGeoCodeProperty:@"location" location:[[CLLocation alloc] initWithLatitude:123 longitude:200] distance:kMiles raduis:@12]
+                                ]
+                             ]
+                        ]
+                       ];
+    STAssertNotNil(query, @"Test case for generateOrQueryString failed");
+}
 @end

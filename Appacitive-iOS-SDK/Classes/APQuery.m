@@ -136,4 +136,30 @@
     }
     return nil;
 }
+
++ (NSString*) generateAndQueryString:(NSArray*) array {
+    
+    return [APQuery generateQueryStringFor:array operator:@"and"];
+}
+
++ (NSString*) generateOrQueryString:(NSArray*) array {
+    return [APQuery generateQueryStringFor:array operator:@"or"];
+}
+
++ (NSString*) generateQueryStringFor:(NSArray*) array operator:(NSString*)operator {
+    NSString *queryString;
+    
+    for (NSString *query in array) {
+        if (!queryString) {
+            queryString = [NSString string];
+            queryString = [queryString stringByAppendingString:query];
+        } else {
+            queryString = [queryString stringByAppendingFormat:@" %@ %@", operator, query];
+        }
+    }
+    if (queryString) {
+        queryString = [NSString stringWithFormat:@"(%@)", queryString];
+    }
+    return queryString;
+}
 @end

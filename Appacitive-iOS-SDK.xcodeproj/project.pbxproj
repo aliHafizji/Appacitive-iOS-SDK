@@ -37,6 +37,7 @@
 		616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1215F484E7009A8578 /* SystemConfiguration.framework */; };
 		616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616A6A1415F4850E009A8578 /* UIKit.framework */; };
 		6183E08416D38127007CC42F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6183E08316D38127007CC42F /* CoreGraphics.framework */; };
+		618AAA6616D79C6100515449 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6183E08316D38127007CC42F /* CoreGraphics.framework */; };
 		618FEE55169AEAEC006A1888 /* APUserFixture.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE54169AEAEC006A1888 /* APUserFixture.m */; };
 		618FEE5A169AEB04006A1888 /* APUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 618FEE56169AEB04006A1888 /* APUser.h */; };
 		618FEE5B169AEB04006A1888 /* APUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FEE57169AEB04006A1888 /* APUser.m */; };
@@ -174,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				618AAA6616D79C6100515449 /* CoreGraphics.framework in Frameworks */,
 				612CCDFA15FDA37000A78F3E /* CoreLocation.framework in Frameworks */,
 				616A6A1515F4850E009A8578 /* UIKit.framework in Frameworks */,
 				616A6A1315F484E7009A8578 /* SystemConfiguration.framework in Frameworks */,
