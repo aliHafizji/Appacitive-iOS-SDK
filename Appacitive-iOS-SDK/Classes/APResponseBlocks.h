@@ -52,3 +52,9 @@ typedef void (^APUserSuccessBlock)(APUser* user);
  Block parameter expected for image download
  */
 typedef void (^APImageBlock) (UIImage* fetchedImage, NSURL* url, BOOL isInCache);
+
+/**
+ * Block parameter for getting download url of a file
+ */
+typedef void (^APFileDownloadUrlBlock) (NSString *url);
+
