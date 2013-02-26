@@ -111,7 +111,7 @@
         
         NSString *path = [FILE_PATH stringByAppendingString:@"uploadurl"];
         
-        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest), @"filename":name, @"expires":@10}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest), @"filename":name, @"expires":@5259490}.mutableCopy;
         if(contentType) {
             [queryParams setObject:contentType forKey:@"contenttype"];
         }
@@ -262,7 +262,7 @@
         
         NSString *path = [FILE_PATH stringByAppendingFormat:@"download/%@", fileName];
         
-        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest), @"expires":@10}.mutableCopy;
+        NSMutableDictionary *queryParams = @{@"debug":NSStringFromBOOL(sharedObject.enableDebugForEachRequest), @"expires":@5259490}.mutableCopy;
         
         path = [path stringByAppendingQueryParameters:queryParams];
         
