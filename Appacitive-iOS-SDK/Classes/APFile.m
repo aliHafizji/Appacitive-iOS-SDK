@@ -150,7 +150,7 @@
                         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)res;
                         if ([httpResponse statusCode] == 200 && successBlock != nil) {
                             [APFile getLongLastingPublicDownloadUrlForFile:fileName successHandler:^(NSString * url) {
-                                if (propertyName != nil) {
+                                if (propertyName != nil && object != nil) {
                                     [object addPropertyWithKey:propertyName value:url];
                                     [object updateObjectWithSuccessHandler:^(){
                                         if (successBlock != nil) {

@@ -9,7 +9,7 @@ SPEC_BEGIN(APConnectionTests)
 describe(@"APConnectionTests", ^{
 
     beforeAll(^() {
-        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:@"ukaAo61yoZoeTJsGacH9TDRHnhf/J9/kH2TStR5sD3k="];
+        __block Appacitive *appacitive = [Appacitive appacitiveWithApiKey:API_KEY];
         [[expectFutureValue(appacitive.session) shouldEventuallyBeforeTimingOutAfter(5.0)] beNonNil];
     });
     
