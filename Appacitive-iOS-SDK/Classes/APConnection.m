@@ -686,6 +686,7 @@
 }
 
 - (void) setPropertyValuesFromDictionary:(NSDictionary*) dictionary {
+    _articleAId = (NSNumber*) dictionary[@"__endpointa"][@"articleid"];
     _articleBId = (NSNumber*) dictionary[@"__endpointb"][@"articleid"];
     _createdBy = (NSString*) dictionary[@"__createdby"];
     _objectId = (NSNumber*) dictionary[@"__id"];
