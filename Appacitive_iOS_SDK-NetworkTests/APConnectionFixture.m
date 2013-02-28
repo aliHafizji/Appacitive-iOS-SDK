@@ -210,8 +210,17 @@ describe(@"APConnectionTests", ^{
         [[expectFutureValue(theValue(isSearchingUnsuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
-    pending_(@"should not return an error with search call along with valid query string", ^(){
-    
+    it(@"should not return an error with search call along with valid query string", ^(){
+        __block BOOL isSearchingSuccesful = NO;
+        
+        NSString *queryString = [NSString stringWithFormat:@"articleId=%@&label=%@",[NSNumber numberWithLongLong:17143708131656712], @"Tasks"];
+        [APConnection searchForConnectionsWithRelationType:@"list_items" withQueryString:queryString successHandler:^(NSArray *connections) {
+            isSearchingSuccesful = YES;
+        } failureHandler:^(APError *error){
+            isSearchingSuccesful = NO;
+        }];
+        
+        [[expectFutureValue(theValue(isSearchingSuccesful)) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:theValue(YES)];
     });
     
     pending_(@"should return an error with search call along with invalid query string", ^(){
